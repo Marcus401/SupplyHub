@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "83QCIZZHSCf0+ycPBZQnFbDDfJWnfG0brgdMvoCdZl8=",
+  "Source": "SupplyHub.Server",
+  "BasePath": "_content/SupplyHub.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\MJ\\CS\\SupplyHub\\supplyhub.client\\supplyhub.client.esproj",
+      "Version": 2,
+      "Source": "supplyhub.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
