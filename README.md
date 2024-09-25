@@ -1,4 +1,5 @@
 # SupplyHub
+### By Aeolipile
 #### Bridging companies' to their supply needs in the digital age
 
 Created with ReactJS+Vite, ASP.NET Core, and Azure SQL Database
