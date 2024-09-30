@@ -20,7 +20,7 @@ Hosted in Azure Web Services
 
 ## How to create a local repository and import the project
 
-1. create a folder, this will be where your project and repository will be
+1. create a folder, this will be where your project and local repository will be
 2. open the terminal to the folder
 3. run the following commands:
    * (Do this if you have not yet set up your account into git)
