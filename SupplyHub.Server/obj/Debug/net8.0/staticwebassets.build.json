@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "83QCIZZHSCf0+ycPBZQnFbDDfJWnfG0brgdMvoCdZl8=",
+  "Hash": "QswrttEVMakHdxIKhPuF3VKpk9BfF6B8Mnf7kjrhhTk=",
   "Source": "SupplyHub.Server",
   "BasePath": "_content/SupplyHub.Server",
   "Mode": "Default",
@@ -18,6 +18,14 @@
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
     }
   ],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "SupplyHub.Server\\wwwroot",
+      "Source": "SupplyHub.Server",
+      "ContentRoot": "C:\\MJ\\CS\\SupplyHub\\SupplyHub.Server\\wwwroot\\",
+      "BasePath": "_content/SupplyHub.Server",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }
