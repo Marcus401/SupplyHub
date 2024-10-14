@@ -68,7 +68,7 @@ Hosted in Azure Web Services
    * `cd ..`
 
 > For backend and database developers:
-> 
+
 ## How to connect to the Azure SQL Database in SSMS
 1. Login into azure cli
    * `az login` or `az login --use-device-code`
@@ -84,22 +84,27 @@ Hosted in Azure Web Services
 4. Connect
 
 # Git commands
-## Git branch commands
+### Git branch commands
 * `git branch` <- shows all branches
 * `git branch {branch name}` <- creates a new branch
 * `git checkout {branch name}` <- switches to the branch
 * `git merge {branch name}` <- merges the branch to the current branch
 * `git branch -d {branch name}` <- deletes the branch
 
-## Git commands for pushing to the cloud repository
+### Git commands for pushing to the cloud repository
 * `git add .` <- adds all files to the staging area
 * `git commit -m "{message}"` <- commits the changes, conventionally say your changes short and concisely in the message
 * `git push origin {branch name}` <- pushes the branch to the cloud repository
 
-## Other git commands
+### Other git commands
 * `git pull origin {branch name}` <- pulls the branch from the cloud repository (updates your local repository to the latest one from the cloud)
 * `git status` <- shows the status of the files in the repository compared to the cloud repository
-* `git log` <- shows the commit history
+* `git log` <- shows the commit history along with respective commit hashes
+  * Press `K` or the `Up Arrow Key` to move up **_one line_** at a time
+  * Press `Enter` to move down **_one line_** at a time.
+  * Press `B` to scroll **_one page_** up
+  * Press `Space` to scroll _**one page**_ down.
+  * Press `Q` to **_exit_** the log
 * `git reset --hard` <- resets the repository to the last commit
 * `git reset --hard {commit hash}` <- resets the repository to the commit hash
 
