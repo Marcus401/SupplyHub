@@ -11,9 +11,10 @@
 **[Instructions](#instructions)**
 * [How to create a local repository and import the project](#how-to-create-a-local-repository-and-import-the-project)
 * [How to connect to the Azure SQL Database in SSMS](#how-to-connect-to-the-azure-sql-database-in-ssms)
-* [Git branch commands](#git-branch-commands)
-* [Git commands for pushing to the cloud repository](#git-commands-for-pushing-to-the-cloud-repository)
-* [Other git commands](#other-git-commands)
+* [Git commands](#git-commands)
+  * [Git branch commands](#git-branch-commands)
+  * [Git commands for pushing to the cloud repository](#git-commands-for-pushing-to-the-cloud-repository)
+  * [Other git commands](#other-git-commands)
 - - -
 
 ## Technologies Used
@@ -67,7 +68,7 @@ Hosted in Azure Web Services
    * `cd ..`
 
 > For backend and database developers:
-
+> 
 ## How to connect to the Azure SQL Database in SSMS
 1. Login into azure cli
    * `az login` or `az login --use-device-code`
@@ -82,8 +83,7 @@ Hosted in Azure Web Services
    * `Trust Server Certificate:` Check
 4. Connect
 
-> Git commands
-
+# Git commands
 ## Git branch commands
 * `git branch` <- shows all branches
 * `git branch {branch name}` <- creates a new branch
