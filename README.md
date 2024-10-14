@@ -12,9 +12,8 @@
 * [How to create a local repository and import the project](#how-to-create-a-local-repository-and-import-the-project)
 * [How to connect to the Azure SQL Database in SSMS](#how-to-connect-to-the-azure-sql-database-in-ssms)
 
-[Terminal Commands💻](#terminal-commands-)
-* [Directory Commands](#directory-commands)
-* [Node(npm) commands](#nodenpm-commands)
+[Terminal Commands💻](#basic-terminal-commands-)
+[Node(npm) commands📦](#nodenpm-commands-)
 
 [Git commands🔧](#git-commands-)
   * [Git branch commands](#git-branch-commands)
@@ -88,7 +87,7 @@ Hosted in Azure Web Services
    * `Trust Server Certificate:` Check
 4. Connect
 - - -
-# Terminal Commands 💻
+# Basic Terminal Commands 💻
 * `Up Arrow Key` <- goes to the previous command
 * `Down Arrow Key` <- goes to the next command
 * `Tab` <- autocompletes the command
@@ -98,7 +97,7 @@ Hosted in Azure Web Services
 
 **Note:** always mind of the current directory you are in before executing commands such as installing packages or running the project
 
-## Node(npm) commands
+# Node(npm) commands 📦
 * `npm install` <- installs all dependencies in the package.json file
 * `npm run starts` <- starts the frontend project
 * `npm i {package}` <- installs the specified package
