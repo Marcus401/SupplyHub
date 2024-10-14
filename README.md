@@ -2,28 +2,26 @@
 ### By Aeolipile
 ###### Bridging companies` to their supply needs in the digital age
 - - -
-[Technologies Used](#technologies-used)
+[Technologies Used🛠️](#technologies-used-)
 
-[Group Members](#members)
+[Group Members👥](#members-)
 
-[Prerequisites](#install-first-if-not-yet-installed)
+[Prerequisites📋](#install-first-if-not-yet-installed-)
 
-[Instructions](#instructions)
-
-[How to create a local repository and import the project](#how-to-create-a-local-repository-and-import-the-project)
-
-[How to connect to the Azure SQL Database in SSMS](#how-to-connect-to-the-azure-sql-database-in-ssms)
+[Instructions📖](#instructions-)
+* [How to create a local repository and import the project](#how-to-create-a-local-repository-and-import-the-project)
+* [How to connect to the Azure SQL Database in SSMS](#how-to-connect-to-the-azure-sql-database-in-ssms)
 
 [Terminal Commands](#terminal-commands)
-* [Directory Commands](#directory-commands)
-* [Node(npm) commands](#nodenpm-commands)
-* [Git commands](#git-commands)
+* [Directory Commands📁](#directory-commands-)
+* [Node(npm) commands📦](#nodenpm-commands-)
+* [Git commands🔧](#git-commands-)
   * [Git branch commands](#git-branch-commands)
   * [Git commands for pushing to the cloud repository](#git-commands-for-pushing-to-the-cloud-repository)
   * [Other git commands](#other-git-commands)
 - - -
 
-## Technologies Used
+## Technologies Used 🛠️
 (take note of these when trying to find solutions to problems):
 ##### Frontend:
 * **ReactJS** _with_ **Typescript**
@@ -39,14 +37,14 @@
 
 Hosted in Azure Web Services
 - - -
-# Members:
+# Members 👥:
 - Marcus Acaba
 - Dawn Ferrer
 - Patrick Del Prado
 - Rica Sofia Arroyo
 - Glenn Batac
 - - -
-# Install first if not yet installed:
+# Install first if not yet installed 📋:
 * Git:
   * https://git-scm.com/downloads
 * Node.js: 
@@ -56,7 +54,7 @@ Hosted in Azure Web Services
 * Azure CLI (_for backend and database devs_): 
   * https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli
 - - -
-# Instructions
+# Instructions 📖
 ## How to create a local repository and import the project
 
 1. create a folder, this will be where your project and local repository will be
@@ -90,13 +88,13 @@ Hosted in Azure Web Services
 4. Connect
 
 # Terminal Commands
-## Directory Commands
+## Directory Commands 📁
 * `cd {path}` <- changes the directory to the specified path
 * `cd ..` <- goes back one directory
 
 **Note:** always mind of the current directory you are in before executing commands such as installing packages or running the project
 
-## Node(npm) commands
+## Node(npm) commands 📦
 * `npm install` <- installs all dependencies in the package.json file
 * `npm run starts` <- starts the frontend project
 * `npm i {package}` <- installs the specified package
@@ -106,7 +104,7 @@ Hosted in Azure Web Services
   * `npm i {package} --save-dev` <- installs the specified package as a dev dependency
 * `npm uninstall {package}` <- uninstalls the specified package
 
-## Git commands
+## Git commands 🔧
 ### Git branch commands
 * `git branch` <- shows all branches
 * `git branch {branch name}` <- creates a new branch
