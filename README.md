@@ -12,7 +12,7 @@
 * [How to create a local repository and import the project](#how-to-create-a-local-repository-and-import-the-project)
 * [How to connect to the Azure SQL Database in SSMS](#how-to-connect-to-the-azure-sql-database-in-ssms)
 
-[Terminal Commands](#terminal-commands-)
+[Terminal Commands💻](#terminal-commands-)
 * [Directory Commands](#directory-commands)
 * [Node(npm) commands](#nodenpm-commands)
 * [Git commands🔧](#git-commands-)
