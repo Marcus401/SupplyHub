@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SupplyHub.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34d7aa9dc79a3a911b85cc639c3d581d9d38a0f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28c293b576af89bc5095e725953dcdd92706a387")]
 [assembly: System.Reflection.AssemblyProductAttribute("SupplyHub.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SupplyHub.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
