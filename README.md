@@ -87,7 +87,7 @@ Hosted in Azure Web Services
    * `Encryption:` Optional
    * `Trust Server Certificate:` Check
 4. Connect
-
+- - -
 # Terminal Commands 💻
 ## Directory Commands
 * `cd {path}` <- changes the directory to the specified path
