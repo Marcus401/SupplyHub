@@ -2,15 +2,21 @@
 ### By Aeolipile
 ###### Bridging companies` to their supply needs in the digital age
 - - -
-**[Technologies Used](#technologies-used)**
+[Technologies Used](#technologies-used)
 
-**[Group Members](#members)**
+[Group Members](#members)
 
-**[Prerequisites](#install-first-if-not-yet-installed)**
+[Prerequisites](#install-first-if-not-yet-installed)
 
-**[Instructions](#instructions)**
-* [How to create a local repository and import the project](#how-to-create-a-local-repository-and-import-the-project)
-* [How to connect to the Azure SQL Database in SSMS](#how-to-connect-to-the-azure-sql-database-in-ssms)
+[Instructions](#instructions)
+
+[How to create a local repository and import the project](#how-to-create-a-local-repository-and-import-the-project)
+
+[How to connect to the Azure SQL Database in SSMS](#how-to-connect-to-the-azure-sql-database-in-ssms)
+
+[Terminal Commands](#terminal-commands)
+* [Directory Commands](#directory-commands)
+* [Node(npm) commands](#nodenpm-commands)
 * [Git commands](#git-commands)
   * [Git branch commands](#git-branch-commands)
   * [Git commands for pushing to the cloud repository](#git-commands-for-pushing-to-the-cloud-repository)
@@ -83,7 +89,24 @@ Hosted in Azure Web Services
    * `Trust Server Certificate:` Check
 4. Connect
 
-# Git commands
+# Terminal Commands
+## Directory Commands
+* `cd {path}` <- changes the directory to the specified path
+* `cd ..` <- goes back one directory
+
+**Note:** always mind of the current directory you are in before executing commands such as installing packages or running the project
+
+## Node(npm) commands
+* `npm install` <- installs all dependencies in the package.json file
+* `npm run starts` <- starts the frontend project
+* `npm i {package}` <- installs the specified package
+  * `npm i {package}@{version}` <- installs the specified package with the specified version
+  * `npm i {package} --save` <- installs the specified package as a dependency 
+    * **Note:** Use this if the library is required for the project to work properly
+  * `npm i {package} --save-dev` <- installs the specified package as a dev dependency
+* `npm uninstall {package}` <- uninstalls the specified package
+
+## Git commands
 ### Git branch commands
 * `git branch` <- shows all branches
 * `git branch {branch name}` <- creates a new branch
@@ -98,7 +121,8 @@ Hosted in Azure Web Services
 
 ### Other git commands
 * `git pull origin {branch name}` <- pulls the branch from the cloud repository (updates your local repository to the latest one from the cloud)
-* `git status` <- shows the status of the files in the repository compared to the cloud repository
+* `git status` <- shows files ready to be committed and also compares to the cloud repository
+* `git diff` <- shows files ready to be committed
 * `git log` <- shows the commit history along with respective commit hashes
   * Press `K` or the `Up Arrow Key` to move up **_one line_** at a time
   * Press `Enter` to move down **_one line_** at a time.
@@ -106,7 +130,7 @@ Hosted in Azure Web Services
   * Press `Space` to scroll _**one page**_ down.
   * Press `Q` to **_exit_** the log
 * `git reset --hard` <- resets the repository to the last commit
-* `git reset --hard {commit hash}` <- resets the repository to the commit hash
+* `git reset --hard {commit hash}` <- resets the repository to a specified commit hash
 
 #### Update as needed
 
