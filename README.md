@@ -89,7 +89,10 @@ Hosted in Azure Web Services
 4. Connect
 - - -
 # Terminal Commands 💻
-## Directory Commands
+* `Up Arrow Key` <- goes to the previous command
+* `Down Arrow Key` <- goes to the next command
+* `Tab` <- autocompletes the command
+* `Ctrl + C` <- stops the current process
 * `cd {path}` <- changes the directory to the specified path
 * `cd ..` <- goes back one directory
 
