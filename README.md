@@ -15,7 +15,8 @@
 [Terminal Commands💻](#terminal-commands-)
 * [Directory Commands](#directory-commands)
 * [Node(npm) commands](#nodenpm-commands)
-* [Git commands🔧](#git-commands-)
+
+[Git commands🔧](#git-commands-)
   * [Git branch commands](#git-branch-commands)
   * [Git commands for pushing to the cloud repository](#git-commands-for-pushing-to-the-cloud-repository)
   * [Other git commands](#other-git-commands)
@@ -104,20 +105,20 @@ Hosted in Azure Web Services
   * `npm i {package} --save-dev` <- installs the specified package as a dev dependency
 * `npm uninstall {package}` <- uninstalls the specified package
 
-## Git commands 🔧
-### Git branch commands
+# Git commands 🔧
+## Git branch commands
 * `git branch` <- shows all branches
 * `git branch {branch name}` <- creates a new branch
 * `git checkout {branch name}` <- switches to the branch
 * `git merge {branch name}` <- merges the branch to the current branch
 * `git branch -d {branch name}` <- deletes the branch
 
-### Git commands for pushing to the cloud repository
+## Git commands for pushing to the cloud repository
 * `git add .` <- adds all files to the staging area
 * `git commit -m "{message}"` <- commits the changes, conventionally say your changes short and concisely in the message
 * `git push origin {branch name}` <- pushes the branch to the cloud repository
 
-### Other git commands
+## Other git commands
 * `git pull origin {branch name}` <- pulls the branch from the cloud repository (updates your local repository to the latest one from the cloud)
 * `git status` <- shows files ready to be committed and also compares to the cloud repository
 * `git diff` <- shows files ready to be committed
