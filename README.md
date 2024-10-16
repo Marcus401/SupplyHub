@@ -66,7 +66,8 @@ Hosted in Azure Web Services
      * (replace with your username and email)
    * `git init`
    * `git remote add origin https://github.com/Marcus401/SupplyHub.git`
-   * `git fetch origin main`
+   * `git pull origin main`
+   * `git checkout main`
    * `cd supplyhub.client`
    * `npm install` <- this will install react dependencies into the frontend library
    * `cd ..`
