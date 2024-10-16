@@ -99,7 +99,7 @@ Hosted in Azure Web Services
 
 # Node(npm) commands 📦
 * `npm install` <- installs all dependencies in the package.json file
-* `npm run starts` <- starts the frontend project
+* `npm run start` <- starts the frontend project
 * `npm i {package}` <- installs the specified package
   * `npm i {package}@{version}` <- installs the specified package with the specified version
   * `npm i {package} --save` <- installs the specified package as a dependency 
