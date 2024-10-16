@@ -25,7 +25,7 @@
 (take note of these when trying to find solutions to problems):
 ##### Frontend:
 * **ReactJS** _with_ **Typescript**
-* Build Tool: **Vite**
+* Build Tool: **Vite** _(Very Important*)_
 * **Tailwind CSS**
 * **Axios** _for API calls_
 * **Node.js** JavaScript runtime
