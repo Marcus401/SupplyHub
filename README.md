@@ -13,12 +13,15 @@
 * [How to connect to the Azure SQL Database in SSMS](#how-to-connect-to-the-azure-sql-database-in-ssms)
 
 [Terminal Commands💻](#basic-terminal-commands-)
+
 [Node(npm) commands📦](#nodenpm-commands-)
 
 [Git commands🔧](#git-commands-)
   * [Git branch commands](#git-branch-commands)
   * [Git commands for pushing to the cloud repository](#git-commands-for-pushing-to-the-cloud-repository)
   * [Other git commands](#other-git-commands)
+
+[Important notes in using Github❗](#important-notes-in-using-github-)
 - - -
 
 ## Technologies Used 🛠️
@@ -124,7 +127,7 @@ Hosted in Azure Web Services
 * `git push origin {branch name}` <- pushes the branch to the cloud repository
 
 ## Other git commands
-* `git pull origin {branch name}` <- pulls the branch from the cloud repository (updates your local repository to the latest one from the cloud)
+* `git pull` <- pulls the branch from the cloud repository (updates your local repository to the latest one from the cloud)
 * `git status` <- shows files ready to be committed and also compares to the cloud repository
 * `git diff` <- shows files ready to be committed
 * `git log` <- shows the commit history along with respective commit hashes
@@ -135,6 +138,8 @@ Hosted in Azure Web Services
   * Press `Q` to **_exit_** the log
 * `git reset --hard` <- resets the repository to the last commit
 * `git reset --hard {commit hash}` <- resets the repository to a specified commit hash
+
+# Notes in using Github ❗
 
 #### Update as needed
 
