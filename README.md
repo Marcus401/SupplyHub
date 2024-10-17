@@ -140,7 +140,7 @@ Hosted in Azure Web Services
 * `git reset --hard` <- resets the repository to the last commit
 * `git reset --hard {commit hash}` <- resets the repository to a specified commit hash
 
-# Important notes in using Github ❗
+# Important notes in using GitHub ❗
 * `commits` are saved states of changes in the project, pushing to the cloud repository will take your last commit to the cloud, and returning to previous states brings you to previous commits.
 * `merging` a branch will update that branch to the specified branch it will merge into
 * everyone should update their local repository whenever the cloud repository updates using `git pull` to prevent a `merge conflict`, `commit` then use `git status` to see the differences between your local repository and the cloud repository
