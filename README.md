@@ -142,7 +142,7 @@ Hosted in Azure Web Services
 # Important notes in using Github ❗
 * `commits` are saved states of changes in the project, pushing to the cloud repository will take your last commit to the cloud, and returning to previous states brings you to previous commits.
 * `merging` a branch will update that branch to the specified branch it will merge into
-* everyone should update their local repository whenever the cloud repository updates using `git pull` to prevent a `merge conflict`
+* everyone should update their local repository whenever the cloud repository updates using `git pull` to prevent a `merge conflict`, use `git status` to see the differences between your local repository and the cloud repository
 * `merge conflicts` occur when two people have changed the same lines in a file, or if one developer deleted a file while another developer was modifying it. In these cases, Git cannot automatically determine what is correct. Conflicts only affect the developer conducting the merge, the rest of the team is unaware of the conflict. Git will mark the file as being conflicted and halt the merging process. It is then the developers' responsibility to resolve the conflict.
 * In some cases use `--force` if there are conflicts in pulling the repository, this forces your local repository to install the changes in the cloud repository: `git pull --force`
 * Make sure to specify if you are in a branch, use `git checkout {branch}` to switch to that branch before using `pull` or `push`
