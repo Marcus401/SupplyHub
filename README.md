@@ -139,7 +139,7 @@ Hosted in Azure Web Services
 * `git reset --hard` <- resets the repository to the last commit
 * `git reset --hard {commit hash}` <- resets the repository to a specified commit hash
 
-# Notes in using Github ❗
+# Important notes in using Github ❗
 
 #### Update as needed
 
