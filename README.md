@@ -69,7 +69,7 @@ Hosted in Azure Web Services
    * `git pull origin main`
    * Do this if the branch you are currently in is called master:
      * `git checkout main`
-     * 'git branch -d master'
+     * `git branch -d master`
    * `cd supplyhub.client`
    * `npm install` <- this will install react dependencies into the frontend library
    * `cd ..`
