@@ -41,11 +41,12 @@
 Hosted in Azure Web Services
 - - -
 # Members 👥:
-- Marcus Acaba
-- Dawn Ferrer
-- Patrick Del Prado
-- Rica Sofia Arroyo
-- Glenn Batac
+- Marcus Acaba         : Frontend, Backend, Database
+- Dawn Ferrer          : Backend, Database
+- Patrick Del Prado    : Backend, Database
+- Myles Reyes          : Frontend, Database
+- Rica Sofia Arroyo    : Frontend
+- Glenn Batac          : Frontend
 - - -
 # Install first if not yet installed 📋:
 * Git:
