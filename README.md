@@ -148,6 +148,13 @@ Hosted in Azure Web Services
 * In some cases use `--force` if there are conflicts in pulling the repository, this forces your local repository to install the changes in the cloud repository: `git pull --force`
 * Make sure to specify if you are in a branch, use `git checkout {branch}` to switch to that branch before using `pull` or `push`
 
+# Tips in Development ✔️
+**to avoid conflicts:**
+* make sure to frequently `pull` from the base branch
+* `Pull` before you `Push`
+* Keep coordination very open and active on what part you are working on
+* As much as possible, avoid editing the same file at once
+
 #### Update as needed
 
 ```
