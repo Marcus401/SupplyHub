@@ -22,6 +22,8 @@
   * [Other git commands](#other-git-commands)
 
 [Important notes in using Github❗](#important-notes-in-using-github-)
+
+[Tips during development✔️](#tips-during-development-)
 - - -
 
 ## Technologies Used 🛠️
