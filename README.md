@@ -157,6 +157,9 @@ Hosted in Azure Web Services
 * Keep coordination very open and active on what part you are working on
 * As much as possible, avoid editing the same file at once
 
+#### Plugins you might like to use
+* ES7 react snippets for VScode - gives shortcuts to pre defined snippets instead of having to type out the same thing over and over
+* Tailwind support - Tailwind css suggestions
 #### Update as needed
 
 ```
