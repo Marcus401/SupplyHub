@@ -116,6 +116,16 @@ Hosted in Azure Web Services
   * `npm i {package} --save-dev` <- installs the specified package as a dev dependency
 * `npm uninstall {package}` <- uninstalls the specified package
 
+# How to run the program 🛠️
+1.
+Press the "run" button in your IDE
+   **or**
+run the following commands:
+ * `cd SupplyHub.Server`
+ * `dotnet run`
+
+2. open https://localhost:5173/
+
 # Git commands 🔧
 ## Git branch commands
 * `git branch` <- shows all branches
