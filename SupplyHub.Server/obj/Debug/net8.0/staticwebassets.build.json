@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QswrttEVMakHdxIKhPuF3VKpk9BfF6B8Mnf7kjrhhTk=",
+  "Hash": "TokOGOL0d8egyCsK5qniNCDRClxqPfmL2LoLLbKdJiY=",
   "Source": "SupplyHub.Server",
   "BasePath": "_content/SupplyHub.Server",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "supplyhub.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishProperties": "",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildProperties": "",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
     }
   ],

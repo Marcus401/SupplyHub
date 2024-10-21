@@ -16,7 +16,7 @@
 
 [Node(npm) commands📦](#nodenpm-commands-)
 
-[How to run the program🛠️](#how-to-run-the-program-)
+[How to run the program⚙️](#how-to-run-the-program-)
 
 [Git commands🔧](#git-commands-)
   * [Git branch commands](#git-branch-commands)
@@ -118,13 +118,11 @@ Hosted in Azure Web Services
   * `npm i {package} --save-dev` <- installs the specified package as a dev dependency
 * `npm uninstall {package}` <- uninstalls the specified package
 
-# How to run the program 🛠️
-1.
-Press the "run" button in your IDE
+# How to run the program ⚙️
+1. Press the "run" button in your IDE
 
    **or**
-  
-run the following commands:
+ run the following commands:
  * `cd SupplyHub.Server`
  * `dotnet run`
 
