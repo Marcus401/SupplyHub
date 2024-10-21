@@ -16,6 +16,8 @@
 
 [Node(npm) commands📦](#nodenpm-commands-)
 
+[How to run the program🛠️](#how-to-run-the-program-)
+
 [Git commands🔧](#git-commands-)
   * [Git branch commands](#git-branch-commands)
   * [Git commands for pushing to the cloud repository](#git-commands-for-pushing-to-the-cloud-repository)
@@ -119,7 +121,9 @@ Hosted in Azure Web Services
 # How to run the program 🛠️
 1.
 Press the "run" button in your IDE
+
    **or**
+  
 run the following commands:
  * `cd SupplyHub.Server`
  * `dotnet run`
