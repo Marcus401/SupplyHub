@@ -1,0 +1,4 @@
+.vs
+.idea/
+# Ignore Node modules
+node_modules/
