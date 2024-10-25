@@ -4,7 +4,7 @@ type Props = {};
 
 const Register = (props: Props) => {
     return (
-        <div>Register</div>
+        <div>registration page</div>
     );
 };
 

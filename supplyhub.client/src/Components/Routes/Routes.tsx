@@ -117,7 +117,7 @@ export const router = createBrowserRouter([
                 ]
             },
             {path: "about-us", element: <AboutUs/>},
-            {path: "error-404", element: <Error404/>},
+            {path: "error404", element: <Error404/>},
         ]
     }
 ])
