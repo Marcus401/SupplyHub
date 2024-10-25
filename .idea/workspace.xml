@@ -6,23 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6ea95235-962e-46c6-9aed-40bad706d50d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/ref/SupplyHub.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/ref/SupplyHub.Server.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/refint/SupplyHub.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/refint/SupplyHub.Server.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/SupplyHub.Server.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/SupplyHub.Server.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/SupplyHub.Server.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/SupplyHub.Server.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +26,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="frontend" />
-                    <option name="lastUsedInstant" value="1729826870" />
+                    <option name="lastUsedInstant" value="1729829291" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
@@ -70,20 +53,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "frontend",
-    "last_opened_file_path": "C:/MJ/CS/SupplyHub",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.1.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/MJ/CS/SupplyHub&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.1.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
