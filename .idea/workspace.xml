@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ea95235-962e-46c6-9aed-40bad706d50d" name="Changes" comment="" />
+    <list default="true" id="6ea95235-962e-46c6-9aed-40bad706d50d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/bin/Debug/net8.0/SupplyHub.Server.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/SupplyHub.Server.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/ref/SupplyHub.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/ref/SupplyHub.Server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/refint/SupplyHub.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/Debug/net8.0/refint/SupplyHub.Server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/SupplyHub.Server.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/SupplyHub.Server.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/SupplyHub.Server.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/SupplyHub.Server.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SupplyHub.Server/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/SupplyHub.Server/obj/rider.project.restore.info" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,12 +34,38 @@
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="frontend" />
+                    <option name="lastUsedInstant" value="1729826870" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1729823944" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2nFXSVRVAIlYsnxpcKj77MKMkJM" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -25,11 +73,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/MJ/CS/FinanceApplication",
+    "git-widget-placeholder": "frontend",
+    "last_opened_file_path": "C:/MJ/CS/SupplyHub",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.1.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -40,6 +91,15 @@
         <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
       </map>
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\MJ\CS\SupplyHub\supplyhub.client\src\Components\RegistrationComponents" />
+      <recent name="C:\MJ\CS\SupplyHub\supplyhub.client\src\Components\HomePageComponents" />
+      <recent name="C:\MJ\CS\SupplyHub\supplyhub.client\src\Components\ProductComponents" />
+      <recent name="C:\MJ\CS\SupplyHub\supplyhub.client\src\Components\ProfileComponents" />
+      <recent name="C:\MJ\CS\SupplyHub\supplyhub.client\src\Components\SellerPagesComponents" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -57,6 +117,7 @@
       <option name="presentableId" value="Default" />
       <updated>1728569804194</updated>
       <workItem from="1728569806895" duration="34000" />
+      <workItem from="1729823851518" duration="3079000" />
     </task>
     <servers />
   </component>
