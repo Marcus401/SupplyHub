@@ -24,6 +24,7 @@ import Help from "../../Pages/Help/Help.tsx";
 import Settings from "../../Pages/Settings/Settings.tsx";
 import AboutUs from "../../Pages/AboutUs/AboutUs.tsx";
 import Error404 from "../../Pages/Error404/Error404.tsx";
+import UserChangePasswordForm from "../ProfileComponents/UserChangePasswordForm/UserChangePasswordForm.tsx";
 
 /*
 Webpages
@@ -108,7 +109,13 @@ export const router = createBrowserRouter([
                 ]
             },
             {path: "help", element: <Help/>},
-            {path: "settings", element: <Settings/>},
+            {
+                path: "settings",
+                element: <Settings/>,
+                children: [
+                    {path: "change-password", element: <UserChangePasswordForm/>},
+                ]
+            },
             {path: "about-us", element: <AboutUs/>},
             {path: "error-404", element: <Error404/>},
         ]
