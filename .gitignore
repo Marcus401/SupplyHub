@@ -2,3 +2,6 @@
 .idea/
 # Ignore Node modules
 node_modules/
+SupplyHub.Server/bin
+SupplyHub.Server/obj
+
