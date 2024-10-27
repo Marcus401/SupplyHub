@@ -6,8 +6,9 @@ type Props = {};
 const Seller = (props: Props) => {
     return (
         <>
+            <div>Seller Page</div>
             <SellerDashboard>
-
+                
             </SellerDashboard>
         </>
     );
