@@ -7,7 +7,6 @@ import path from 'path';
 import child_process from 'child_process';
 import { env } from 'process';
 
-
 const baseFolder =
     env.APPDATA !== undefined && env.APPDATA !== ''
         ? `${env.APPDATA}/ASP.NET/https`
@@ -16,21 +15,21 @@ const baseFolder =
 const certificateName = "supplyhub.client";
 const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
 const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
-
-if (!fs.existsSync(baseFolder)) {
-    fs.mkdirSync(baseFolder, { recursive: true });
-}
-
+console.log(certFilePath)
 if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
-    if (0 !== child_process.spawnSync('dotnet', [
+    // Create the command array
+    const command = [
         'dev-certs',
         'https',
         '--export-path',
-        certFilePath,
+        certFilePath, // Ensure this path is correct
         '--format',
         'Pem',
         '--no-password',
-    ], { stdio: 'inherit', }).status) {
+    ];
+    const result = child_process.spawnSync('dotnet', command, { stdio: 'inherit' });
+    if (result.status !== 0) {
+        console.error(`Error: ${result.stderr ? result.stderr.toString() : 'Unknown error occurred.'}`);
         throw new Error("Could not create certificate.");
     }
 }
