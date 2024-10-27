@@ -5,7 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 type Props = {};
 
 const SellerSideBar = (props: Props) => {
-    const [productDropdownOpen, setProductDropdownOpen] = React.useState(false);
+    const [productDropdownOpen, setProductDropdownOpen] = React.useState(true);
 
     const toggleProductDropdown = () => {
         setProductDropdownOpen(!productDropdownOpen);
@@ -37,9 +37,6 @@ const SellerSideBar = (props: Props) => {
                                 </Link>
                             </div>
                         )}
-                        <Link to="/chat/542" className="flex md:min-w-full pt-1 pb-4 pl-6 md:pl-3 no-underline">
-                            <h5 className="ml-3 hover:underline text-black">Messages</h5>
-                        </Link>
                         <Link to="advertising" className="flex md:min-w-full pt-1 pb-4 pl-6 md:pl-3 no-underline">
                             <h5 className="ml-3 hover:underline text-black">Advertising</h5>
                         </Link>
