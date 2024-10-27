@@ -25,6 +25,7 @@ import Settings from "../../Pages/Settings/Settings.tsx";
 import AboutUs from "../../Pages/AboutUs/AboutUs.tsx";
 import Error404 from "../../Pages/Error404/Error404.tsx";
 import UserChangePasswordForm from "../ProfileComponents/UserChangePasswordForm/UserChangePasswordForm.tsx";
+import Design from "../../Pages/Design/Design.tsx";
 
 /*
 Webpages
@@ -50,6 +51,7 @@ Webpages
 /seller/advertising/apply
 /help
 /about-us
+/design <- for testing purposes
 /error 404
  */
 
@@ -92,12 +94,8 @@ export const router = createBrowserRouter([
                 element: <Seller/>,
                 children: [
                     {
-                        path: "products",
-                        element: <SellerProductCardList/>,
-                        children: [
-                            {path: "add", element: <SellerAddProductForm/>}
-                        ]
-                    },
+                        path: "products/list", element: <SellerProductCardList/>,},
+                    {path: "products/add", element: <SellerAddProductForm/>},
                     {path: "inventory", element: <SellerInventoryTable/>},
                     {
                         path: "advertising",
@@ -117,6 +115,7 @@ export const router = createBrowserRouter([
                 ]
             },
             {path: "about-us", element: <AboutUs/>},
+            {path: "design", element: <Design/>},
             {path: "*", element: <Error404/>},
         ]
     }
