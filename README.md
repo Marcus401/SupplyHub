@@ -126,6 +126,8 @@ Hosted in Azure Web Services
  * `cd SupplyHub.Server`
  * `dotnet run`
 
+ Note: Accept the security warning to accept the https localhost certificate (prevents you from running into the unsafe url warning)
+
 2. open https://localhost:5173/
 
 # Git commands 🔧
