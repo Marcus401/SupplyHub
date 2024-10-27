@@ -15,7 +15,7 @@ const baseFolder =
 const certificateName = "supplyhub.client";
 const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
 const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
-console.log(certFilePath)
+
 if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
     // Create the command array
     const command = [
