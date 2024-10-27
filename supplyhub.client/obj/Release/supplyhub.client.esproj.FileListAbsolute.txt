@@ -1,0 +1,1 @@
+C:\MJ\CS\SupplyHub\supplyhub.client\obj\Release\supplyhub.client.esproj.CoreCompileInputs.cache

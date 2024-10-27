@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "npm run start",
-    "test": "npm run test",
-    "eject": "npm run eject",
-    "dev": "vite",
+    "start": "set HTTPS=true && npm run start",
+    "test": "set HTTPS=true && npm run test",
+    "eject": "set HTTPS=true && npm run eject",
+    "dev": "set HTTPS=true && vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
