@@ -8,7 +8,9 @@ const SellerDashboard = (props: Props) => {
         // this component is the parent component for all the seller dashboard components
         // to be placed next to the sidebar
         <div>
-            <div className="flex flex-wrap">{<Outlet/>}</div>
+            <div className="flex flex-wrap shadow-xl">
+                {<Outlet/>}
+            </div>
         </div>
     );
 };
