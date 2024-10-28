@@ -46,6 +46,7 @@ Webpages
 /profile/user/edit
 /seller/products
 /seller/products/add
+/seller/edit/:product_id
 /seller/inventory
 /settings
 /seller/advertising
@@ -96,6 +97,7 @@ export const router = createBrowserRouter([
                 children: [
                     {path: "products/list", element: <SellerProductCardList/>,},
                     {path: "products/add", element: <SellerAddProductForm/>},
+                    {path: "edit/:product_id", element: <SellerAddProductForm/>},
                     {path: "inventory", element: <SellerInventoryTable/>},
                     {path: "reviews", element: <SellerReviewsList/>},
                     {
