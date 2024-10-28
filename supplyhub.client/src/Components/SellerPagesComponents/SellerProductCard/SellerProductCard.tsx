@@ -4,7 +4,14 @@ type Props = {};
 
 const SellerProductCard = (props: Props) => {
     return (
-        <div>SellerProductCard</div>
+        <div
+            className="">
+                <h3 className="">Product Name</h3>
+                <p className="">lorem ipsum</p>
+                <button>
+
+                </button>
+        </div>
     );
 };
 

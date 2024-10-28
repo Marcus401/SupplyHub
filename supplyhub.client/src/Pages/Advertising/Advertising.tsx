@@ -1,10 +1,18 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { Outlet } from 'react-router-dom';
 
 type Props = {};
 
 const Advertising = (props: Props) => {
+    useEffect(() => {
+        document.title = 'Advertising';
+    }, []);
+
     return (
-        <div>Advertising</div>
+        <>
+            <div>Advertising</div>
+            <Outlet />
+        </>
     );
 };
 

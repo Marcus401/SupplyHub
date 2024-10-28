@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 type Props = {};
 
 const Product = (props: Props) => {
+    useEffect(() => {
+        document.title = 'Product #';
+    }, []);
+
     return (
         <div>Product</div>
     );

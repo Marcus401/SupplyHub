@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 type Props = {};
 
 const AboutUs = (props: Props) => {
+    useEffect(() => {
+        document.title = 'About Us';
+    }, []);
+
     return (
         <div>AboutUs</div>
     );
