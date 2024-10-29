@@ -16,19 +16,19 @@ const SellerProductCardList = (props: Props) => {
                 <div
                     className="justify-between items-center">
                     <h3
-                        className="overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap truncate my-4 mx-6 font-bold">
+                        className="lg:text-3xl md:text-xl text-base overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap truncate my-4 mx-6 font-bold">
                         My Products (### Products)
                     </h3>
                 </div>
                 <Link
                     to="/seller/products/add"
-                    className="flex absolute right-0 bottom-2 mr-10 no-underline bg-gray-800 rounded-lg w-[150px] h-[40px] justify-center items-center">
-                    <h6 className="overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-white">
+                    className="flex absolute right-0 bottom-2 mr-10 no-underline bg-gray-800 rounded-lg lg:w-[150px] lg:h-[40px] justify-center items-center w-[120px] h-[40px]">
+                    <h6 className="lg:text-lg text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-white">
                         Add a Product
                     </h6>
                 </Link>
             </div>
-            <div>
+            <div className="lg:h-[calc(100vh-84px)] overflow-y-auto h-[calc(100vh-76px)]">
                 <SellerProductCard/>
                 <SellerProductCard/>
                 <SellerProductCard/>
