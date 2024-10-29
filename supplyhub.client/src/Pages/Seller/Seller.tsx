@@ -10,12 +10,12 @@ const Seller = (props: Props) => {
     }, []);
 
     return (
-        <div className="grid items-stretch gap-x-4">
-            <div className="py-4 w-0 md:w-1/5">
+        <div className="flex flex-wrap gap-x-4">
+            <div className="py-4 w-0 md:w-1/5 relative">
                 <SellerSideBar/>
             </div>
             <div
-                className="py-8 transition-all duration-300 ease-in-out block absolute md:left-[17rem] left-[1.5rem] w-full">
+                className="py-2 transition-all duration-300 ease-in-out absolute md:left-[17rem] left-[1.5rem] md:w-[calc(100%-18rem)] w-[calc(100%-2rem)]">
                 <SellerDashboard/>
             </div>
         </div>

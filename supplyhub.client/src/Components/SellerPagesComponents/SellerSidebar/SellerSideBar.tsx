@@ -13,7 +13,7 @@ const SellerSideBar = (props: Props) => {
 
     return (
         <nav
-            className="block py-4 px-6 top-0 bottom-0 w-64 bg-white shadow-xl left-0 absolute flex-row flex-nowrap md:z-10 z-9999 transition-all duration-300 ease-in-out transform md:translate-x-0 -translate-x-full">
+            className="fixed h-screen block py-4 px-6 top-0 bottom-0 w-64 bg-white shadow-xl left-0 absolute flex-row flex-nowrap md:z-10 z-9999 transition-transform duration-300 ease-in-out transform md:translate-x-0 -translate-x-full">
             <div
                 className="flex-col min-h-full px-0 flex flex-wrap items-center justify-center w-full mx-auto overflow-y-auto overflow-x-hidden">
                 <div
