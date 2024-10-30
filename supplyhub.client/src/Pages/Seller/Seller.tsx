@@ -11,7 +11,7 @@ const Seller = (props: Props) => {
 
     return (
         <div className="flex flex-wrap gap-x-4">
-            <div className="py-4 w-0 md:w-1/5 relative">
+            <div className="py-4 w-0 md:w-1/5 relative lg:">
                 <SellerSideBar/>
             </div>
             <div
