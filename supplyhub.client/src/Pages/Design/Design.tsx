@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../../Components/NavigationBarComponents/NavBar/NavBar.tsx";
+import ProductCardList from "../../Components/ProductComponents/ProductCardList/ProductCardList.tsx";
 
 type Props = {};
 
@@ -7,7 +7,7 @@ const Design = (props: Props) => {
   return (
     <div>
       <div>
-        <NavBar />
+        <ProductCardList />
       </div>
     </div>
   );
