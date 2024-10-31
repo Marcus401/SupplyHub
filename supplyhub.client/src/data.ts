@@ -67,14 +67,3 @@ export interface SellerProfile {
     picture: any;
     chatUserID: number;
 }
-
-export interface SellerProductFormData{
-    imageFile: any;
-    productName: string;
-    category: string;
-    stock: number;
-    stockUnit: string;
-    price: number;
-    priceUnit: string;
-    description: string;
-}

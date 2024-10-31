@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import SellerDashboard from "../../Components/SellerPagesComponents/SellerDashboard/SellerDashboard.tsx";
 import SellerSideBar from "../../Components/SellerPagesComponents/SellerSidebar/SellerSideBar.tsx";
-import {SellerProductFormData} from "../../data.ts";
 
 type Props = {};
 
@@ -9,17 +8,6 @@ const Seller = (props: Props) => {
     useEffect(() => {
         document.title = 'Seller Dashboard';
     }, []);
-
-    const [formData, setFormData] = useState<SellerProductFormData>({
-        imageFile: null,
-        productName: "",
-        category: "",
-        stock: 0,
-        stockUnit: "",
-        price: 0,
-        priceUnit: "string",
-        description: "",
-    })
 
     return (
         <div className="flex flex-wrap gap-x-4">

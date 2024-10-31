@@ -27,6 +27,7 @@ import Error404 from "../../Pages/Error404/Error404.tsx";
 import UserChangePasswordForm from "../ProfileComponents/UserChangePasswordForm/UserChangePasswordForm.tsx";
 import Design from "../../Pages/Design/Design.tsx";
 import SellerReviewsList from "../SellerPagesComponents/SellerReviewsList/SellerReviewsList.tsx";
+import SellerEditProductForm from "../SellerPagesComponents/SellerEditProductForm/SellerEditProductForm.tsx";
 
 /*
 Webpages
@@ -98,7 +99,7 @@ export const router = createBrowserRouter([
                     {index: true, element: <Navigate to="products/list" replace />},
                     {path: "products/list", element: <SellerProductCardList/>,},
                     {path: "products/add", element: <SellerAddProductForm/>},
-                    {path: "edit/:product_id", element: <SellerAddProductForm/>},
+                    {path: "edit/:product_id", element: <SellerEditProductForm/>},
                     {path: "inventory", element: <SellerInventoryTable/>},
                     {path: "reviews", element: <SellerReviewsList/>},
                     {

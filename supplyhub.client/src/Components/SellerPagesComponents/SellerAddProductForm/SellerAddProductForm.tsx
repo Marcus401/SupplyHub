@@ -1,42 +1,48 @@
 import React, {useEffect, useState} from 'react'
 import product_image from "../../../assets/upload_image_placeholder.png";
-import {SellerProductFormData} from "../../../data.ts";
 
-type Props = {
-    formData : SellerProductFormData;
-    setFormData : React.Dispatch<React.SetStateAction<SellerProductFormData>>
-};
+type Props = {};
 
 const SellerAddProductForm = (props: Props) => {
     useEffect(() => {
         document.title = 'Add Product';
     }, []);
 
-    const handleImageChange = (e: any) => {
-        const file = e.target.files[0];
+    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [productName, setProductName] = useState<string>("");
+    const [category, setCategory] = useState<string>("");
+    const [stock, setStock] = useState<number>(0);
+    const [stockUnit, setStockUnit] = useState<string>("");
+    const [price, setPrice] = useState<number>(0);
+    const [priceUnit, setPriceUnit] = useState<string>("");
+    const [description, setDescription] = useState<string>("");
+    const [failedSubmission, setFailedSubmission] = useState<boolean>(false);
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
         if (file) {
-            setFormData.imageFile(file); // here
+            setImageFile(file); // here
         }
     };
-    const handleProductNameChange = (e: any) => {
+    const handleProductNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setProductName(e.target.value);
     }
-    const handleCategoryChange = (e: any) => {
+    const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setCategory(e.target.value);
     }
-    const handleStockChange = (e: any) => {
+    const handleStockChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setStock(parseInt(e.target.value));
     }
-    const handleStockUnitChange = (e: any) => {
+    const handleStockUnitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setStockUnit(e.target.value);
     }
-    const handlePriceChange = (e: any) => {
+    const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(parseInt(e.target.value));
     }
-    const handlePriceUnitChange = (e: any) => {
+    const handlePriceUnitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setPriceUnit(e.target.value);
     }
-    const handleDescriptionChange = (e: any) => {
+    const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDescription(e.target.value);
     }
 
