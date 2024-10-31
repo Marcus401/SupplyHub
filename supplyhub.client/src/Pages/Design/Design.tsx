@@ -1,5 +1,5 @@
 import React from "react";
-import ProductSellerTabBar from "../../Components/HomePageComponents/ProductSellerTabBar/ProductSellerTabBar.tsx";
+import SellerProfileInfo from "../../Components/ProfileComponents/SellerProfileInfo/SellerProfileInfo.tsx";
 
 type Props = {};
 
@@ -7,7 +7,7 @@ const Design = (props: Props) => {
   return (
     <div>
       <div>
-        <ProductSellerTabBar />
+        <SellerProfileInfo />
       </div>
     </div>
   );
