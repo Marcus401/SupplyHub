@@ -3,7 +3,7 @@ import NavBar from "./Components/NavigationBarComponents/NavBar/NavBar.tsx";
 import GuestNavBar from "./Components/NavigationBarComponents/GuestNavBar/GuestNavBar.tsx";
 
 function App() {
-    const isLoggedIn: boolean = false; //placeholder for navigation bar condition, will be updated once backend is implemented
+    const isLoggedIn: boolean = true; //placeholder for navigation bar condition, will be updated once backend is implemented
     const location = useLocation();
     const noNavBarPaths = ['/login', '/register', '/seller/advertising', '/settings', '*']; // Array of paths where the navbar should not be displayed, update as needed
     const hideNavBar = noNavBarPaths.includes(location.pathname);
