@@ -1,5 +1,5 @@
 import React from "react";
-import SellerProfileInfo from "../../Components/ProfileComponents/SellerProfileInfo/SellerProfileInfo.tsx";
+import BasicProductInfo from "../../Components/ProductComponents/BasicProductInfo/BasicProductInfo.tsx";
 
 type Props = {};
 
@@ -7,7 +7,7 @@ const Design = (props: Props) => {
   return (
     <div>
       <div>
-        <SellerProfileInfo />
+        <BasicProductInfo />
       </div>
     </div>
   );
