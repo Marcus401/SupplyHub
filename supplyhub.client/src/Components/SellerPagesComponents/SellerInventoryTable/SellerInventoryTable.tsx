@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import product_image from "../../../assets/default-placeholder.png";
 
-// Define the Products interface directly in the component
 interface Products {
     productID: number;
     productName: string;
@@ -15,24 +15,23 @@ interface Products {
     isActive: boolean;
 }
 
-// Function to create sample products with constant stock
 const createSampleProducts = (count: number): Products[] => {
     const sampleProducts: Products[] = [];
-    const constantStock = 50; // Set a constant stock value
+    const constantStock = 50;
 
     for (let i = 1; i <= count; i++) {
         sampleProducts.push({
             productID: i,
             productName: `Product ${i}`,
             productType: 'YourProductType',
-            stockAvailable: constantStock, // Use the constant stock value
+            stockAvailable: constantStock,
             unit: 'YourUnit',
             timeframe: 'YourTimeframe',
             description: 'YourDescription',
             FAQ: 'YourFAQ',
             image: `/path/to/image${i}.jpg`,
             dateAdded: new Date().toLocaleDateString(),
-            isActive: false // Set default toggle state to off
+            isActive: false
         });
     }
     return sampleProducts;
@@ -43,11 +42,9 @@ const SellerInventoryTable = () => {
         document.title = 'Inventory';
     }, []);
 
-    // Generate products dynamically
-    const [products, setProducts] = useState<Products[]>(createSampleProducts(10)); // Change the count as needed
-    const [selectedProducts, setSelectedProducts] = useState<number[]>([]); // Track selected product IDs
+    const [products, setProducts] = useState<Products[]>(createSampleProducts(10));
+    const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
 
-    // Function to handle the "Select All" checkbox change
     const handleSelectAll = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
             const allProductIds = products.map(product => product.productID);
@@ -57,7 +54,6 @@ const SellerInventoryTable = () => {
         }
     };
 
-    // Function to handle individual product checkbox change
     const handleProductSelect = (productId: number) => {
         setSelectedProducts(prevSelected =>
             prevSelected.includes(productId)
@@ -66,12 +62,11 @@ const SellerInventoryTable = () => {
         );
     };
 
-    // Function to toggle active state
     const toggleActiveState = (productId: number) => {
         setProducts(prevProducts =>
             prevProducts.map(product =>
                 product.productID === productId
-                    ? { ...product, isActive: !product.isActive } // Toggle isActive
+                    ? { ...product, isActive: !product.isActive }
                     : product
             )
         );
@@ -84,61 +79,53 @@ const SellerInventoryTable = () => {
                 <table className="min-w-full bg-white border border-gray-200 rounded-lg">
                     <thead>
                         <tr className="border-b">
-                            <th className="p-4 text-left">
-                                <input
-                                    type="checkbox"
-                                    onChange={handleSelectAll}
+                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">
+                                <input 
+                                    type="checkbox" 
+                                    onChange={handleSelectAll} 
                                     checked={selectedProducts.length === products.length}
-                                    className="form-checkbox h-4 w-4 text-[#528AAE] focus:ring-[#528AAE]"
+                                    className="h-5 w-5 accent-[#528AAE] rounded border-gray-300"
                                 />
                             </th>
-                            <th className="p-4 text-left">Product Info</th>
-                            <th className="p-4 text-left">Product Image</th>
-                            <th className="p-4 text-left">Date Added</th>
-                            <th className="p-4 text-left">Stock</th>
-                            <th className="p-4 text-left">Active</th>
+                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">Product Info</th>
+                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">Product Image</th>
+                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">Date Added</th>
+                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">Stock</th>
+                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">Active</th>
                         </tr>
                     </thead>
                     <tbody>
                         {products.map((product) => (
                             <tr key={product.productID} className="border-b hover:bg-gray-50">
-                                <td className="p-4">
-                                    <input
-                                        type="checkbox"
-                                        checked={selectedProducts.includes(product.productID)}
-                                        onChange={() => handleProductSelect(product.productID)}
-                                        className="form-checkbox h-4 w-4 text-[#528AAE] focus:ring-[#528AAE]"
+                                <td className="p-12 text-center">
+                                    <input 
+                                        type="checkbox" 
+                                        checked={selectedProducts.includes(product.productID)} 
+                                        onChange={() => handleProductSelect(product.productID)} 
+                                        className="h-5 w-5 accent-[#528AAE] rounded border-gray-300"
                                     />
                                 </td>
-                                <td className="p-4">{product.productName}</td>
-                                <td className="p-4">
+                                <td className="p-12 text-center">{product.productName}</td>
+                                <td className="p-12 flex justify-center">
                                     <img
-                                        src={product.image}
-                                        alt={product.productName}
-                                        className="w-12 h-12 object-cover rounded"
+                                        src={product_image}
+                                        alt="product image"
+                                        className="w-20 h-20 object-cover rounded"
                                     />
                                 </td>
-                                <td className="p-4">{product.dateAdded}</td>
-                                <td className="p-4">{product.stockAvailable}</td>
-                                <td className="p-4">
-                                    <label className="flex items-center">
+                                <td className="p-12 text-center">{product.dateAdded}</td>
+                                <td className="p-12 text-center">{product.stockAvailable}</td>
+                                <td className="p-12 text-center">
+                                    <label className="flex items-center justify-center">
                                         <input
                                             type="checkbox"
-                                            className="hidden" // Hide the default checkbox
+                                            className="hidden"
                                             checked={product.isActive}
                                             onChange={() => toggleActiveState(product.productID)}
                                         />
-                                        <span
-                                            className={`w-10 h-5 flex items-center bg-gray-300 rounded-full p-1 cursor-pointer transition duration-300 ${
-                                                product.isActive ? 'bg-[#528AAE]' : ''
-                                            }`}
-                                            onClick={() => toggleActiveState(product.productID)}
-                                        >
-                                            <span
-                                                className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-300 ${
-                                                    product.isActive ? 'translate-x-5' : 'translate-x-0'
-                                                }`}
-                                            ></span>
+                                        <span className="relative inline-block w-10 h-5 rounded-full transition-colors duration-300 ease-in-out" 
+                                              style={{ backgroundColor: product.isActive ? '#528AAE' : '#ccc' }}>
+                                            <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform ${product.isActive ? 'transform translate-x-5' : ''}`}></span>
                                         </span>
                                     </label>
                                 </td>
