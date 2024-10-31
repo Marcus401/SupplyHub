@@ -1,5 +1,5 @@
 import React from "react";
-import SellerCard from "../../Components/HomePageComponents/SellerCard/SellerCard.tsx";
+import ProductSellerTabBar from "../../Components/HomePageComponents/ProductSellerTabBar/ProductSellerTabBar.tsx";
 
 type Props = {};
 
@@ -7,7 +7,7 @@ const Design = (props: Props) => {
   return (
     <div>
       <div>
-        <SellerCard />
+        <ProductSellerTabBar />
       </div>
     </div>
   );

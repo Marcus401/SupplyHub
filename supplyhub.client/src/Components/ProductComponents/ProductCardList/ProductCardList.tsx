@@ -16,6 +16,13 @@ const ProductCardList = (props: Props): JSX.Element => {
       <ProductCard />
       <ProductCard />
       <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
     </div>
   );
 };

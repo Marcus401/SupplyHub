@@ -3,7 +3,7 @@ type Props = {};
 
 const ProductCard = (props: Props): JSX.Element => {
   return (
-    <div className="w-[170px] h-[220px] p-4 mx-auto flex flex-col text-left shadow-lg rounded-[7px] hover:bg-gray-50 overflow-hidden">
+    <div className="w-[170px] h-[220px] p-4 mx-auto flex flex-col text-left shadow-lg rounded-[7px] hover:bg-gray-50 overflow-hidden border border-gray-100">
       <div className="w-[140px] h-[140px] bg-gray-200 rounded-sm">
         <img src={product_image} />
       </div>
