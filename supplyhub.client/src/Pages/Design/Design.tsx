@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCardList from "../../Components/ProductComponents/ProductCardList/ProductCardList.tsx";
+import SellerCard from "../../Components/HomePageComponents/SellerCard/SellerCard.tsx";
 
 type Props = {};
 
@@ -7,7 +7,7 @@ const Design = (props: Props) => {
   return (
     <div>
       <div>
-        <ProductCardList />
+        <SellerCard />
       </div>
     </div>
   );
