@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SupplyHub.Server.Models
 {
+    [Keyless]
     public class Chat
     {
         [ForeignKey("ConversationID")]

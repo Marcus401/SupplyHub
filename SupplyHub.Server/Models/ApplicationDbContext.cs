@@ -1,12 +1,9 @@
 ﻿namespace SupplyHub.Server.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
-	// DbSet<product class> Products { get; set; }	
-	
-	// create class that represents a table (product)
-
 	public DbSet<Message> Messages { get; set; }
 	public DbSet<UserChatID> UserChatIDs { get; set; }
 	public DbSet<Advertisement> Advertisements { get; set; }
