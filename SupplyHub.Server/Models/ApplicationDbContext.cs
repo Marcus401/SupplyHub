@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
+
+
 	public DbSet<Message> Messages { get; set; }
 	public DbSet<UserChatID> UserChatIDs { get; set; }
 	public DbSet<Advertisement> Advertisements { get; set; }
