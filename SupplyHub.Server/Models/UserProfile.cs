@@ -10,7 +10,7 @@ namespace SupplyHub.Server.Models
         public string Password { get; set; }
         public int ContactNumber { get; set; }
         public string Position { get; set; }
-        [ForeignKey("AffiliatedCompany")]
+        [ForeignKey("CompanyID")]
         public string AffiliatedCompany { get; set; }
         public string Bio { get; set; }
         public byte[] Picture { get; set; }
