@@ -28,7 +28,7 @@ const SellerProductCardList = (props: Props) => {
                     </h6>
                 </Link>
             </div>
-            <div className="absolute h-[calc(100vh-70px)] overflow-y-auto min-h-[190px]">
+            <div className="absolute h-[calc(100vh-170px)] overflow-y-auto min-h-[190px]">
                 <SellerProductCard/>
                 <SellerProductCard/>
                 <SellerProductCard/>
