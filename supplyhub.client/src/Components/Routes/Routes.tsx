@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import {Navigate, createBrowserRouter } from "react-router-dom";
 import App from "../../App.tsx";
 import HomePage from "../../Pages/HomePage/HomePage.tsx";
 import Register from "../../Pages/Register/Register.tsx";
@@ -95,6 +95,7 @@ export const router = createBrowserRouter([
                 path: "seller",
                 element: <Seller/>,
                 children: [
+                    {index: true, element: <Navigate to="products/list" replace />},
                     {path: "products/list", element: <SellerProductCardList/>,},
                     {path: "products/add", element: <SellerAddProductForm/>},
                     {path: "edit/:product_id", element: <SellerAddProductForm/>},
@@ -119,8 +120,8 @@ export const router = createBrowserRouter([
             },
             {path: "about-us", element: <AboutUs/>},
             {path: "design", element: <Design/>},
-            {path: "*", element: <Error404/>},
         ]
-    }
+    },
+    {path: "*", element: <Error404/>}
 ])
 
