@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import product_image from "../../../assets/upload_image_placeholder.png";
 
 type Props = {};
@@ -16,6 +16,9 @@ const SellerEditProductForm = (props: Props) => {
     const [price, setPrice] = useState<number>(0);
     const [priceUnit, setPriceUnit] = useState<string>("");
     const [description, setDescription] = useState<string>("");
+    const [failedSubmission, setFailedSubmission] = useState<boolean>(false);
+    const [imageList, setImageList] = useState<File[]>([]);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -44,10 +47,30 @@ const SellerEditProductForm = (props: Props) => {
     const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDescription(e.target.value);
     }
-
-    const editProduct = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
+    const addToImageListChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (files) {
+            setImageList([...imageList, files[0]]);
+        }
     }
+    const removeImageFromList = (index: number) => {
+        const newImageList = imageList.filter((_, i) => i !== index);
+        setImageList(newImageList);
+    }
+
+    const addProduct = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        const hasEmptyFields = [productName, category, stock, stockUnit, price, priceUnit, description].some(
+            variable => variable === "" || variable === 0
+        );
+        const isImageFileNull = imageFile === null;
+        setFailedSubmission(hasEmptyFields || isImageFileNull);
+    }
+    const handleAddImageButtonClick = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    };
 
     return (
         <div className="grid w-full md:grid-rows-[50px_auto] md:grid-cols-[240px_auto] gap-x-2 mx-2 ">
@@ -60,7 +83,8 @@ const SellerEditProductForm = (props: Props) => {
             </div>
             <div
                 className="flex justify-center md:justify-start md:flex-col row-start-2 md:row-span-3 row-span-1 md:col-start-1 mx-2 my-2">
-                <input type="file" accept=".png, .jpg, .jpeg, .jfif" className="hidden" id="imageUpload" onChange={handleImageChange}/>
+                <input type="file" accept=".png, .jpg, .jpeg, .jfif" className="hidden" id="imageUpload"
+                       onChange={handleImageChange}/>
                 <label htmlFor="imageUpload">
                     <img
                         src={product_image} alt="product image"
@@ -142,7 +166,7 @@ const SellerEditProductForm = (props: Props) => {
                 </select>
             </div>
             <div
-                className="row-start-9 md:row-start-8 col-start-1 md:col-span-2 lg:row-start-5 lg:col-span-5 relative h-[calc(12rem+60px)] lg:ml-8">
+                className="row-start-9 md:row-start-8 col-start-1 md:col-span-2 lg:row-start-5 lg:col-span-6 relative h-[calc(12rem+60px)] lg:ml-8">
                 <div className="flex-col">
                     <div
                         className="">
@@ -157,12 +181,51 @@ const SellerEditProductForm = (props: Props) => {
                             className="w-full p-2 border border-gray-300 rounded-lg mb-2  h-[10rem]"/>
                     </div>
                     <button
-                        onClick={editProduct}
+                        onClick={addProduct}
                         className="flex absolute right-0 bottom-2 mr-10 no-underline bg-gray-800 rounded-lg lg:w-[150px] lg:h-[40px] justify-center items-center w-[120px] h-[40px]">
                         <h6 className="lg:text-lg text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-white">
                             Publish
                         </h6>
                     </button>
+                    {failedSubmission && (
+                        <div className="">
+                            <p className="text-lg text-red-700 opacity-70">Please fill in all fields</p>
+                        </div>
+                    )}
+                </div>
+            </div>
+            <div
+                className="row-start-10 md:row-start-9 col-start-1 md:col-span-2 lg:row-start-6 lg:col-span-2 relative h-[30px] lg:ml-8">
+                <div className="flex justify-center">
+                    <button
+                        onClick={handleAddImageButtonClick}
+                        className="flex absolute left-0 bottom-0 mr-10 no-underline bg-white border-2 border-gray-800 rounded-lg lg:w-[180px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]">
+                        <input type="file" accept=".png, .jpg, .jpeg, .jfif" className="hidden" id="imageUpload"
+                               onChange={addToImageListChange} ref={fileInputRef}>
+                        </input>
+                        <h6 className="lg:text-lg text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-black">
+                            Add Image {imageList.length} / 8
+                        </h6>
+                    </button>
+                </div>
+            </div>
+            <div
+                className="row-start-11 md:row-start-10 col-start-1 md:col-span-2 lg:row-start-7 lg:col-span-3 relative lg:ml-8">
+                <div className="flex-col">
+                    {imageList.map((image, index) => (
+                        <div key={index} className="flex items-center space-x-2">
+                            <img
+                                src={URL.createObjectURL(image)}
+                                alt="product image"
+                                className="w-[100px] h-[100px] rounded-2xl"/>
+                            <button
+                                onClick={() => removeImageFromList(index)}
+                                className="flex no-underline rounded-lg lg:w-[120px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]">
+                                <h6 className="lg:text-md text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-red-700">
+                                    Remove Image
+                                </h6>
+                            </button>
+                        </div>))}
                 </div>
             </div>
         </div>

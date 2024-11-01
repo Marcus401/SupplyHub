@@ -68,6 +68,7 @@ export const router = createBrowserRouter([
                 path: "register",
                 element: <Register />,
                 children: [
+                    {index: true, element: <Navigate to="user" replace />},
                     {path: "user", element: <UserSignUpForm/>},
                     {path: "seller", element: <SellerSignUpForm/>},
                 ]
