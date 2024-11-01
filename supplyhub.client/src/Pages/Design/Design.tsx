@@ -1,17 +1,16 @@
-import React from 'react'
-import SellerProductCard from "../../Components/SellerPagesComponents/SellerProductCard/SellerProductCard.tsx";
+import React from "react";
+import SellerProfileInfo from "../../Components/ProfileComponents/SellerProfileInfo/SellerProfileInfo.tsx";
 
 type Props = {};
 
 const Design = (props: Props) => {
-    return (
-        <div>
-            <div>
-                <h6>Seller Product Card</h6>
-                <SellerProductCard/>
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <div>
+        <SellerProfileInfo />
+      </div>
+    </div>
+  );
 };
 
 export default Design;
