@@ -22,19 +22,19 @@ const ProductImageSlider: React.FC = () => {
   const slides = [1, 2, 3, 4, 5, 6];
 
   return (
-    <div className="slider-container w-full max-w-[500px] mx-auto px-2 overflow-hidden border border-gray-300 rounded-md">
+    <div className="slider-container w-full max-w-[700px] mx-auto px-2 overflow-hidden border border-gray-300 rounded-md">
       <Slider {...settings}>
         {slides.map((slide) => (
           <div
             key={slide}
-            className="slide-item mx-0 p-1 my-1 w-[150px] h-[150px] flex items-center justify-center"
+            className="slide-item w-[300px] h-[300px] mx-0 p-1 my-2 flex items-center justify-center"
           >
             <h3
-              className={`p-4 w-full h-full flex items-center justify-center text-center transition-transform duration-300
+              className={`w-full h-full p-0 flex items-center justify-center text-center border border-black transition-transform duration-300
                 ${
                   centerSlide === slide - 1
                     ? "scale-105 bg-gray-600 text-white"
-                    : "opacity-60 bg-gray-400 text-white"
+                    : "opacity-100 bg-gray-400 text-white"
                 }`}
             >
               {slide}

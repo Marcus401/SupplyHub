@@ -1,21 +1,29 @@
+import BasicProductInfo from "../BasicProductInfo/BasicProductInfo";
 import ProductImageSlider from "../ProductImageSlider/ProductImageSlider";
 
 type Props = {};
 
 const ProductDescriptionImageDashBoard = (props: Props) => {
   return (
-    <div>
-      <div className="min-h-[200px] max-h-[700px] w-full max-w-[230px] border border-gray-400 rounded-lg">
-        <p>Product Description</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-          pariatur officiis tenetur adipisci consequatur porro dicta
-          exercitationem voluptatem nam expedita iusto aliquid, sequi excepturi
-          laborum error.
-        </p>
+    <div className="max-w-[1200px] mx-auto p-4">
+      <div className="mb-4">
+        <BasicProductInfo />
       </div>
-      <div>
-        <ProductImageSlider />
+
+      <div className="flex gap-4 items-start">
+        <div className="p-4 min-h-[200px] max-h-[700px] max-w-[500px] border border-gray-300 rounded-lg">
+          <p className="font-bold text-2xl">Product Description</p>
+          <p className="text-base">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+            pariatur officiis tenetur adipisci consequatur porro dicta
+            exercitationem voluptatem nam expedita iusto aliquid, sequi
+            excepturi laborum error.
+          </p>
+        </div>
+
+        <div className="flex-1">
+          <ProductImageSlider />
+        </div>
       </div>
     </div>
   );
