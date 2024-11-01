@@ -73,49 +73,49 @@ const SellerInventoryTable = () => {
     };
 
     return (
-        <div className="p-4">
+        <div className="p-4 w-full lg:w-10/12 mx-auto">
             <h2 className="text-2xl font-bold mb-4">Inventory</h2>
             <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+                <table className="min-w-full bg-white border border-gray-200 rounded-lg text-sm lg:text-base">
                     <thead>
                         <tr className="border-b">
-                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">
+                            <th className="p-4 text-center">
                                 <input 
                                     type="checkbox" 
                                     onChange={handleSelectAll} 
                                     checked={selectedProducts.length === products.length}
-                                    className="h-5 w-5 accent-[#528AAE] rounded border-gray-300"
+                                    className="w-5 h-5 accent-[#528AAE]"
                                 />
                             </th>
-                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">Product Info</th>
-                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">Product Image</th>
-                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">Date Added</th>
-                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">Stock</th>
-                            <th className="p-12 text-center whitespace-nowrap text-lg font-bold">Active</th>
+                            <th className="p-4 text-center">Product Info</th>
+                            <th className="p-4 text-center">Product Image</th>
+                            <th className="p-4 text-center">Date Added</th>
+                            <th className="p-4 text-center">Stock</th>
+                            <th className="p-4 text-center">Active</th>
                         </tr>
                     </thead>
                     <tbody>
                         {products.map((product) => (
                             <tr key={product.productID} className="border-b hover:bg-gray-50">
-                                <td className="p-12 text-center">
+                                <td className="p-4 text-center">
                                     <input 
                                         type="checkbox" 
                                         checked={selectedProducts.includes(product.productID)} 
-                                        onChange={() => handleProductSelect(product.productID)} 
-                                        className="h-5 w-5 accent-[#528AAE] rounded border-gray-300"
+                                        onChange={() => handleProductSelect(product.productID)}
+                                        className="w-5 h-5 accent-[#528AAE]" 
                                     />
                                 </td>
-                                <td className="p-12 text-center">{product.productName}</td>
-                                <td className="p-12 flex justify-center">
+                                <td className="p-4 text-center">{product.productName}</td>
+                                <td className="p-4 flex justify-center">
                                     <img
                                         src={product_image}
                                         alt="product image"
-                                        className="w-20 h-20 object-cover rounded"
+                                        className="w-16 h-16 object-cover rounded"
                                     />
                                 </td>
-                                <td className="p-12 text-center">{product.dateAdded}</td>
-                                <td className="p-12 text-center">{product.stockAvailable}</td>
-                                <td className="p-12 text-center">
+                                <td className="p-4 text-center">{product.dateAdded}</td>
+                                <td className="p-4 text-center">{product.stockAvailable}</td>
+                                <td className="p-4 text-center">
                                     <label className="flex items-center justify-center">
                                         <input
                                             type="checkbox"
@@ -123,9 +123,8 @@ const SellerInventoryTable = () => {
                                             checked={product.isActive}
                                             onChange={() => toggleActiveState(product.productID)}
                                         />
-                                        <span className="relative inline-block w-10 h-5 rounded-full transition-colors duration-300 ease-in-out" 
-                                              style={{ backgroundColor: product.isActive ? '#528AAE' : '#ccc' }}>
-                                            <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform ${product.isActive ? 'transform translate-x-5' : ''}`}></span>
+                                        <span className={`relative inline-block w-10 h-5 rounded-full transition-all duration-300 ease-in-out ${product.isActive ? 'bg-[#528AAE]' : 'bg-gray-300'}`}>
+                                            <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-300 ease-in-out ${product.isActive ? 'transform translate-x-5' : ''}`}></span>
                                         </span>
                                     </label>
                                 </td>
