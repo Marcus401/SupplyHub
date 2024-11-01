@@ -6,7 +6,7 @@ const ProductFaqList = (props: Props) => {
   return (
     <div className="w-full max-w-[1200px] border border-gray-300 items-center mx-auto rounded-md">
       <h1 className="p-2 font-bold text-3xl">Frequently Asked Questions</h1>
-      <ul className="p-1 mx-2">
+      <ul className="p-1 mx-2 text-base">
         <li>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus
           corrupti facere dicta perspiciatis veritatis magnam exercitationem,

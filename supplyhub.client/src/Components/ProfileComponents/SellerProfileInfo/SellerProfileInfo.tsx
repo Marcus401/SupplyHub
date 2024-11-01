@@ -50,6 +50,12 @@ const SellerProfileInfo = (props: Props) => {
         </div>
         <p className="text-sm text-black">Business Location</p>
       </div>
+      <div className="min-h-[100px] max-h-[500px] w-full max-w-[500px] p-4 border border-gray-100 rounded-lg">
+        <p className="text-black text-base">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, eaque
+          odio atque culpa voluptas sequi neque sint placeat vero tempore!
+        </p>
+      </div>
     </div>
   );
 };
