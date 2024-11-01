@@ -6,10 +6,6 @@ type Props = {};
 const ProductDescriptionImageDashBoard = (props: Props) => {
   return (
     <div className="max-w-[1200px] mx-auto p-4">
-      <div className="mb-4">
-        <BasicProductInfo />
-      </div>
-
       <div className="flex gap-4 items-start">
         <div className="p-4 min-h-[200px] max-h-[700px] max-w-[500px] border border-gray-300 rounded-lg">
           <p className="font-bold text-2xl">Product Description</p>
