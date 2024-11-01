@@ -1,4 +1,4 @@
-﻿namespace SupplyHub.Server.Models;
+﻿namespace SupplyHub.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
