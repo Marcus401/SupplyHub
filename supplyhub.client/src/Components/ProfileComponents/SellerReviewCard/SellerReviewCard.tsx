@@ -6,7 +6,7 @@ type Props = {};
 const SellerReviewCard = (props: Props) => {
   return (
     <>
-      <div className="flex flex-col items-start max-w-[750px] mx-auto border border-gray-100 p-4 space-y-2">
+      <div className="flex flex-col items-start max-w-[750px] mx-auto border border-gray-100 p-4 space-y-2 rounded-md">
         <div className="flex items-center w-full">
           <div className="max-w-[50px] max-h-[50px] overflow-hidden">
             <img
