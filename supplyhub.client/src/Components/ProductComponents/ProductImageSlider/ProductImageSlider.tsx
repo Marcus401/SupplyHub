@@ -22,7 +22,7 @@ const ProductImageSlider: React.FC = () => {
   const slides = [1, 2, 3, 4, 5, 6];
 
   return (
-    <div className="slider-container w-full max-w-[700px] mx-auto px-2 overflow-hidden border border-gray-300 rounded-md">
+    <div className="slider-container w-full max-w-[700px] mx-auto px-2 overflow-hidden border border-gray-200 rounded-md">
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <div

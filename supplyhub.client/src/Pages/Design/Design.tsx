@@ -1,5 +1,5 @@
 import React from "react";
-import HomePage from "../HomePage/HomePage";
+import Product from "../Product/Product";
 
 type Props = {};
 
@@ -7,7 +7,7 @@ const Design = (props: Props) => {
   return (
     <div>
       <div>
-        <HomePage />
+        <Product />
       </div>
     </div>
   );
