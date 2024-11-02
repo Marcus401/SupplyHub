@@ -38,12 +38,13 @@ const createSampleProducts = (count: number): Products[] => {
 };
 
 const SellerInventoryTable = () => {
+    const MAX_PRODUCTS = 20; // Maximum allowed products in the inventory, not the actual sample; to be changed
+    const [products, setProducts] = useState<Products[]>(createSampleProducts(21)); //not the actual sample; to be changed
+    const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
+
     useEffect(() => {
         document.title = 'Inventory';
     }, []);
-
-    const [products, setProducts] = useState<Products[]>(createSampleProducts(10));
-    const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
 
     const handleSelectAll = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
@@ -72,9 +73,26 @@ const SellerInventoryTable = () => {
         );
     };
 
+    const productCount = products.length; // Current number of listed products
+    const availableSlots = Math.max(0, MAX_PRODUCTS - productCount); // Ensure availableSlots is never negative
+
     return (
         <div className="p-4 w-full lg:w-10/12 mx-auto">
-            <h2 className="text-2xl font-bold mb-4">Inventory</h2>
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold">
+                    Inventory <span className="text-gray-500">({productCount}/{MAX_PRODUCTS})</span>
+                </h2>
+                <p className="text-sm text-gray-600">Available Slots: {availableSlots}</p>
+            </div>
+
+            {/* Warning message box if product count exceeds the maximum allowed */}
+            {productCount > MAX_PRODUCTS && (
+                <div className="mb-4 p-4 bg-red-100 border border-red-300 text-red-700 rounded">
+                    <strong>Notice:</strong> You have exceeded the maximum number of allowed products ({MAX_PRODUCTS}).
+                    Please remove some items to add new ones.
+                </div>
+            )}
+
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white border border-gray-200 rounded-lg text-sm lg:text-base">
                     <thead>
