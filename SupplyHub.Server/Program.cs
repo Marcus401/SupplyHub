@@ -1,6 +1,4 @@
 namespace SupplyHub.Server;
-using Microsoft.EntityFrameworkCore;
-using Data;
 
 public class Program
 {
@@ -10,9 +8,6 @@ public class Program
 
 		// Add services to the container.
 		builder.Services.AddControllers(); // Allows for API controller support
-		
-		builder.Services.AddDbContext<ApplicationDbContext>(options =>
-			options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 		
 		var app = builder.Build();
 		
