@@ -3,7 +3,7 @@ type Props = {};
 
 const SellerCard = (props: Props) => {
   return (
-    <div className="w-full max-w-[1000px] mx-auto p-4 flex items-center bg-white shadow-lg rounded-lg hover:bg-gray-50 border border-gray-100">
+    <div className="w-full max-w-[1200px] mx-auto p-4 flex items-center bg-white shadow-lg rounded-lg hover:bg-gray-50 border border-gray-100">
       <div className="w-[100px] h-[100px] bg-gray-200 rounded-lg overflow-hidden">
         <img src={company_logo} className="w-full h-full object-cover" />
       </div>
