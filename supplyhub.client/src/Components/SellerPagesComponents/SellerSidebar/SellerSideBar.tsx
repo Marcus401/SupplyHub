@@ -37,6 +37,9 @@ const SellerSideBar = (props: Props) => {
                         <Link to="Reviews" className="flex pt-1 pb-1 pl-6 no-underline">
                             <h5 className="ml-3 hover:underline text-black">Reviews</h5>
                         </Link>
+                        <Link to="billing" className="flex pt-1 pb-1 pl-6 no-underline">
+                            <h5 className="ml-3 hover:underline text-black">Billing</h5>
+                        </Link>
                         <Link to="advertising" className="flex pt-1 pb-1 pl-6 no-underline">
                             <h5 className="ml-3 hover:underline text-black">Advertising</h5>
                         </Link>

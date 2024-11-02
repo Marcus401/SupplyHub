@@ -28,6 +28,7 @@ import UserChangePasswordForm from "../ProfileComponents/UserChangePasswordForm/
 import Design from "../../Pages/Design/Design.tsx";
 import SellerReviewsList from "../SellerPagesComponents/SellerReviewsList/SellerReviewsList.tsx";
 import SellerEditProductForm from "../SellerPagesComponents/SellerEditProductForm/SellerEditProductForm.tsx";
+import SellerBilling from "../SellerPagesComponents/SellerBilling/SellerBilling.tsx";
 
 /*
 Webpages
@@ -103,6 +104,7 @@ export const router = createBrowserRouter([
                     {path: "edit/:product_id", element: <SellerEditProductForm/>},
                     {path: "inventory", element: <SellerInventoryTable/>},
                     {path: "reviews", element: <SellerReviewsList/>},
+                    {path: "billing", element: <SellerBilling/>},
                     {
                         path: "advertising",
                         element: <Advertising/>,
