@@ -71,6 +71,9 @@ const SellerEditProductForm = (props: Props) => {
             fileInputRef.current.click();
         }
     };
+    const removeProduct = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+    }
 
     return (
         <div className="grid w-full md:grid-rows-[50px_auto] md:grid-cols-[240px_auto] gap-x-2 mx-2 ">
@@ -194,9 +197,10 @@ const SellerEditProductForm = (props: Props) => {
                     )}
                 </div>
             </div>
+
             <div
-                className="row-start-10 md:row-start-9 col-start-1 md:col-span-2 lg:row-start-6 lg:col-span-2 relative h-[30px] lg:ml-8">
-                <div className="flex justify-center">
+                className="flex justify-between row-start-10 md:row-start-9 col-start-1 md:col-span-2 lg:row-start-6 lg:col-span-6 relative h-[30px] lg:ml-8">
+                <div className="">
                     <button
                         onClick={handleAddImageButtonClick}
                         className="flex absolute left-0 bottom-0 mr-10 no-underline bg-white border-2 border-gray-800 rounded-lg lg:w-[180px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]">
@@ -206,6 +210,14 @@ const SellerEditProductForm = (props: Props) => {
                         <h6 className="lg:text-lg text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-black">
                             Add Image {imageList.length} / 8
                         </h6>
+                    </button>
+                </div>
+                <div
+                    className="lg:ml-8 mr-10 flex ">
+                    <button
+                        onClick={removeProduct}
+                        className="text-base overflow-hidden bg-white text-ellipsis line-clamp-1 whitespace-nowrap text-red-700 no-underline border-2 border-red-700 rounded-lg lg:w-[150px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]">
+                            remove item
                     </button>
                 </div>
             </div>
