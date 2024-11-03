@@ -1,14 +1,24 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react';
+import LoginForm from '../../Components/RegistrationComponents/LoginForm/LoginForm';
+import backgroundImage from '../../assets/background.png';
 
-type Props = {};
-
-const Login = (props: Props) => {
+const Login: React.FC = () => {
     useEffect(() => {
-        document.title = 'Login :SupplyHub';
+        document.title = 'Login : SupplyHub';
     }, []);
 
     return (
-        <div>Login</div>
+        <div
+            className="flex items-center justify-center h-screen w-[1536px] overflow-hidden"
+            style={{
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+            }}
+        >
+            <LoginForm />
+        </div>
     );
 };
 
