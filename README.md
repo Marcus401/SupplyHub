@@ -80,6 +80,8 @@ Hosted in Azure Web Services
      * `git branch -d master`
    * `cd supplyhub.client`
    * `npm install` <- this will install react dependencies into the frontend library
+   * `cd ../SupplyHub.Server`
+   * `dotnet restore` <- this will install the necessary packages for the backend
    * `cd ..`
 
 > For backend and database developers:
