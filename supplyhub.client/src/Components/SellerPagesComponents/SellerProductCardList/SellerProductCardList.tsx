@@ -18,6 +18,7 @@ const SellerProductCardList = (props: Props) => {
                     <h3
                         className="lg:text-3xl md:text-xl text-base overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap truncate my-4 mx-6 font-bold">
                         My Products (### Products)
+                        <span className="text-gray-600 text-lg ml-4">12/20</span>
                     </h3>
                 </div>
                 <Link

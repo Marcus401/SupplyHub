@@ -48,9 +48,11 @@ const SellerAddProductForm = (props: Props) => {
         setDescription(e.target.value);
     }
     const addToImageListChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-        if (files) {
-            setImageList([...imageList, files[0]]);
+        if (imageList.length < 8) {
+            const files = e.target.files;
+            if (files) {
+                setImageList([...imageList, files[0]]);
+            }
         }
     }
     const removeImageFromList = (index: number) => {
