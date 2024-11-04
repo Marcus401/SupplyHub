@@ -90,7 +90,7 @@ export const router = createBrowserRouter([
                 path: "chat/:user_id",
                 element: <Chat />,
                 children: [
-                    {path: ":chat_id", element: <ChatMessageList/>},
+                    {path: ":chat_id", element: <ChatMessageList messages={[]}/>},
                 ]
             },
             {path: "product/:item_id", element: <Product/>},
