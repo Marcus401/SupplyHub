@@ -19,7 +19,7 @@ const SellerCard = (props: Props) => {
           sit, qui itaque nemo totam asperiores earum quaerat optio.
         </p>
         <Link
-          className="flex items-center no-underline mt-2 bg-black text-white text-sm px-4 py-1 rounded hover:bg-gray-800 w-max h-9"
+          className="flex items-center no-underline mt-2 bg-black text-white hover:text-white text-sm px-4 py-1 rounded hover:bg-gray-800 w-max h-9"
           to={"Chat"}
         >
           Inquire
