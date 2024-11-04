@@ -1,5 +1,10 @@
 import { useEffect } from "react";
-import { VscStarEmpty, VscArrowLeft } from "react-icons/vsc";
+import {
+  VscStarEmpty,
+  VscArrowLeft,
+  VscStarFull,
+  VscStarHalf,
+} from "react-icons/vsc";
 import user_image from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
 import { Link } from "react-router-dom";
 
@@ -21,12 +26,10 @@ const SellerProfileInfo = (props: Props) => {
         <button className="absolute top-2 left-2 p-2 rounded-full shadow-lg">
           <VscArrowLeft className="text-white w-5 h-5" />
         </button>
-
         <img
           src="https://s-media-cache-ak0.pinimg.com/originals/e2/3c/10/e23c10c0dee11fac2bb11c5e856f3926.jpg"
           className="max-w-[1200px] w-full max-h-[300px] h-full"
         />
-
         <div className="absolute -bottom-[57px] left-0 w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
           <img
             src={user_image}
@@ -35,8 +38,8 @@ const SellerProfileInfo = (props: Props) => {
           />
         </div>
         <Link
-          className="absolute -bottom-10 p-3 right-0 text-black px-4 py-0 shadow-lg max-w-[140px] w-full max-h-[40px] h-full border border-black rounded-md"
-          to={""}
+          className="absolute no-underline flex items-center -bottom-12 right-0 text-black px-4 py-0 shadow-lg max-w-[140px] w-full max-h-[40px] h-full border border-black rounded-md hover:text-black"
+          to={"ReviewFormPopUp"}
         >
           Write A Review
         </Link>
@@ -45,12 +48,12 @@ const SellerProfileInfo = (props: Props) => {
       <div className="px-[140px] pb-2 text-left">
         <h2 className="mb-0 text-xl font-bold">Company Name</h2>
         <p className="mb-1 text-sm text-black font-semibold">Business Type</p>
-        <div className="flex flex-row space-x-1">
-          <VscStarEmpty />
-          <VscStarEmpty />
-          <VscStarEmpty />
-          <VscStarEmpty />
-          <VscStarEmpty />
+        <div className="flex flex-row space-x-1 text-yellow-500">
+          <VscStarFull />
+          <VscStarFull />
+          <VscStarFull />
+          <VscStarFull />
+          <VscStarHalf />
         </div>
         <p className="text-sm text-black">Business Location</p>
       </div>

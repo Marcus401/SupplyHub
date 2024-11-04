@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface ReviewCardProps {
   userName: string;
@@ -26,11 +26,20 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
         <div className="text-lg font-semibold">{userName}</div>
         <div className="text-sm text-gray-500">{affiliatedCompany}</div>
         <div className="flex mt-1 mb-2">
-          {'★'.repeat(rating).padEnd(5, '☆').split('').map((star, index) => (
-            <span key={index} className={`text-yellow-500 ${star === '☆' ? 'text-gray-300' : ''}`}>
-              {star}
-            </span>
-          ))}
+          {"★"
+            .repeat(rating)
+            .padEnd(5, "☆")
+            .split("")
+            .map((star, index) => (
+              <span
+                key={index}
+                className={`text-yellow-500 ${
+                  star === "☆" ? "text-gray-300" : ""
+                }`}
+              >
+                {star}
+              </span>
+            ))}
         </div>
         <p className="text-sm text-gray-700">{comment}</p>
       </div>

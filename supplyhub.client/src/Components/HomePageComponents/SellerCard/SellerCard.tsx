@@ -20,7 +20,7 @@ const SellerCard = (props: Props) => {
         </p>
         <Link
           className="mt-2 bg-black text-white text-sm px-4 py-1 rounded hover:bg-gray-800 w-max h-9"
-          to={""}
+          to={"Chat"}
         >
           Inquire
         </Link>
