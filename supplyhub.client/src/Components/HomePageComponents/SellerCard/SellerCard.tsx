@@ -6,7 +6,7 @@ type Props = {};
 const SellerCard = (props: Props) => {
   return (
     <Link
-      className="w-full max-w-[1200px] mx-auto p-4 flex items-center bg-white shadow-lg rounded-lg hover:bg-gray-50 border border-gray-100"
+      className="w-full max-w-[1200px] mx-auto p-4 flex items-center no-underline bg-white shadow-lg rounded-lg hover:text-black hover:bg-gray-50 border border-gray-100"
       to={"Sellers"}
     >
       <div className="w-[100px] h-[100px] bg-gray-200 rounded-lg overflow-hidden">

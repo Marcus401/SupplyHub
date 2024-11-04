@@ -5,7 +5,7 @@ type Props = {};
 const ProductCard = (props: Props): JSX.Element => {
   return (
     <Link
-      className="w-[170px] h-[220px] p-4 mx-auto flex flex-col text-left shadow-lg rounded-[7px] hover:bg-gray-50 overflow-hidden border border-gray-100"
+      className="w-[170px] h-[220px] p-4 mx-auto flex flex-col text-left no-underline hover:text-black shadow-lg rounded-[7px] hover:bg-gray-50 overflow-hidden border border-gray-100"
       to={"Product"}
     >
       <div className="w-[140px] h-[140px] bg-gray-200 rounded-sm cursor-pointer">
