@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SupplyHub.Server.Data;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 
 namespace SupplyHub.Server;
 
