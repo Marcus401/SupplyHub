@@ -9,13 +9,13 @@ public partial class ChatProfile
     [Column("ConversationID")]
     public int ConversationId { get; set; }
 
-    [Column("ChatUserID")]
-    public int ChatUserId { get; set; }
-
-    [ForeignKey("ChatUserId")]
-    [InverseProperty("ChatProfiles")]
-    public virtual UserChatId ChatUser { get; set; } = null!;
+    [Column("UserID")]
+    public int UserId { get; set; }
 
     [InverseProperty("Conversation")]
     public virtual ICollection<Message> Messages { get; set; } = new List<Message>();
+
+    [ForeignKey("UserId")]
+    [InverseProperty("ChatProfiles")]
+    public virtual UserInfo User { get; set; } = null!;
 }

@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SupplyHub.Server.Models;
 
-public partial class UserProfile
+[Table("Account")]
+public partial class Account
 {
     [Key]
     [Column("UserID")]
@@ -35,14 +36,10 @@ public partial class UserProfile
     [Column(TypeName = "image")]
     public byte[]? Picture { get; set; }
 
-    [Column("ChatUserID")]
-    public int ChatUserId { get; set; }
+    [StringLength(50)]
+    [Unicode(false)]
+    public string Role { get; set; } = null!;
 
-    [ForeignKey("AffiliatedCompany")]
-    [InverseProperty("UserProfiles")]
-    public virtual SellerProfile? AffiliatedCompanyNavigation { get; set; }
-
-    [ForeignKey("ChatUserId")]
-    [InverseProperty("UserProfiles")]
-    public virtual UserChatId ChatUser { get; set; } = null!;
+    [InverseProperty("User")]
+    public virtual UserInfo? UserInfo { get; set; }
 }

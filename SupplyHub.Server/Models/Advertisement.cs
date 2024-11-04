@@ -9,8 +9,8 @@ public partial class Advertisement
     [Column("AdvertisementID")]
     public int AdvertisementId { get; set; }
 
-    [Column("CompanyID")]
-    public int CompanyId { get; set; }
+    [Column("UserID")]
+    public int UserId { get; set; }
 
     [Column("ProductID")]
     public int ProductId { get; set; }
@@ -18,11 +18,11 @@ public partial class Advertisement
     [Column(TypeName = "image")]
     public byte[] AdvertisementFile { get; set; } = null!;
 
-    [ForeignKey("CompanyId")]
-    [InverseProperty("Advertisements")]
-    public virtual SellerProfile Company { get; set; } = null!;
-
     [ForeignKey("ProductId")]
     [InverseProperty("Advertisements")]
     public virtual Product Product { get; set; } = null!;
+
+    [ForeignKey("UserId")]
+    [InverseProperty("Advertisements")]
+    public virtual UserInfo User { get; set; } = null!;
 }

@@ -13,18 +13,18 @@ public partial class Message
     [Column("ConversationID")]
     public int? ConversationId { get; set; }
 
-    [Column("ChatUserID")]
-    public int? ChatUserId { get; set; }
+    [Column("UserID")]
+    public int? UserId { get; set; }
 
     [StringLength(500)]
     [Unicode(false)]
     public string? Text { get; set; }
 
-    [ForeignKey("ChatUserId")]
-    [InverseProperty("Messages")]
-    public virtual UserChatId? ChatUser { get; set; }
-
     [ForeignKey("ConversationId")]
     [InverseProperty("Messages")]
     public virtual ChatProfile? Conversation { get; set; }
+
+    [ForeignKey("UserId")]
+    [InverseProperty("Messages")]
+    public virtual UserInfo? User { get; set; }
 }
