@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { VscStarEmpty, VscArrowLeft } from "react-icons/vsc";
 import user_image from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
 
@@ -8,6 +9,10 @@ const SellerProfileInfo = (props: Props) => {
   useEffect(() => {
     document.title = "Seller Profile";
   }, []);
+  const navigate = useNavigate();
+  const handleReviewButtonClick = () => {
+    navigate("");
+  };
 
   return (
     <div className="flex flex-col mx-auto max-w-[1200px] w-full pb-20">
@@ -33,7 +38,10 @@ const SellerProfileInfo = (props: Props) => {
             className="object-cover w-full h-full"
           />
         </div>
-        <button className="absolute -bottom-10 p-3 right-0 text-black px-4 py-0 shadow-lg max-w-[140px] w-full max-h-[40px] h-full border border-black rounded-md">
+        <button
+          className="absolute -bottom-10 p-3 right-0 text-black px-4 py-0 shadow-lg max-w-[140px] w-full max-h-[40px] h-full border border-black rounded-md"
+          onClick={}
+        >
           Write A Review
         </button>
       </div>
