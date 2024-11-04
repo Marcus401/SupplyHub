@@ -15,9 +15,9 @@ const SellerReviewCard = (props: Props) => {
             />
           </div>
           <div className="max-w-[500px] max-h-[150px] ml-4 flex flex-col justify-between border-gray-500">
-            <h1 className="text-[18px] mb-0 ">User Name</h1>
-            <p className="text-sm mb-0">Affiliated Company</p>
-            <div className="flex flex-row space-x-1">
+            <h1 className="text-[18px] my-0-0 ">User Name</h1>
+            <p className="text-sm my-0">Affiliated Company</p>
+            <div className="flex flex-row space-x-1 mb-0">
               <VscStarEmpty />
               <VscStarEmpty />
               <VscStarEmpty />
@@ -26,7 +26,7 @@ const SellerReviewCard = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="p-1 rounded-md max-w-[600px] ml-16">
+        <div className="flex flex-col p-1 rounded-md max-w-[600px] ml-16">
           <p className="text-[15px] mb-0">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis
             sapiente eos doloribus esse magnam in sed a neque soluta delectus,
