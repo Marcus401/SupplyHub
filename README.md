@@ -18,6 +18,8 @@
 
 [How to run the program⚙️](#how-to-run-the-program-)
 
+[Running in Development Mode🤖](#running-in-development-mode-)
+
 [Git commands🔧](#git-commands-)
   * [Git branch commands](#git-branch-commands)
   * [Git commands for pushing to the cloud repository](#git-commands-for-pushing-to-the-cloud-repository)
@@ -134,6 +136,10 @@ Hosted in Azure Web Services
 
 2. open https://localhost:5173/
 
+# Running in Development Mode 
+* use `dotnet run --launch-profile "https"` instead of `dotnet run`
+* open https://localhost:7155/swagger/index.html to test and see API endpoints
+
 # Git commands 🔧
 ## Git branch commands
 * `git branch` <- shows all branches
@@ -176,5 +182,5 @@ Hosted in Azure Web Services
 * As much as possible, avoid editing the same file at once
 
 #### Plugins you might like to use
-* ES7 react snippets for VScode - gives shortcuts to pre defined snippets instead of having to type out the same thing over and over
+* ES7 react snippets for VSCode - gives shortcuts to pre-defined snippets instead of having to type out the same thing over and over
 * Tailwind support - Tailwind css suggestions
