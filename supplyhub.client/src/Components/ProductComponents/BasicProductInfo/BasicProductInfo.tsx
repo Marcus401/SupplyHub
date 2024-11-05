@@ -1,12 +1,13 @@
 import React from "react";
-import { VscStarEmpty } from "react-icons/vsc";
+import { VscStarEmpty, VscStarFull } from "react-icons/vsc";
 import product_image from "../../../assets/default-placeholder.png";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
 const BasicProductInfo = (props: Props) => {
   return (
-    <div className="items-center mx-auto border p-4 flex max-w-[1200px] w-full rounded-md">
+    <div className="items-center mx-auto border p-4 flex max-w-[1100px] w-full rounded-md">
       <div className="flex-shrink-0">
         <img
           src={product_image}
@@ -19,16 +20,19 @@ const BasicProductInfo = (props: Props) => {
         <p className="text-lg mb-0">Company Name</p>
         <p className="mb-0">Stock number</p>
         <p className="text-sm text-gray-600 mb-1">Php __ per unit</p>
-        <div className="flex flex-row space-x-1 mb-1">
-          <VscStarEmpty />
-          <VscStarEmpty />
-          <VscStarEmpty />
+        <div className="flex flex-row space-x-1 mb-2 text-yellow-500">
+          <VscStarFull />
+          <VscStarFull />
+          <VscStarFull />
           <VscStarEmpty />
           <VscStarEmpty />
         </div>
-        <button className="max-h-9 mt-1 px-4 py-1 bg-black text-white rounded">
+        <Link
+          className="max-h-9 mt-1 px-4 py-1 bg-black no-underline hover:text-white items-center text-white rounded"
+          to={"/chat/31"}
+        >
           Inquire
-        </button>
+        </Link>
       </div>
     </div>
   );

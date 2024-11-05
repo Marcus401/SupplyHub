@@ -1,12 +1,8 @@
 import { useEffect } from "react";
-import {
-  VscStarEmpty,
-  VscArrowLeft,
-  VscStarFull,
-  VscStarHalf,
-} from "react-icons/vsc";
+import { VscArrowLeft, VscStarFull, VscStarHalf } from "react-icons/vsc";
 import user_image from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
 import { Link } from "react-router-dom";
+import ReviewCardList from "../../SellerPagesComponents/SellerReviewsList/SellerReviewsList";
 
 type Props = {};
 
@@ -16,16 +12,19 @@ const SellerProfileInfo = (props: Props) => {
   }, []);
 
   return (
-    <div className="flex flex-col mx-auto max-w-[1200px] w-full pb-20">
+    <div className="flex flex-col mx-auto max-w-[1100px] w-full pb-20">
       <div className="relative w-full overflow-visible items-center pb-2">
         <img
           src="https://wallpaperaccess.com/full/1560881.png"
           alt="Background"
           className="object-cover w-full h-[50px]"
         />
-        <button className="absolute top-2 left-2 p-2 rounded-full shadow-lg">
+        <Link
+          className="absolute top-2 left-2 p-2 rounded-full shadow-lg"
+          to={"/"}
+        >
           <VscArrowLeft className="text-white w-5 h-5" />
-        </button>
+        </Link>
         <img
           src="https://s-media-cache-ak0.pinimg.com/originals/e2/3c/10/e23c10c0dee11fac2bb11c5e856f3926.jpg"
           className="max-w-[1200px] w-full max-h-[300px] h-full"
@@ -39,7 +38,7 @@ const SellerProfileInfo = (props: Props) => {
         </div>
         <Link
           className="absolute no-underline flex items-center -bottom-12 right-0 text-black px-4 py-0 shadow-lg max-w-[140px] w-full max-h-[40px] h-full border border-black rounded-md hover:text-black"
-          to={"ReviewFormPopUp"}
+          to={""}
         >
           Write A Review
         </Link>
@@ -62,6 +61,9 @@ const SellerProfileInfo = (props: Props) => {
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, eaque
           odio atque culpa voluptas sequi neque sint placeat vero tempore!
         </p>
+      </div>
+      <div className="relative w-[695px] -top-36 ml-[530px]">
+        <ReviewCardList />
       </div>
     </div>
   );

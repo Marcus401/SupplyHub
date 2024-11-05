@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import BasicProductInfo from "../../Components/ProductComponents/BasicProductInfo/BasicProductInfo";
 import ProductDescriptionImageDashBoard from "../../Components/ProductComponents/ProductDescriptionImageDashboard/ProductDescriptionImageDashBoard";
 import ProductFaqList from "../../Components/ProductComponents/ProductFAQList/ProductFAQList";
+import { Link } from "react-router-dom";
+import { VscArrowLeft } from "react-icons/vsc";
 
 type Props = {};
 
@@ -11,7 +13,21 @@ const Product = (props: Props) => {
   }, []);
 
   return (
-    <div className="max-w-[1200px] mx-auto px-4">
+    <div className="max-w-[1100px] mx-auto px-4">
+      <div className="relative w-full overflow-visible items-center pb-2">
+        <img
+          src="https://wallpaperaccess.com/full/1560881.png"
+          alt="Background"
+          className="object-cover w-full h-[50px]"
+        />
+        <Link
+          className="absolute top-2 left-2 p-2 rounded-full shadow-lg"
+          to={"/"}
+        >
+          <VscArrowLeft className="text-white w-5 h-5" />
+        </Link>
+      </div>
+
       <div>
         <BasicProductInfo />
       </div>
