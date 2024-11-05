@@ -35,9 +35,11 @@ public partial class SupplyhubDatabaseContext : DbContext
     {
         modelBuilder.Entity<Account>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK_UserProfile");
+            entity.HasKey(e => e.Id).HasName("PK_UserProfile");
 
-            entity.Property(e => e.UserId).ValueGeneratedNever();
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            
+
         });
 
         modelBuilder.Entity<Advertisement>(entity =>
@@ -100,6 +102,14 @@ public partial class SupplyhubDatabaseContext : DbContext
             entity.HasOne(d => d.User).WithOne(p => p.UserInfo)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UserInfo_Account");
+        });
+        
+        modelBuilder.Entity<IdentityRole<int>>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.Ignore(e => e.ConcurrencyStamp);
+            entity.Ignore(e => e.NormalizedUserName);
         });
 
         OnModelCreatingPartial(modelBuilder);
