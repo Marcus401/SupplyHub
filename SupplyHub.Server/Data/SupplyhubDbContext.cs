@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 using SupplyHub.Server.Models;
 
 namespace SupplyHub.Server.Data
