@@ -11,8 +11,6 @@ public class Program
 	{
 		var builder = WebApplication.CreateBuilder(args);
 		
-		builder.Services.AddDbContext<SupplyhubDatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-		
 		builder.Services.AddAuthorization();
 
 		builder.Services.AddControllers(); // Allows for API controller support
