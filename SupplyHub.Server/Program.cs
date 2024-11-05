@@ -3,6 +3,7 @@ using SupplyHub.Server.Data;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace SupplyHub.Server;
 
@@ -11,12 +12,13 @@ public class Program
 	public static void Main(string[] args)
 	{
 		var builder = WebApplication.CreateBuilder(args);
-		
-		builder.Services.AddDbContext<SupplyhubDatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-		builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-	        .AddEntityFrameworkStores<ApplicationDbContext>()
-	        .AddDefaultTokenProviders();
+		builder.Services.AddDbContext<SupplyhubDbContext>(options =>
+		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+		// builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+	    //  .AddEntityFrameworkStores<SupplyhubDbContext>()
+	    //  .AddDefaultTokenProviders();
 
 		builder.Services.AddAuthorization();
 
