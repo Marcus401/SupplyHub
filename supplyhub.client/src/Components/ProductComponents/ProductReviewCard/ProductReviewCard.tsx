@@ -1,4 +1,5 @@
 import React from "react";
+
 interface ReviewCardProps {
   userName: string;
   affiliatedCompany: string;
@@ -15,7 +16,7 @@ const ProductReviewCard: React.FC<ReviewCardProps> = ({
   profilePictureUrl,
 }) => {
   return (
-    <div className="flex items-start p-4 bg-white rounded-lg shadow-sm border mb-4">
+    <div className="flex items-start max-w-[1100px] p-4 bg-white rounded-lg shadow-sm border mb-4 w-full">
       <img
         src={profilePictureUrl}
         alt="User Profile"

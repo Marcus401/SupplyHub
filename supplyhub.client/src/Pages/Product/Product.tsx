@@ -4,6 +4,7 @@ import ProductDescriptionImageDashBoard from "../../Components/ProductComponents
 import ProductFaqList from "../../Components/ProductComponents/ProductFAQList/ProductFAQList";
 import { Link } from "react-router-dom";
 import { VscArrowLeft } from "react-icons/vsc";
+import ProductReviewCardList from "../../Components/ProductComponents/ProductReviewCardList/ProductReviewCardList";
 
 type Props = {};
 
@@ -36,6 +37,9 @@ const Product = (props: Props) => {
       </div>
       <div className="mt-0">
         <ProductFaqList />
+      </div>
+      <div>
+        <ProductReviewCardList />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import ReviewFormPopUp from "../../Components/ProductComponents/ReviewFormPopUp/ReviewFormPopUp";
+import Product from "../Product/Product";
 
 type Props = {};
 
@@ -7,7 +7,7 @@ const Design = (props: Props) => {
   return (
     <div>
       <div>
-        <ReviewFormPopUp />
+        <Product />
       </div>
     </div>
   );
