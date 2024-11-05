@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { VscArrowLeft, VscStarFull, VscStarHalf } from "react-icons/vsc";
 import user_image from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
 import { Link } from "react-router-dom";
@@ -10,7 +10,10 @@ const SellerProfileInfo = (props: Props) => {
   useEffect(() => {
     document.title = "Seller Profile";
   }, []);
-
+  const [isReviewFormVisible, setIsReviewFormVisible] = useState(false);
+  const handleReviewButtonClick = () => {
+    setIsReviewFormVisible(true);
+  };
   return (
     <div className="flex flex-col mx-auto max-w-[1100px] w-full pb-20">
       <div className="relative w-full overflow-visible items-center pb-2">
@@ -36,13 +39,12 @@ const SellerProfileInfo = (props: Props) => {
             className="object-cover w-full h-full"
           />
         </div>
-        <Link
+        <button
           className="absolute no-underline flex items-center -bottom-12 right-0 text-black px-4 py-0 shadow-lg max-w-[140px] w-full max-h-[40px] h-full border border-black rounded-md hover:text-black"
-          to="#"
-          onClick={ReviewFormPopUp}
+          onClick={handleReviewButtonClick}
         >
           Write A Review
-        </Link>
+        </button>
       </div>
 
       <div className="px-[140px] pb-2 text-left">
@@ -66,9 +68,8 @@ const SellerProfileInfo = (props: Props) => {
       <div className="relative w-[610px] -top-36 ml-[510px]">
         <ReviewCardList />
       </div>
-      <div>
-        <ReviewFormPopUp />
-      </div>
+
+      {isReviewFormVisible && <ReviewFormPopUp />}
     </div>
   );
 };
