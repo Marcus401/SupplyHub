@@ -18,10 +18,13 @@ const SellerReviewCard = (props: Props) => {
             <h1 className="text-[18px] my-0-0 ">User Name</h1>
             <p className="text-sm my-0">Affiliated Company</p>
             <div className="flex flex-row space-x-1 mb-0">
-              <VscStarEmpty />
-              <VscStarEmpty />
-              <VscStarEmpty />
-              <VscStarEmpty />
+              <VscStarFull />
+              <VscStarFull />
+
+              <VscStarFull />
+
+              <VscStarFull />
+
               <VscStarEmpty />
             </div>
           </div>
