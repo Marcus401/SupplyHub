@@ -1,6 +1,5 @@
 import React from "react";
-import Sellers from "../Sellers/Sellers";
-import HomePage from "../HomePage/HomePage";
+import ReviewFormPopUp from "../../Components/ProductComponents/ReviewFormPopUp/ReviewFormPopUp";
 
 type Props = {};
 
@@ -8,7 +7,7 @@ const Design = (props: Props) => {
   return (
     <div>
       <div>
-        <HomePage />
+        <ReviewFormPopUp />
       </div>
     </div>
   );

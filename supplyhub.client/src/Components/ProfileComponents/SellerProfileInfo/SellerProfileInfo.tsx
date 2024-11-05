@@ -3,7 +3,7 @@ import { VscArrowLeft, VscStarFull, VscStarHalf } from "react-icons/vsc";
 import user_image from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
 import { Link } from "react-router-dom";
 import ReviewCardList from "../../SellerPagesComponents/SellerReviewsList/SellerReviewsList";
-
+import ReviewFormPopUp from "../../ProductComponents/ReviewFormPopUp/ReviewFormPopUp";
 type Props = {};
 
 const SellerProfileInfo = (props: Props) => {
@@ -38,7 +38,8 @@ const SellerProfileInfo = (props: Props) => {
         </div>
         <Link
           className="absolute no-underline flex items-center -bottom-12 right-0 text-black px-4 py-0 shadow-lg max-w-[140px] w-full max-h-[40px] h-full border border-black rounded-md hover:text-black"
-          to={""}
+          to="#"
+          onClick={ReviewFormPopUp}
         >
           Write A Review
         </Link>
@@ -62,8 +63,11 @@ const SellerProfileInfo = (props: Props) => {
           odio atque culpa voluptas sequi neque sint placeat vero tempore!
         </p>
       </div>
-      <div className="relative w-[695px] -top-36 ml-[530px]">
+      <div className="relative w-[610px] -top-36 ml-[510px]">
         <ReviewCardList />
+      </div>
+      <div>
+        <ReviewFormPopUp />
       </div>
     </div>
   );
