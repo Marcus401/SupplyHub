@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SupplyHub.Server.Data;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using Services;
 
 namespace SupplyHub.Server;
 
@@ -11,6 +12,12 @@ public class Program
 	{
 		var builder = WebApplication.CreateBuilder(args);
 		
+		builder.Services.AddDbContext<SupplyhubDatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+		builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+	        .AddEntityFrameworkStores<ApplicationDbContext>()
+	        .AddDefaultTokenProviders();
+
 		builder.Services.AddAuthorization();
 
 		builder.Services.AddControllers(); // Allows for API controller support
