@@ -29,6 +29,8 @@ import Design from "../../Pages/Design/Design.tsx";
 import SellerReviewsList from "../SellerPagesComponents/SellerReviewsList/SellerReviewsList.tsx";
 import SellerEditProductForm from "../SellerPagesComponents/SellerEditProductForm/SellerEditProductForm.tsx";
 import SellerBilling from "../SellerPagesComponents/SellerBilling/SellerBilling.tsx";
+import ReviewFormPopUp from "../ProductComponents/ReviewFormPopUp/ReviewFormPopUp.tsx";
+import {Children} from "react";
 
 /*
 Webpages
@@ -80,7 +82,13 @@ export const router = createBrowserRouter([
                 path: "profile",
                 element: < Profile/>,
                 children: [
-                    {path: "seller/:seller_id", element: <SellerProfileInfo/>},
+                    {   
+                        path: "seller/:seller_id", 
+                        element: <SellerProfileInfo/>,
+                        children:[
+                            {path: "review", element: <ReviewFormPopUp/>}
+                        ]
+                    },
                     {path: "seller/edit", element: <SellerProfileInfoEdit/>},
                     {path: "user/:user_id", element: <UserProfileInfo/>},
                     {path: "user/edit", element: <UserProfileInfoEdit/>},
@@ -93,7 +101,13 @@ export const router = createBrowserRouter([
                     {path: ":chat_id", element: <ChatMessageList messages={[]}/>},
                 ]
             },
-            {path: "product/:item_id", element: <Product/>},
+            {
+                path: "product/:item_id", 
+                element: <Product/>,
+                children: [
+                    {path: "review", element: <ReviewFormPopUp/>}
+                ]
+            },
             {
                 path: "seller",
                 element: <Seller/>,
