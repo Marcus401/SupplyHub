@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ProductReviewCard from "../ProductReviewCard/ProductReviewCard";
+import ReviewFormPopUp from "../ReviewFormPopUp/ReviewFormPopUp";
 
-//mock reviews; to be changed
 const reviews = [
   {
     id: 1,
@@ -23,14 +23,28 @@ const reviews = [
   },
 ];
 
-const ProductReviewCardList: React.FC = () => {
+const ProductReviewCardList = () => {
   useEffect(() => {
     document.title = "Reviews";
   }, []);
 
+  const [isReviewFormVisible, setIsReviewFormVisible] = useState(false);
+  const handleReviewButtonClick = () => {
+    setIsReviewFormVisible(true);
+  };
+
   return (
     <div className="flex flex-col p-0 mt-4">
-      <h2 className="text-3xl font-bold mb-4">Reviews</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-3xl font-bold">Reviews</h2>
+        <button
+          onClick={handleReviewButtonClick}
+          className="text-black px-4 py-1 shadow-lg max-w-[140px] border border-black rounded-md hover:text-black"
+        >
+          Write A Review
+        </button>
+      </div>
+
       <div className="space-y-4">
         {reviews.map((review) => (
           <ProductReviewCard
@@ -43,6 +57,7 @@ const ProductReviewCardList: React.FC = () => {
           />
         ))}
       </div>
+      {isReviewFormVisible && <ReviewFormPopUp />}
     </div>
   );
 };
