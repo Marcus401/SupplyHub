@@ -1,8 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using SupplyHub.Server.Data;
-using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
-using Services;
 using Microsoft.AspNetCore.Identity;
 
 namespace SupplyHub.Server;
@@ -22,6 +19,7 @@ public class Program
 	     .AddEntityFrameworkStores<SupplyhubDbContext>()
 	     .AddDefaultTokenProviders();
 
+		builder.Services.AddAuthentication();
 		builder.Services.AddAuthorization();
 
 		builder.Services.AddControllers(); // Allows for API controller support
@@ -39,7 +37,8 @@ public class Program
 			app.UseSwagger();
 			app.UseSwaggerUI();
 	    }		
-		app.UseHttpsRedirection();		// Redirects HTTP requests to HTTPS
+		app.UseHttpsRedirection();      // Redirects HTTP requests to HTTPS
+		app.UseAuthentication();		// Enables authentication
 		app.UseAuthorization();			// Enables authorization
 		app.MapControllers();			// Map the API controllers
 		app.MapFallbackToFile("index.html");	// Fallback route for SPA to serve index.html for unmatched routes
