@@ -23,23 +23,24 @@ namespace SupplyHub.Server.Data
 		{
 			base.OnModelCreating(builder);
 
-			builder.Entity<Account>().Ignore(e => e.AccessFailedCount)
+			builder.Entity<Account>(e => e.ToTable(name: "Accounts"))
+				.Ignore(e => e.AccessFailedCount)
 				.Ignore(e => e.ConcurrencyStamp)
 				.Ignore(e => e.EmailConfirmed)
 				.Ignore(e => e.LockoutEnabled)
 				.Ignore(e => e.LockoutEnd)
-				.Ignore(e => e.NormalizedEmail)
+				.Ignore(e => e.NormalizedEmail)          
 				.Ignore(e => e.NormalizedUserName)
 				.Ignore(e => e.PhoneNumberConfirmed)
 				.Ignore(e => e.SecurityStamp)
 				.Ignore(e => e.TwoFactorEnabled);
 
-			builder.Entity<IdentityRole>(e => e.ToTable(name: "Role"));
+			builder.Entity<IdentityRole>(e => e.ToTable(name: "Roles"))
+				.Ignore(e => e.NormalizedName)
+				.Ignore(e => e.ConcurrencyStamp);
+			
 			builder.Entity<IdentityUserRole<string>>(e => e.ToTable(name: "UserRoles"));
-			builder.Entity<IdentityUserClaim<string>>(e => e.ToTable(name: "UserClaims"));
-			builder.Entity<IdentityUserLogin<string>>(e => e.ToTable(name: "UserLogins"));
-			builder.Entity<IdentityRoleClaim<string>>(e => e.ToTable(name: "RoleClaims"));
-			builder.Entity<IdentityUserToken<string>>(e => e.ToTable(name: "UserTokens"));
+			builder.Entity<IdentityUserToken<string>>(e => e.ToTable(name: "Tokens"));
 		}
 
 	}
