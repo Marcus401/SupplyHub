@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SupplyHub.Server.Models;
 
 namespace SupplyHub.Server.Data
 {
-	public class SupplyhubDbContext : DbContext
+	public class SupplyhubDbContext : IdentityDbContext
 	{
-		public SupplyhubDbContext(DbContextOptions options) : base(options)
+		public SupplyhubDbContext(DbContextOptions<SupplyhubDbContext> options) : base(options)
 		{ 
 		}
 
