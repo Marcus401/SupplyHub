@@ -13,9 +13,11 @@ public class Program
 	{
 		var builder = WebApplication.CreateBuilder(args);
 
+		// Configure Entity Framework Core
 		builder.Services.AddDbContext<SupplyhubDbContext>(options =>
 		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+		// Configuration Identity Services
 		builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 	     .AddEntityFrameworkStores<SupplyhubDbContext>()
 	     .AddDefaultTokenProviders();
