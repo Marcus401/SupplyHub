@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SupplyHub.Server.Models;
 
@@ -20,6 +21,8 @@ namespace SupplyHub.Server.Data
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
+			base.OnModelCreating(builder);
+
 			builder.Entity<Account>().Ignore(e => e.AccessFailedCount)
 				.Ignore(e => e.ConcurrencyStamp)
 				.Ignore(e => e.EmailConfirmed)
@@ -30,6 +33,13 @@ namespace SupplyHub.Server.Data
 				.Ignore(e => e.PhoneNumberConfirmed)
 				.Ignore(e => e.SecurityStamp)
 				.Ignore(e => e.TwoFactorEnabled);
+
+			builder.Entity<IdentityRole>(e => e.ToTable(name: "Role"));
+			builder.Entity<IdentityUserRole<string>>(e => e.ToTable(name: "UserRoles"));
+			builder.Entity<IdentityUserClaim<string>>(e => e.ToTable(name: "UserClaims"));
+			builder.Entity<IdentityUserLogin<string>>(e => e.ToTable(name: "UserLogins"));
+			builder.Entity<IdentityRoleClaim<string>>(e => e.ToTable(name: "RoleClaims"));
+			builder.Entity<IdentityUserToken<string>>(e => e.ToTable(name: "UserTokens"));
 		}
 
 	}
