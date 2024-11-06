@@ -39,7 +39,7 @@ const ProductReviewCardList = () => {
         <h2 className="text-3xl font-bold">Reviews</h2>
         <button
           onClick={handleReviewButtonClick}
-          className="text-black px-4 py-1 shadow-lg max-w-[140px] border border-black rounded-md hover:text-black"
+          className="text-black px-4 py-1 shadow-lg max-w-[140px] border border-black rounded-md hover:text-black hover:bg-gray-100"
         >
           Write A Review
         </button>
