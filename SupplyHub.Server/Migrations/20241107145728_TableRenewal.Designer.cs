@@ -11,8 +11,8 @@ using SupplyHub.Server.Data;
 namespace SupplyHub.Server.Migrations
 {
     [DbContext(typeof(SupplyhubDbContext))]
-    [Migration("20241107142535_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241107145728_TableRenewal")]
+    partial class TableRenewal
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
