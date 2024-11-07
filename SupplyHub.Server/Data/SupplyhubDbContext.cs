@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SupplyHub.Server.Models;
 
 namespace SupplyHub.Server.Data;
-public class SupplyhubDbContext : IdentityDbContext
+public class SupplyhubDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
 	public SupplyhubDbContext(DbContextOptions<SupplyhubDbContext> options) : base(options)
 	{ 
@@ -101,6 +101,9 @@ public class SupplyhubDbContext : IdentityDbContext
 				.WithMany()
 				.HasForeignKey("UserId")
 				.OnDelete(DeleteBehavior.ClientSetNull);
+			
+			entity.Property(e => e.Price)
+				.HasPrecision(18, 2);
 		});
 		
 		builder.Entity<SellerInfo>(entity =>
