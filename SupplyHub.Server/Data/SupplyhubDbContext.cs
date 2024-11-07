@@ -38,6 +38,16 @@ public class SupplyhubDbContext : IdentityDbContext
 			entity.Ignore(e => e.PhoneNumberConfirmed);
 			entity.Ignore(e => e.SecurityStamp);
 			entity.Ignore(e => e.TwoFactorEnabled);
+			
+			entity.HasKey(e => e.Id).HasName("PK_UserProfile");
+			
+			entity.HasOne(e => e.UserInfo)
+				.WithOne(e => e.Account)
+				.HasForeignKey<UserInfo>(e => e.UserId);
+			
+			entity.HasOne(e => e.SellerInfo)
+				.WithOne(e => e.Account)
+				.HasForeignKey<SellerInfo>(e => e.SellerId);
 		});
 
 		builder.Entity<IdentityRole<int>>(entity =>
