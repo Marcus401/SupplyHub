@@ -6,10 +6,8 @@ namespace SupplyHub.Server.Models;
 public class Advertisement
 {
     [Key]
-    public int AdvertisementId { get; set; }
-    [ForeignKey("UserId")]
+    public int Id { get; set; }
     public int UserId { get; set; }
-    [ForeignKey("ProductId")]
     public int ProductId { get; set; }
     public byte[] AdvertisementFile { get; set; } = null!;
 }

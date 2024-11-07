@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SupplyHub.Server.Data;
 using Microsoft.AspNetCore.Identity;
+using SuppluHub.Server.Models
 
 namespace SupplyHub.Server;
 
@@ -15,7 +16,7 @@ public class Program
 		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 		// Configuration Identity Services
-		builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+		builder.Services.AddIdentity<User, IdentityRole>()
 	     .AddEntityFrameworkStores<SupplyhubDbContext>()
 	     .AddDefaultTokenProviders();
 

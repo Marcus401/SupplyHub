@@ -6,8 +6,7 @@ namespace SupplyHub.Server.Models;
 public class Product
 {
     [Key]
-    public int ProductId { get; set; }
-    [ForeignKey("UserId")]
+    public int Id { get; set; }
     public int UserId { get; set; }
     public string ProductName { get; set; }
     public string ProductType { get; set; }

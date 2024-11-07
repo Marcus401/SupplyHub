@@ -6,10 +6,8 @@ namespace SupplyHub.Server.Models;
 public class Message
 {
     [Key]
-    public int MessageId { get; set; }
-    [ForeignKey("ConversationId")]
+    public int Id { get; set; }
     public int ConversationId { get; set; }
-    [ForeignKey("UserId")]
     public int UserId { get; set; }
     public string Text { get; set; }
 }
