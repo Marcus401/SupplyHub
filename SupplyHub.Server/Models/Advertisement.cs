@@ -10,4 +10,6 @@ public class Advertisement
     public int UserId { get; set; }
     public int ProductId { get; set; }
     public byte[] AdvertisementFile { get; set; } = null!;
+    public required User User { get; set; } 
+    public required Product Product { get; set; }
 }

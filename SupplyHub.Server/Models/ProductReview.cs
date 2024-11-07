@@ -9,5 +9,7 @@ public class ProductReview
 	public int ProductId { get; set;  }
 	public int ReviewerUserId { get; set;}
 	public int Rating { get; set;}
-	public string ReviewText { get; set;}
+	public string? ReviewText { get; set;}
+	public required User ReviewerUser { get; set;}
+	public required Product Product { get; set;}
 }

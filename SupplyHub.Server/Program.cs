@@ -15,10 +15,10 @@ public class Program
 		builder.Services.AddDbContext<SupplyhubDbContext>(options =>
 		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-		// Configuration Identity Services
+
 		builder.Services.AddIdentity<User, IdentityRole>()
-	     .AddEntityFrameworkStores<SupplyhubDbContext>()
-	     .AddDefaultTokenProviders();
+		     .AddEntityFrameworkStores<SupplyhubDbContext>()
+		     .AddDefaultTokenProviders();
 
 		builder.Services.AddAuthentication();
 		builder.Services.AddAuthorization();

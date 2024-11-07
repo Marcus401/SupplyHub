@@ -10,7 +10,7 @@ public class SupplyhubDbContext : IdentityDbContext
 	{ 
 	}
 
-	public DbSet<User> Users { get; set; }
+	public new DbSet<User> Users { get; set; }
 	public DbSet<Advertisement> Advertisements { get; set; }
 	public DbSet<ConversationUser> ConversationUsers { get; set; }
 	public DbSet<Message> Messages { get; set; }
@@ -99,7 +99,7 @@ public class SupplyhubDbContext : IdentityDbContext
 			
 			entity.HasOne(e => e.User)
 				.WithMany()
-				.HasForeignKey<Product>(e => e.UserId)
+				.HasForeignKey("UserId")
 				.OnDelete(DeleteBehavior.ClientSetNull);
 		});
 		
@@ -122,9 +122,9 @@ public class SupplyhubDbContext : IdentityDbContext
 				.HasForeignKey<UserInfo>(e => e.UserId)
 				.OnDelete(DeleteBehavior.ClientSetNull);
 			
-			entity.HasOne(e => e.User)
+			entity.HasOne(e => e.CompanyUser)
 				.WithMany()
-				.HasForeignKey<UserInfo>(e => e.CompanyUserId)
+				.HasForeignKey("CompanyUserId")
 				.OnDelete(DeleteBehavior.ClientSetNull);
 		});
 
@@ -132,12 +132,12 @@ public class SupplyhubDbContext : IdentityDbContext
 		{
 			entity.HasKey(e => e.Id).HasName("PK_SellerReviews");
 			
-			entity.HasOne(e => e.User)
+			entity.HasOne(e => e.SellerUser)
 				.WithMany()
 				.HasForeignKey(e => e.SellerUserId)
 				.OnDelete(DeleteBehavior.ClientSetNull);
 			
-			entity.HasOne(e => e.User)
+			entity.HasOne(e => e.ReviewerUser)
 				.WithMany()
 				.HasForeignKey(e => e.ReviewerUserId)
 				.OnDelete(DeleteBehavior.ClientSetNull);
@@ -156,7 +156,7 @@ public class SupplyhubDbContext : IdentityDbContext
 				.HasForeignKey(e => e.ProductId)
 				.OnDelete(DeleteBehavior.ClientSetNull);
 			
-			entity.HasOne(e => e.User)
+			entity.HasOne(e => e.ReviewerUser)
 				.WithMany()
 				.HasForeignKey(e => e.ReviewerUserId)
 				.OnDelete(DeleteBehavior.ClientSetNull);
