@@ -199,7 +199,7 @@ public class SupplyhubDbContext : IdentityDbContext
 
 		builder.Entity<Conversation>(entity =>
 		{
-			entity.HasKey(e => e.Id).HasName("PK_Conversations")
+			entity.HasKey(e => e.Id).HasName("PK_Conversations");
 		});
 	}
 }

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SupplyHub.Server.Data;
 using Microsoft.AspNetCore.Identity;
-using SuppluHub.Server.Models
+using SupplyHub.Server.Models;
 
 namespace SupplyHub.Server;
 

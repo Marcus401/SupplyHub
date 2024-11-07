@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace Services;
 public class AuthService
 {
-	public string Create(Account account)
+	public string Create(User user)
 	{
 		var handler = new JwtSecurityTokenHandler();
 		var privateKey = Encoding.UTF8.GetBytes(getAzureSecret());
