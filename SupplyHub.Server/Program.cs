@@ -16,11 +16,37 @@ public class Program
 		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
-		builder.Services.AddIdentity<User, IdentityRole<int>>()
+		builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
+			{
+				options.Password.RequireDigit = true;
+				options.Password.RequiredLength = 6;
+				options.Password.RequireNonAlphanumeric = false;
+				options.Password.RequireUppercase = true;
+				options.Password.RequireLowercase = false;
+			})
 		     .AddEntityFrameworkStores<SupplyhubDbContext>()
 		     .AddDefaultTokenProviders();
 
-		builder.Services.AddAuthentication();
+		builder.Services.AddAuthentication(options =>
+    	{
+        	options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        	options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    	});
+    	// .AddJwtBearer(options =>
+    	// {
+     //    	options.TokenValidationParameters = new TokenValidationParameters
+     //    	{
+     //        	ValidateIssuer = true,
+     //        	ValidateAudience = true,
+     //        	ValidateLifetime = true,
+     //        	ValidateIssuerSigningKey = true,
+     //        	ValidIssuer = jwtSettings["Issuer"],
+     //        	ValidAudience = jwtSettings["Audience"],
+     //        	IssuerSigningKey = new SymmetricSecurityKey(key)
+     //    	};
+   	 // 	});
+
+		builder.Services.AddScoped<AuthService>();
 		builder.Services.AddAuthorization();
 
 		builder.Services.AddControllers(); // Allows for API controller support
@@ -38,6 +64,7 @@ public class Program
 			app.UseSwagger();
 			app.UseSwaggerUI();
 	    }		
+
 		app.UseHttpsRedirection();      // Redirects HTTP requests to HTTPS
 		app.UseAuthentication();		// Enables authentication
 		app.UseAuthorization();			// Enables authorization

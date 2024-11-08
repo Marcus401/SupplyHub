@@ -7,7 +7,7 @@ public class RoleInitializer
 {
 	public static async Task Initialize(IServiceProvider serviceProvider)
 	{
-		var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+		var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
 		var logger = serviceProvider.GetRequiredService<ILogger<RoleInitializer>>();
 		string[] roleNames = { "User", "Seller" };
 
