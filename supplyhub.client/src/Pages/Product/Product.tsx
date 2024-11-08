@@ -14,7 +14,7 @@ const Product = (props: Props) => {
   }, []);
 
   return (
-    <div className="max-w-[1100px] mx-auto px-4">
+    <div className="w-full max-w-[1100px] mx-auto p-4 items-center">
       <div className="relative w-full overflow-visible items-center pb-2">
         <img
           src="https://wallpaperaccess.com/full/1560881.png"

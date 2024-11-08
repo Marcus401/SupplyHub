@@ -15,7 +15,7 @@ const SellerProfileInfo = (props: Props) => {
     setIsReviewFormVisible(true);
   };
   return (
-    <div className="flex flex-col mx-auto max-w-[1100px] w-full pb-20">
+    <div className="flex flex-col mx-auto max-w-[1100px] w-full pb-20 p-4">
       <div className="relative w-full overflow-visible items-center pb-2">
         <img
           src="https://wallpaperaccess.com/full/1560881.png"
