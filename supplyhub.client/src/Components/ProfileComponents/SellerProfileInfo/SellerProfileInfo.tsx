@@ -24,7 +24,8 @@ const SellerProfileInfo = (props: Props) => {
         />
         <Link
           className="absolute top-2 left-2 p-2 rounded-full shadow-lg"
-          to={"/"}
+          to="/"
+          state={{ fromSellerProfile: true }}
         >
           <VscArrowLeft className="text-white w-5 h-5" />
         </Link>
