@@ -41,7 +41,7 @@ const SellerProfileInfo = (props: Props) => {
           />
         </div>
         <button
-          className="absolute no-underline flex items-center -bottom-12 right-0 text-black px-4 py-0 shadow-lg max-w-[140px] w-full max-h-[40px] h-full border border-black rounded-md hover:text-black"
+          className="absolute no-underline flex items-center -bottom-12 right-0 text-black px-4 py-0 shadow-lg max-w-[140px] w-full max-h-[40px] h-full border border-black rounded-md hover:text-black hover:bg-gray-100"
           onClick={handleReviewButtonClick}
         >
           Write A Review
