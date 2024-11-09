@@ -29,6 +29,7 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
 		{
 			throw new ArgumentNullException("UserName cannot be null or empty");
 		}
+
 		var claims = new List<Claim>
 		{
 			new Claim(ClaimTypes.Name, user.UserName),  
