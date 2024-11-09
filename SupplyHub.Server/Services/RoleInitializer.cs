@@ -16,7 +16,7 @@ public class RoleInitializer
 			var roleExist = await roleManager.RoleExistsAsync(roleName);
 			if (!roleExist)
 			{
-				var roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
+				var roleResult = await roleManager.CreateAsync(new IdentityRole<int>(roleName));
 				if (roleResult.Succeeded)
 				{
 					logger.LogInformation($"Role {roleName} created successfully.");

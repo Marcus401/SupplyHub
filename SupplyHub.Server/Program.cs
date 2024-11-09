@@ -1,9 +1,13 @@
+namespace SupplyHub.Server;
+
 using Microsoft.EntityFrameworkCore;
 using SupplyHub.Server.Data;
 using Microsoft.AspNetCore.Identity;
+using SupplyHub.Server.Services;
 using SupplyHub.Server.Models;
+using SupplyHub.Server.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
-namespace SupplyHub.Server;
 
 public class Program
 {
@@ -46,7 +50,7 @@ public class Program
      //    	};
    	 // 	});
 
-		builder.Services.AddScoped<AuthService>();
+		builder.Services.AddScoped<IAuthService, AuthService>();
 		builder.Services.AddAuthorization();
 
 		builder.Services.AddControllers(); // Allows for API controller support
