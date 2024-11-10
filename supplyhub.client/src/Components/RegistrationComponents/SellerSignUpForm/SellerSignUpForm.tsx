@@ -5,16 +5,15 @@ const SellerSignUpForm: React.FC = () => {
   const [lastname, setLastname] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [companyname, setCompanyname] = useState<string>('');
   const [location, setLocation] = useState<string>('');
 
-  const handleSignUpSubmit = (data: { name: string; lastname: string; email: string; password: string; companyname: string; location: string }) => {
+  const handleSignUpSubmit = (data: { name: string; lastname: string; email: string; password: string; location: string }) => {
     console.log('Sign Up data:', data);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    handleSignUpSubmit({ name, lastname, email, password, companyname, location });
+    handleSignUpSubmit({ name, lastname, email, password, location });
   };
 
   return (
@@ -29,7 +28,6 @@ const SellerSignUpForm: React.FC = () => {
           { id: 'lastname', label: 'Last Name', value: lastname, setter: setLastname },
           { id: 'email', label: 'Email', value: email, setter: setEmail, type: 'email' },
           { id: 'password', label: 'Password', value: password, setter: setPassword, type: 'password' },
-          { id: 'companyname', label: 'Company Name', value: companyname, setter: setCompanyname },
           { id: 'location', label: 'Location', value: location, setter: setLocation },
         ].map(({ id, label, value, setter, type = 'text' }) => (
           <div key={id} className="mb-4">
