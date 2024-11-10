@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SellerSignUpForm: React.FC = () => {
-  const [name, setName] = useState<string>('');
+  const [firstname, setFirstname] = useState<string>('');
   const [lastname, setLastname] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [location, setLocation] = useState<string>('');
 
-  const handleSignUpSubmit = (data: { name: string; lastname: string; email: string; password: string; location: string }) => {
+  const navigate = useNavigate();
+
+  const handleSignUpSubmit = (data: { firstname: string; lastname: string; email: string; password: string; location: string }) => {
     console.log('Sign Up data:', data);
+    // Add any sign-up logic here (e.g., API call), then redirect
+    navigate('/seller'); // Redirect to the seller page
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    handleSignUpSubmit({ name, lastname, email, password, location });
+    handleSignUpSubmit({ firstname, lastname, email, password, location });
   };
 
   return (
@@ -24,7 +29,7 @@ const SellerSignUpForm: React.FC = () => {
     >
       <form onSubmit={handleSubmit} className="w-full">
         {[
-          { id: 'name', label: 'Name', value: name, setter: setName },
+          { id: 'firstname', label: 'First Name', value: firstname, setter: setFirstname },
           { id: 'lastname', label: 'Last Name', value: lastname, setter: setLastname },
           { id: 'email', label: 'Email', value: email, setter: setEmail, type: 'email' },
           { id: 'password', label: 'Password', value: password, setter: setPassword, type: 'password' },
