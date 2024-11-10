@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Dinagdag
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLoginSubmit = (data: { email: string; password: string }) => {
-    console.log('Login data:', data);
+    console.log('Login data:', data);  
+    navigate('/'); // Dinagdag 
   };
 
   const handleSubmit = (e: React.FormEvent) => {
