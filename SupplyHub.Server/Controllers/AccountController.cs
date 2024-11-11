@@ -22,7 +22,7 @@ public class AccountController(UserManager<User> userManager) : ControllerBase
 		
 		var user = new User
 		{
-			UserName = userRegisterDto.FirstName + userRegisterDto.LastName,
+			UserName = userRegisterDto.FirstName + " " + userRegisterDto.LastName,
 			Email = userRegisterDto.Email
 		};
 		

@@ -22,6 +22,7 @@ public class Program
 
 		builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
 			{
+				options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._ ";
 				options.Password.RequireDigit = true;
 				options.Password.RequiredLength = 6;
 				options.Password.RequireNonAlphanumeric = false;
