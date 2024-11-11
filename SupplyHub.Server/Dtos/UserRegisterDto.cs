@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SupplyHub.Server;
+namespace SupplyHub.Server.Dtos;
 
 public class UserRegisterDto
 {

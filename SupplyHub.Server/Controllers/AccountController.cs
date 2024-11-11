@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using SupplyHub.Server.Models;
-using Microsoft.AspNetCore.Identity;
 using SupplyHub.Server.Dtos;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SupplyHub.Server;
@@ -12,12 +12,17 @@ public class AccountController(UserManager<User> userManager) : ControllerBase
 {
 	private readonly UserManager<User> _userManager = userManager;
 	
-	[HttpPost("register")]
+	[HttpPost("registerUser")]
 	public async Task<IActionResult> RegisterUser([FromBody] UserRegisterDto userRegisterDto )
 	{
+		if (string.IsNullOrWhiteSpace(userRegisterDto.Password))
+		{
+			return BadRequest("Password cannot be null or empty.");
+		}
+		
 		var user = new User
 		{
-			UserName = userRegisterDto.UserName,
+			UserName = userRegisterDto.FirstName + userRegisterDto.LastName,
 			Email = userRegisterDto.Email
 		};
 		

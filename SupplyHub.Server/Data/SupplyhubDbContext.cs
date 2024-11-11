@@ -43,7 +43,6 @@ public class SupplyhubDbContext : IdentityDbContext<User, IdentityRole<int>, int
 			entity.Ignore(e => e.LockoutEnabled);
 			entity.Ignore(e => e.LockoutEnd);
 			entity.Ignore(e => e.NormalizedEmail);
-			entity.Ignore(e => e.NormalizedUserName);
 			entity.Ignore(e => e.PhoneNumberConfirmed);
 			entity.Ignore(e => e.SecurityStamp);
 			entity.Ignore(e => e.TwoFactorEnabled);
@@ -55,7 +54,9 @@ public class SupplyhubDbContext : IdentityDbContext<User, IdentityRole<int>, int
 		{
 			entity.ToTable("Roles");
 			entity.Ignore(e => e.ConcurrencyStamp);
-		}).HasData(roles);
+		});
+
+		builder.Entity<IdentityRole<int>>().HasData(roles);
 		
 		builder.Entity<IdentityUserToken<int>>(entity =>
 		{
@@ -65,6 +66,11 @@ public class SupplyhubDbContext : IdentityDbContext<User, IdentityRole<int>, int
 		builder.Entity<IdentityUserRole<int>>(entity =>
 		{
 			entity.ToTable("UserRoles");
+		});
+
+		builder.Entity<IdentityUserLogin<int>>(entity =>
+		{
+			entity.ToTable("UserLogins");
 		});
 
 		builder.Entity<Advertisement>(entity =>
