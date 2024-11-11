@@ -27,6 +27,12 @@ public class SupplyhubDbContext : IdentityDbContext<User, IdentityRole<int>, int
 	protected override void OnModelCreating(ModelBuilder builder)
 	{
 		base.OnModelCreating(builder);
+		
+		List<IdentityRole<int>> roles = new()
+		{
+			new IdentityRole<int> { Id = 1, Name = "User", NormalizedName = "USER" },
+			new IdentityRole<int> { Id = 2, Name = "Seller", NormalizedName = "SELLER" },
+		};
 
 		builder.Entity<User>(entity =>
 		{
@@ -48,9 +54,8 @@ public class SupplyhubDbContext : IdentityDbContext<User, IdentityRole<int>, int
 		builder.Entity<IdentityRole<int>>(entity =>
 		{
 			entity.ToTable("Roles");
-			entity.Ignore(e => e.NormalizedName);
 			entity.Ignore(e => e.ConcurrencyStamp);
-		});
+		}).HasData(roles);
 		
 		builder.Entity<IdentityUserToken<int>>(entity =>
 		{

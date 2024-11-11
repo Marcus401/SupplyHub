@@ -20,7 +20,7 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
 	public async Task<string> CreateToken(User user)
 	{
 		var handler = new JwtSecurityTokenHandler();
-		var privateKey = Encoding.UTF8.GetBytes(getAzureSecret());
+		var privateKey = Encoding.UTF8.GetBytes("PrivateKey");
 		
 		var credentials = new SigningCredentials(
 			new SymmetricSecurityKey(privateKey),
