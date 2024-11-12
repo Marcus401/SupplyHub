@@ -30,7 +30,7 @@ import SellerReviewsList from "../SellerPagesComponents/SellerReviewsList/Seller
 import SellerEditProductForm from "../SellerPagesComponents/SellerEditProductForm/SellerEditProductForm.tsx";
 import SellerBilling from "../SellerPagesComponents/SellerBilling/SellerBilling.tsx";
 import ReviewFormPopUp from "../ProductComponents/ReviewFormPopUp/ReviewFormPopUp.tsx";
-import {Children} from "react";
+import ProfileInfo from "../ProfileComponents/ProfileInfo/ProfileInfo.tsx";
 
 /*
 Webpages
@@ -80,18 +80,22 @@ export const router = createBrowserRouter([
             {path: "search-results/:text", element: <SearchResults/>},
             {
                 path: "profile",
-                element: < Profile/>,
+                element: <Profile/>,
                 children: [
-                    {   
-                        path: "seller/:seller_id", 
-                        element: <SellerProfileInfo/>,
-                        children:[
-                            {path: "review", element: <ReviewFormPopUp/>}
+                    {
+                        path: ":user_id", 
+                        element: <UserProfileInfo/>,
+                        children: [
+                            {path: "review", element: <ReviewFormPopUp/>},
                         ]
                     },
-                    {path: "seller/edit", element: <SellerProfileInfoEdit/>},
-                    {path: "user/:user_id", element: <UserProfileInfo/>},
-                    {path: "user/edit", element: <UserProfileInfoEdit/>},
+                    {
+                        path: "me", 
+                        element: <ProfileInfo/>,
+                        children: [
+                            {path: "edit", element: <UserProfileInfoEdit/>},
+                        ]
+                    },
                 ]
             },
             {
