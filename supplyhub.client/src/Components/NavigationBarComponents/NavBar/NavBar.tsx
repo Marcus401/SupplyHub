@@ -94,7 +94,7 @@ const NavBar = (props: Props) => {
             </div>
           )}
           <div className="w-8 h-8 ml-5">
-            <Link to="profile/user/54">
+            <Link to="profile/user/me">
               <img src={user_image} alt="User Avatar" className="w-8 h-8 rounded-full" />
             </Link>
           </div>
