@@ -99,7 +99,7 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path: "chat/:user_id",
+                path: "chat",
                 element: <Chat />,
                 children: [
                     {path: ":chat_id", element: <ChatMessageList messages={[]}/>},

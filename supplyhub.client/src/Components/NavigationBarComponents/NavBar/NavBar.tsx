@@ -73,7 +73,7 @@ const NavBar = (props: Props) => {
         </div>
 
         <div className="flex items-center space-x-2 relative">
-          <Link to="chat/432">
+          <Link to="chat">
             <button className="text-3xl p-2">
               <VscComment className="text-black" />
             </button>
