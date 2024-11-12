@@ -121,7 +121,8 @@ namespace SupplyHub.Server.Migrations
                     Unit = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Timeframe = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Faq = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Faq = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

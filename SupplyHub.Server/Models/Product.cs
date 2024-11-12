@@ -18,5 +18,6 @@ public class Product
     public string? Timeframe { get; set; }
     public string? Description { get; set; }
     public string? Faq { get; set; }
+	public bool IsActive { get; set; }
     public required User User { get; set; }
 }
