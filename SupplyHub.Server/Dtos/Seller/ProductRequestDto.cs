@@ -1,13 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿namespace Dtos.Seller;
 
-namespace SupplyHub.Server.Models;
-
-public class Product
+public class ProductRequestDto
 {
-    [Key]
-    public int Id { get; set; }
-    public int UserId { get; set; }
     public byte[] Thumbnail { get; set; }
     public byte[][] Images { get; set; }
     public required string ProductName { get; set; }
@@ -18,6 +12,4 @@ public class Product
     public string? Timeframe { get; set; }
     public string? Description { get; set; }
     public string? Faq { get; set; }
-    public bool IsActive { get; set; }
-    public required User User { get; set; }
 }

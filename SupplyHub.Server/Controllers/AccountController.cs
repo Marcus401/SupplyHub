@@ -4,7 +4,7 @@ using SupplyHub.Server.Dtos;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SupplyHub.Server;
+namespace SupplyHub.Server.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -12,7 +12,7 @@ public class AccountController(UserManager<User> userManager) : ControllerBase
 {
 	private readonly UserManager<User> _userManager = userManager;
 	
-	[HttpPost("registerUser")]
+	[HttpPost("register-user")]
 	public async Task<IActionResult> RegisterUser([FromBody] UserRegisterDto userRegisterDto )
 	{
 		if (string.IsNullOrWhiteSpace(userRegisterDto.Password))
@@ -34,5 +34,11 @@ public class AccountController(UserManager<User> userManager) : ControllerBase
 		}
 		
 		return Ok();
+	}
+
+	[HttpPost("register-seller")]
+	public async Task<IActionResult> RegisterSeller([FromBody] UserRegisterDto userRegisterDto)
+	{
+		
 	}
 }
