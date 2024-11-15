@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
 using SupplyHub.Server.Models;
-using SupplyHub.Server.Dtos;
+using Dtos.Profile;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SupplyHub.Server.Controllers;
 
@@ -10,5 +11,16 @@ namespace SupplyHub.Server.Controllers;
 [Route("api/[controller]")]
 public class ProfileController : ControllerBase
 {
-	
+	[HttpPost("fetch-user/{userId}")]
+	public async Task<IActionResult> FetchUser([FromRoute] int userId)
+	{
+		return Ok();
+	}
+
+	[Authorize]
+	[HttpPost("edit-profile")]
+	public async Task<IActionResult> EditProfile([FromBody] EditUserProfileRequestDto editUserProfileRequesteDto)
+	{
+		return Ok();
+	}
 }

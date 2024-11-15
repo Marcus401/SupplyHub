@@ -2,9 +2,9 @@
 
 public class MenuProductListResponseDtoObj
 {
-	public byte[] Thumbnail { get; set; }
-	public int ProductId { get; set; }
-	public int Price { get; set; }
-	public string ProductName { get; set; }
-	public string Unit { get; set; }
+	public byte[]? Thumbnail { get; set; }
+	public required int ProductId { get; set; }
+	public required int Price { get; set; }
+	public required string ProductName { get; set; }
+	public string? Unit { get; set; }
 }

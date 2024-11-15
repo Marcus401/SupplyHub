@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
 using SupplyHub.Server.Models;
-using SupplyHub.Server.Dtos;
+using Dtos.Menu;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SupplyHub.Server.Controllers;
 
@@ -10,5 +11,28 @@ namespace SupplyHub.Server.Controllers;
 [Route("api/[controller]")]
 public class MenuController : ControllerBase
 {
+	[HttpPost("navbar-info")]
+	public async Task<IActionResult> NavbarInfo()
+	{
+		return Ok();
+	}
 	
+	[Authorize]
+	[HttpPost("inquire-user/{userId}")]
+	public async Task<IActionResult> InquireUser([FromRoute] int userId)
+	{
+		return Ok();
+	}
+	
+	[HttpPost("fetch-products-list")]
+	public async Task<IActionResult> FetchProductsList()
+	{
+		return Ok();
+	}
+	
+	[HttpPost("fetch-sellers-list")]
+	public async Task<IActionResult> FetchSellersPage()
+	{
+		return Ok();
+	}
 }

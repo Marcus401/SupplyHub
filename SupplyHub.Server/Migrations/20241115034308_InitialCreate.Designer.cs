@@ -11,7 +11,7 @@ using SupplyHub.Server.Data;
 namespace SupplyHub.Server.Migrations
 {
     [DbContext(typeof(SupplyhubDbContext))]
-    [Migration("20241112214639_InitialCreate")]
+    [Migration("20241115034308_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -268,7 +268,6 @@ namespace SupplyHub.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Images")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -290,7 +289,6 @@ namespace SupplyHub.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Thumbnail")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Timeframe")

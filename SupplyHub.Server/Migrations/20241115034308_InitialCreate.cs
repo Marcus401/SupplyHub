@@ -112,8 +112,8 @@ namespace SupplyHub.Server.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Thumbnail = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    Images = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Thumbnail = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Images = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StockAvailable = table.Column<int>(type: "int", nullable: false),
@@ -441,7 +441,7 @@ namespace SupplyHub.Server.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Advertisements");
-
+            
             migrationBuilder.DropTable(
                 name: "ConversationUsers");
 

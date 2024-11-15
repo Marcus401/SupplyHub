@@ -217,7 +217,6 @@ namespace SupplyHub.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Images")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -239,7 +238,6 @@ namespace SupplyHub.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Thumbnail")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Timeframe")
