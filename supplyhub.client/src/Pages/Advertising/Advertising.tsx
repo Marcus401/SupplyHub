@@ -2,25 +2,21 @@ import React, { useState } from "react";
 
 // Mock data structure for the form
 interface AdvertisingFormData {
-    lastName: string;
-    firstName: string;
     email: string;
     companyName: string;
     website?: string;
-    description: string;
-    advertisingType: "Ad Placement" | "Product/Service Review" | "Social Media Campaign" | "Video";
+    productLink: string;
+    caption: string;
     file: File | null;
 }
 
 const SellerAdvertisingForm: React.FC = () => {
     const [formData, setFormData] = useState<AdvertisingFormData>({
-        lastName: "",
-        firstName: "",
         email: "",
         companyName: "",
         website: "",
-        description: "",
-        advertisingType: "Ad Placement",
+        productLink: "",
+        caption: "",
         file: null,
     });
 
@@ -47,16 +43,15 @@ const SellerAdvertisingForm: React.FC = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto my-8 px-8">
-
+        <div className="max-w-4xl mx-auto my-8 px-8">
             <h1 className="text-3xl font-bold text-left mb-6">Advertising Request Form</h1>
 
             {/* Form Container */}
-            <div className="bg-white shadow-md rounded-md px-16 py-10">
-                <div className="grid grid-cols-3 gap-10">
+            <div className="bg-white shadow-md rounded-md px-12 py-8">
+                <div className="grid grid-cols-3 gap-8">
                     {/* File Upload Section */}
                     <div className="flex flex-col items-center">
-                        <label className="w-52 h-52 flex items-center justify-center border-[3px] border-gray-800 rounded-xl cursor-pointer">
+                        <label className="w-48 h-48 flex items-center justify-center border-[3px] border-gray-600 rounded-xl cursor-pointer">
                             <input
                                 type="file"
                                 onChange={handleFileChange}
@@ -69,11 +64,11 @@ const SellerAdvertisingForm: React.FC = () => {
                                     className="w-full h-full object-cover rounded-md"
                                 />
                             ) : (
-                                <div className="text-gray-400 flex flex-col items-center">
+                                <div className="text-gray-600 flex flex-col items-center">
                                     <img
                                         src="https://cdn-icons-png.flaticon.com/512/1092/1092216.png"
                                         alt="Upload icon"
-                                        className="w-20 h-20 mb-2"
+                                        className="w-16 h-16 mb-2"
                                     />
                                     <p className="text-sm">Upload File Here</p>
                                 </div>
@@ -82,30 +77,14 @@ const SellerAdvertisingForm: React.FC = () => {
                     </div>
 
                     {/* Form Fields on the Right */}
-                    <div className="col-span-2 grid grid-cols-2 gap-6">
-                        <input
-                            type="text"
-                            name="lastName"
-                            placeholder="Last Name"
-                            value={formData.lastName}
-                            onChange={handleInputChange}
-                            className="border border-gray-300 p-4 rounded-md w-full text-lg"
-                        />
-                        <input
-                            type="text"
-                            name="firstName"
-                            placeholder="First Name"
-                            value={formData.firstName}
-                            onChange={handleInputChange}
-                            className="border border-gray-300 p-4 rounded-md w-full text-lg"
-                        />
+                    <div className="col-span-2 grid grid-cols-2 gap-1 gap-x-3">
                         <input
                             type="email"
                             name="email"
                             placeholder="Email"
                             value={formData.email}
                             onChange={handleInputChange}
-                            className="border border-gray-300 p-4 rounded-md w-full col-span-2 text-lg"
+                            className="border-2 border-gray-500 p-4 rounded-md w-full text-base h-12"
                         />
                         <input
                             type="text"
@@ -113,7 +92,7 @@ const SellerAdvertisingForm: React.FC = () => {
                             placeholder="Company Name"
                             value={formData.companyName}
                             onChange={handleInputChange}
-                            className="border border-gray-300 p-4 rounded-md w-full col-span-2 text-lg"
+                            className="border-2 border-gray-500 p-4 rounded-md w-full text-base h-12"
                         />
                         <input
                             type="text"
@@ -121,71 +100,23 @@ const SellerAdvertisingForm: React.FC = () => {
                             placeholder="Website (Optional)"
                             value={formData.website}
                             onChange={handleInputChange}
-                            className="border border-gray-300 p-4 rounded-md w-full col-span-2 text-lg"
+                            className="border-2 border-gray-500 p-4 rounded-md w-full text-base h-12"
                         />
-                    </div>
-                </div>
-
-                {/* Description and Advertising Type */}
-                <div className="grid grid-cols-3 gap-10 mt-8">
-                    {/* Description Box */}
-                    <div className="col-span-2">
-                        <textarea
-                            name="description"
-                            placeholder="Describe your company"
-                            value={formData.description}
+                        <input
+                            type="text"
+                            name="productLink"
+                            placeholder="Product Link"
+                            value={formData.productLink}
                             onChange={handleInputChange}
-                            className="border border-gray-300 p-4 rounded-md w-full text-lg h-40"
+                            className="border-2 border-gray-500 p-4 rounded-md w-full text-base h-12"
+                        />
+                        <textarea
+                            name="caption"
+                            placeholder="Advertisement Caption"
+                            value={formData.caption}
+                            onChange={handleInputChange}
+                            className="border-2 border-gray-500 p-4 rounded-3xl w-80 text-lg h-32 col-span-2"
                         ></textarea>
-                    </div>
-
-                    {/* Advertising Type */}
-                    <div className="flex flex-col -space-y-3 -my-1">
-                        <div className="text-gray-700 font-medium text-lg">Advertising Type</div>
-                        <label className="flex items-center">
-                            <input
-                                type="radio"
-                                name="advertisingType"
-                                value="Ad Placement"
-                                checked={formData.advertisingType === "Ad Placement"}
-                                onChange={handleInputChange}
-                                className="mr-2 mt-5"
-                            />
-                            Ad Placement
-                        </label>
-                        <label className="flex items-center">
-                            <input
-                                type="radio"
-                                name="advertisingType"
-                                value="Product/Service Review"
-                                checked={formData.advertisingType === "Product/Service Review"}
-                                onChange={handleInputChange}
-                                className="mr-2 mt-5"
-                            />
-                            Product/Service Review
-                        </label>
-                        <label className="flex items-center">
-                            <input
-                                type="radio"
-                                name="advertisingType"
-                                value="Social Media Campaign"
-                                checked={formData.advertisingType === "Social Media Campaign"}
-                                onChange={handleInputChange}
-                                className="mr-2 mt-5"
-                            />
-                            Social Media Campaign
-                        </label>
-                        <label className="flex items-center">
-                            <input
-                                type="radio"
-                                name="advertisingType"
-                                value="Video"
-                                checked={formData.advertisingType === "Video"}
-                                onChange={handleInputChange}
-                                className="mr-2 mt-5"
-                            />
-                            Video
-                        </label>
                     </div>
                 </div>
 
@@ -193,7 +124,7 @@ const SellerAdvertisingForm: React.FC = () => {
                 <div className="mt-8">
                     <button
                         onClick={handleSubmit}
-                        className="w-full bg-gray-800 text-white py-4 rounded-md hover:bg-gray-900 font-semibold text-lg"
+                        className="w-full bg-gray-800 text-white py-3 rounded-md hover:bg-gray-900 font-semibold base"
                     >
                         Send Advertising Request
                     </button>
