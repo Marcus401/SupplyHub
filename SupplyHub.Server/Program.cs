@@ -1,5 +1,3 @@
-namespace SupplyHub.Server;
-
 using Microsoft.EntityFrameworkCore;
 using SupplyHub.Server.Data;
 using Microsoft.AspNetCore.Identity;
@@ -7,8 +5,10 @@ using SupplyHub.Server.Services;
 using SupplyHub.Server.Models;
 using SupplyHub.Server.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using SupplyHub.Server.Helpers;
+using Microsoft.IdentityModel.Tokens;
 
-
+namespace SupplyHub.Server;
 public class Program
 {
 	public static void Main(string[] args)
@@ -19,7 +19,7 @@ public class Program
 		builder.Services.AddDbContext<SupplyhubDbContext>(options =>
 		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
+		var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 		builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
 			{
 				options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._ ";
@@ -31,25 +31,25 @@ public class Program
 			})
 		     .AddEntityFrameworkStores<SupplyhubDbContext>()
 		     .AddDefaultTokenProviders();
-
+		
 		builder.Services.AddAuthentication(options =>
-    	{
-        	options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        	options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    	});
-    	// .AddJwtBearer(options =>
-    	// {
-     //    	options.TokenValidationParameters = new TokenValidationParameters
-     //    	{
-     //        	ValidateIssuer = true,
-     //        	ValidateAudience = true,
-     //        	ValidateLifetime = true,
-     //        	ValidateIssuerSigningKey = true,
-     //        	ValidIssuer = jwtSettings["Issuer"],
-     //        	ValidAudience = jwtSettings["Audience"],
-     //        	IssuerSigningKey = new SymmetricSecurityKey(key)
-     //    	};
-   	 // 	});
+    		{
+        		options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        		options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    		})
+			.AddJwtBearer(options =>
+		{
+			options.TokenValidationParameters = new TokenValidationParameters
+	        {
+		        ValidateIssuer = true,
+		        ValidateAudience = true,
+		        ValidateLifetime = true,
+		        ValidateIssuerSigningKey = true,
+		        ValidIssuer = jwtSettings["Issuer"],
+		        ValidAudience = jwtSettings["Audience"],
+		        IssuerSigningKey = new SymmetricSecurityKey(PrivateKeyHelper.GetPrivateKey())
+	        }; 
+		});
 
 		builder.Services.AddScoped<IAuthService, AuthService>();
 		builder.Services.AddAuthorization();

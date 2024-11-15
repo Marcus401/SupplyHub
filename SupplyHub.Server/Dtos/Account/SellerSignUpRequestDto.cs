@@ -1,4 +1,4 @@
-﻿
+﻿namespace Dtos.Account;
 
 public class SellerSignUpRequestDto
 {

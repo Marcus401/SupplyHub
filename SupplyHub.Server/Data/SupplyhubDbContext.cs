@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SupplyHub.Server.Models;
 
+
 namespace SupplyHub.Server.Data;
 public class SupplyhubDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
@@ -38,13 +39,10 @@ public class SupplyhubDbContext : IdentityDbContext<User, IdentityRole<int>, int
 		{
 			entity.ToTable("Users");
 			entity.Ignore(e => e.AccessFailedCount);
-			entity.Ignore(e => e.ConcurrencyStamp);
 			entity.Ignore(e => e.EmailConfirmed);
 			entity.Ignore(e => e.LockoutEnabled);
 			entity.Ignore(e => e.LockoutEnd);
-			entity.Ignore(e => e.NormalizedEmail);
 			entity.Ignore(e => e.PhoneNumberConfirmed);
-			entity.Ignore(e => e.SecurityStamp);
 			entity.Ignore(e => e.TwoFactorEnabled);
 			
 			entity.HasKey(e => e.Id).HasName("PK_UserProfile");
@@ -53,7 +51,6 @@ public class SupplyhubDbContext : IdentityDbContext<User, IdentityRole<int>, int
 		builder.Entity<IdentityRole<int>>(entity =>
 		{
 			entity.ToTable("Roles");
-			entity.Ignore(e => e.ConcurrencyStamp);
 		});
 
 		builder.Entity<IdentityRole<int>>().HasData(roles);

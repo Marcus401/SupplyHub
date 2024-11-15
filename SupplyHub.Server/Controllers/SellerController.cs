@@ -4,11 +4,12 @@ using Dtos.Seller;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace SupplyHub.Server.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/seller")]
 public class SellerController : ControllerBase
 {	
 	[Authorize]

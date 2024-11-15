@@ -6,8 +6,8 @@ namespace SupplyHub.Server.Models;
 public class UserInfo
 {
     public int UserId { get; set; }
-    public int CompanyUserId { get; set; }
+    public int? CompanyUserId { get; set; }
     public string? Position { get; set; }
     public required User User { get; set; }
-    public required User CompanyUser { get; set; }
+    public User? CompanyUser { get; set; }
 }

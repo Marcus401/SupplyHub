@@ -4,11 +4,12 @@ using Dtos.Menu;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace SupplyHub.Server.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/menu")]
 public class MenuController : ControllerBase
 {
 	[HttpPost("navbar-info")]

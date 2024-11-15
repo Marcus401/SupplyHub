@@ -4,11 +4,12 @@ using Dtos.Profile;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace SupplyHub.Server.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/profile")]
 public class ProfileController : ControllerBase
 {
 	[HttpPost("fetch-user/{userId}")]
