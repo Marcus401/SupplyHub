@@ -7,7 +7,7 @@ public class FetchProductResponseDto
 	public byte[]? Thumbnail { get; set; }
 	public byte[][]? Images { get; set; }
 	public int? StockAvailable { get; set; }
-	public required int Price { get; set; }
+	public required decimal Price { get; set; }
 	public string? Unit { get; set; }
 	public string? TimeFrame { get; set; }
 	public string? Description { get; set; }
