@@ -52,27 +52,4 @@ public class AuthService(UserManager<User> userManager, IHttpContextAccessor htt
 		var token = handler.CreateToken(tokenDescriptor);	
 		return handler.WriteToken(token);
 	}
-
-	public async Task<string?> GetClaimValue(string claimType)
-	{
-		var user = _httpContextAccessor.HttpContext?.User;
-
-		if (user == null)
-		{
-			return null;  
-		}
-		
-		var appUser = await _userManager.GetUserAsync(user);
-		
-		if (appUser == null)
-		{
-			return null;
-		}
-		
-		var claims = await _userManager.GetClaimsAsync(appUser);
-		var claim = claims.FirstOrDefault(c => c.Type == claimType);
-		return claim?.Value;
-	}
-
-
 }

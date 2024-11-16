@@ -54,7 +54,7 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
 		await _context.SaveChangesAsync();
 		
 		var token = _authService.CreateJwtToken(user);
-		return Ok(new { Token = token });
+		return Ok(new { token });
 	}
 
 	[HttpPost("register-seller")]
@@ -91,7 +91,7 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
 		await _context.SaveChangesAsync();
 		
 		var token = _authService.CreateJwtToken(user);
-		return Ok(new { Token = token });
+		return Ok(new { token });
 	}
 
 	[HttpPost("login")]
@@ -109,6 +109,6 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
                 }
                 
                 var token = _authService.CreateJwtToken(user);
-                return Ok(new { Token = token });
+                return Ok(new { token });
 	}
 }

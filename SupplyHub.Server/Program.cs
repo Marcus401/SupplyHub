@@ -7,6 +7,7 @@ using SupplyHub.Server.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using SupplyHub.Server.Helpers;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace SupplyHub.Server;
 public class Program
@@ -56,8 +57,34 @@ public class Program
 
 		builder.Services.AddControllers(); // Allows for API controller support
 		builder.Services.AddEndpointsApiExplorer();
-		builder.Services.AddSwaggerGen();
+		builder.Services.AddSwaggerGen(options =>
+		{
+			// Add a JWT Bearer security definition
+			options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+			{
+				Name = "Authorization",
+				Type = SecuritySchemeType.ApiKey,
+				Scheme = "Bearer",
+				BearerFormat = "JWT",
+				In = ParameterLocation.Header,
+				Description = "Please enter JWT with Bearer prefix",
+			});
 			
+			options.AddSecurityRequirement(new OpenApiSecurityRequirement
+			{
+				{
+					new OpenApiSecurityScheme
+					{
+						Reference = new OpenApiReference
+						{
+							Type = ReferenceType.SecurityScheme,
+							Id = "Bearer"
+						}
+					},
+					new string[] { }
+				}
+			});
+		});
 		
 		var app = builder.Build();
 

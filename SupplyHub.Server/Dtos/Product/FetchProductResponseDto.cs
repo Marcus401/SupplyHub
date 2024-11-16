@@ -11,5 +11,5 @@ public class FetchProductResponseDto
 	public string? Unit { get; set; }
 	public string? TimeFrame { get; set; }
 	public string? Description { get; set; }
-	public string? FAQ { get; set; }
+	public string? Faq { get; set; }
 }
