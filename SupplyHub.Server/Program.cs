@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using SupplyHub.Server.Helpers;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text.Json;
 
 namespace SupplyHub.Server;
 public class Program
@@ -55,7 +56,12 @@ public class Program
 		builder.Services.AddScoped<IAuthService, AuthService>();
 		builder.Services.AddAuthorization();
 
-		builder.Services.AddControllers(); // Allows for API controller support
+		builder.Services.AddControllers() // Allows for API controller support
+			.AddJsonOptions(options =>
+			{
+				options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+			});  // turns JSON response names into camelCase, as with JS and TS conventions
+		
 		builder.Services.AddEndpointsApiExplorer();
 		builder.Services.AddSwaggerGen(options =>
 		{

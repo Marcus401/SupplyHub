@@ -69,7 +69,7 @@ const NavBar = (props: Props) => {
               <VscBell/>
             </button>
             <div className="w-8 h-8 ml-5">
-              <Link to="profile/user/54"> {/* to be replaced with actual user/seller id */}
+              <Link to="profile/me">
                 <img
                     src={user_image}
                     alt="User Avatar"
