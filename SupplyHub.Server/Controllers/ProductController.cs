@@ -37,7 +37,8 @@ public class ProductController(SupplyhubDbContext context) : ControllerBase
 			Unit = product.Unit,
 			TimeFrame = product.Timeframe,
 			Description = product.Description,
-			Faq = product.Faq
+			FaqQuestions = product.FaqQuestions,
+			FaqAnswers = product.FaqAnswers
 		});
 	}
 }

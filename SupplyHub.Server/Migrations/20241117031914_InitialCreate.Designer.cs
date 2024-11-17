@@ -12,7 +12,7 @@ using SupplyHub.Server.Data;
 namespace SupplyHub.Server.Migrations
 {
     [DbContext(typeof(SupplyhubDbContext))]
-    [Migration("20241115132833_InitialCreate")]
+    [Migration("20241117031914_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -269,7 +269,10 @@ namespace SupplyHub.Server.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Faq")
+                    b.Property<string>("FaqAnswers")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FaqQuestions")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Images")
