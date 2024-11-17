@@ -14,14 +14,14 @@ namespace SupplyHub.Server.Controllers;
 public class ChatController : ControllerBase
 {
 	[Authorize]
-	[HttpPost("fetch-chat-history/{chatId}")]
+	[HttpGet("fetch-chat-history/{chatId}")]
 	public async Task<IActionResult> FetchChatHistory([FromRoute] int chatId)
 	{
 		return Ok();
 	}
 
 	[Authorize]
-	[HttpPost("fetch-chat-list")]
+	[HttpGet("fetch-chat-list")]
 	public async Task<IActionResult> FetchChatList()
 	{
 		return Ok();

@@ -1,24 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {SellerSignUpRequestDto} from "../../../Dtos/Account/SellerSignUpRequestDto.ts";
+import {registerSeller} from "../../../api/account.tsx";
 
 const SellerSignUpForm: React.FC = () => {
-  const [firstname, setFirstname] = useState<string>('');
-  const [lastname, setLastname] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [location, setLocation] = useState<string>('');
 
   const navigate = useNavigate();
 
-  const handleSignUpSubmit = (data: { firstname: string; lastname: string; email: string; password: string; location: string }) => {
-    console.log('Sign Up data:', data);
-    // Add any sign-up logic here (e.g., API call), then redirect
-    navigate('/seller'); // Redirect to the seller page
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    handleSignUpSubmit({ firstname, lastname, email, password, location });
+    
+    const signUpDto : SellerSignUpRequestDto = {
+        firstName,
+        lastName,
+        email,
+        password,
+        location
+    }
+    
+    const registerSuccess = await registerSeller(signUpDto);
+    
+    if(registerSuccess){
+        navigate('/seller');
+    }
   };
 
   return (
@@ -29,8 +38,8 @@ const SellerSignUpForm: React.FC = () => {
     >
       <form onSubmit={handleSubmit} className="w-full">
         {[
-          { id: 'firstname', label: 'First Name', value: firstname, setter: setFirstname },
-          { id: 'lastname', label: 'Last Name', value: lastname, setter: setLastname },
+          { id: 'firstname', label: 'First Name', value: firstName, setter: setFirstName },
+          { id: 'lastname', label: 'Last Name', value: lastName, setter: setLastName },
           { id: 'email', label: 'Email', value: email, setter: setEmail, type: 'email' },
           { id: 'password', label: 'Password', value: password, setter: setPassword, type: 'password' },
           { id: 'location', label: 'Location', value: location, setter: setLocation },

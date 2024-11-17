@@ -20,6 +20,16 @@ public class Program
 		// Configure Entity Framework Core
 		builder.Services.AddDbContext<SupplyhubDbContext>(options =>
 		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+		
+		builder.Services.AddCors(options =>
+		{
+			options.AddPolicy("AllowFrontend", policy =>
+			{
+				policy.WithOrigins("https://localhost:5173")  // Frontend URL
+					.AllowAnyHeader()
+					.AllowAnyMethod();
+			});
+		});
 
 		var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 		builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
@@ -101,8 +111,8 @@ public class Program
 		{
 			app.UseSwagger();
 			app.UseSwaggerUI();
-	    }		
-
+		}		
+		app.UseCors("AllowFrontend");
 		app.UseHttpsRedirection();      // Redirects HTTP requests to HTTPS
 		app.UseAuthentication();		// Enables authentication
 		app.UseAuthorization();			// Enables authorization

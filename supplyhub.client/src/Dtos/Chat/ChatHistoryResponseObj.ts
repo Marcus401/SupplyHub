@@ -1,4 +1,4 @@
-﻿export default interface ChatHistoryResponseObj{
+﻿export interface ChatHistoryResponseObj{
     text: string;
     userId: number;
 }

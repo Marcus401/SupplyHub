@@ -1,4 +1,4 @@
-export default interface ReviewRequestDto{
+export interface ReviewRequestDto{
     rating: number,
     reviewText: string
 }

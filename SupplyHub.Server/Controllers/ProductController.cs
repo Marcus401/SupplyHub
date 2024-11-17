@@ -16,7 +16,7 @@ public class ProductController(SupplyhubDbContext context) : ControllerBase
 {
 	private readonly SupplyhubDbContext _context = context;
 	
-	[HttpPost("fetch-product/{productId}")]
+	[HttpGet("fetch-product/{productId}")]
 	public async Task<IActionResult> FetchProduct([FromRoute] int productId)
 	{
 	    var product = await _context.Products.FindAsync(productId);

@@ -1,4 +1,4 @@
-export default interface EditUserProfileRequestDto{
+export interface EditUserProfileRequestDto{
     userName: string;
     bio?: string;
     profilePicture?: Uint8Array;

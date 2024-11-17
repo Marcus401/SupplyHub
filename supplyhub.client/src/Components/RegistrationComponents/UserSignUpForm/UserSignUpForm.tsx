@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import {UserSignUpRequestDto} from "../../../Dtos/Account/UserSignUpRequestDto.ts";
+import {registerUser} from "../../../api/account.tsx";
 
 const UserSignUpForm: React.FC = () => {
-  const [name, setName] = useState<string>('');
-  const [lastname, setLastname] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
 
-  const handleSignUpSubmit = (data: { name: string; lastname: string; email: string; password: string }) => {
-    console.log('Sign Up data:', data);
-    navigate('/'); 
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    handleSignUpSubmit({ name, lastname, email, password });
+    
+    const signUpDto : UserSignUpRequestDto = {
+        firstName,
+        lastName,
+        email,
+        password
+    };
+    
+    const registerSuccess = await registerUser(signUpDto);
+    if(registerSuccess){
+        navigate('/');
+    }
   };
 
   return (
@@ -38,19 +46,19 @@ const UserSignUpForm: React.FC = () => {
           <input
             type="text"
             id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
             required
             className="w-full px-4 py-2 border border-gray-300 bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-white"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="lastname" className="block text-white font-semibold mb-2">Last Name:</label>
+          <label htmlFor="lastName" className="block text-white font-semibold mb-2">Last Name:</label>
           <input
             type="text"
-            id="lastname"
-            value={lastname}
-            onChange={(e) => setLastname(e.target.value)}
+            id="lastName"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
             required
             className="w-full px-4 py-2 border border-gray-300 bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-white"
           />

@@ -1,4 +1,4 @@
-﻿export default interface MenuProductListResponseDtoObj{
+﻿export interface MenuProductListResponseDtoObj{
     thumbnail?: Uint8Array;
     productId: number;
     price: number;

@@ -1,4 +1,4 @@
-﻿export default interface SellerSignUpRequestDto{
+﻿export interface SellerSignUpRequestDto{
     firstName: string;
     lastName: string;
     email: string;

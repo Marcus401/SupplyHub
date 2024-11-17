@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Dinagdag
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from "../../../api/account.tsx";
+import {UserLoginRequestDto} from "../../../Dtos/Account/UserLoginRequestDto.ts";
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLoginSubmit = (data: { email: string; password: string }) => {
-    console.log('Login data:', data);  
-    navigate('/'); // Dinagdag 
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    handleLoginSubmit({ email, password });
+    
+    const loginDto: UserLoginRequestDto = {
+      email,
+      password
+    };
+    
+    const loginSuccess = await loginUser(loginDto);
+    console.log(email);
+    console.log(password);
+    if (loginSuccess) {
+      navigate('/');
+    } 
   };
 
   return (

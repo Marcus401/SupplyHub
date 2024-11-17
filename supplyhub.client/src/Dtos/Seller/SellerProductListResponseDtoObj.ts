@@ -1,4 +1,4 @@
-export default interface SellerProductListResponseDtoObj{
+export interface SellerProductListResponseDtoObj{
     productName: string;
     thumbnail?: Uint8Array;
     description?: string;

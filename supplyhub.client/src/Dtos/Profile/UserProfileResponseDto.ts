@@ -1,4 +1,4 @@
-export default interface UserProfileResponseDto{
+export interface UserProfileResponseDto{
     userName: string;
     phoneNumber?: number;
     bio?: string;

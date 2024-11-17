@@ -14,7 +14,7 @@ namespace SupplyHub.Server.Controllers;
 public class SellerController : ControllerBase
 {	
 	[Authorize(Roles = "Seller")]
-	[HttpPost("products-list")]
+	[HttpGet("products-list")]
 	public async Task<IActionResult> ProductsList()
 	{
 		return Ok();
@@ -28,14 +28,14 @@ public class SellerController : ControllerBase
 	}
 
 	[Authorize(Roles = "Seller")]
-	[HttpPost("edit-product/{productId}")]
+	[HttpPut("edit-product/{productId}")]
 	public async Task<IActionResult> EditProduct([FromRoute] int productId, [FromBody] ProductRequestDto productRequestDto)
 	{
 		return Ok();
 	}
 
 	[Authorize(Roles = "Seller")]
-	[HttpPost("activate-product/{productId}")]
+	[HttpPatch("activate-product/{productId}")]
 	public async Task<IActionResult> ActivateProduct([FromRoute] int productId, [FromBody] bool activate)
 	{
 		return Ok();

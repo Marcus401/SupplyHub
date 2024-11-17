@@ -1,6 +1,6 @@
-import ChatHistoryResponseObj from './ChatHistoryResponseObj';
+import {ChatHistoryResponseObj} from './ChatHistoryResponseObj';
 
-export default interface ChatHistoryResponseDto {
+export interface ChatHistoryResponseDto {
     messages?: ChatHistoryResponseObj[];
     userIds: number[];
 }

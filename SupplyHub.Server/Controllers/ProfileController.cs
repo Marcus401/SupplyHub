@@ -13,14 +13,14 @@ namespace SupplyHub.Server.Controllers;
 [Route("api/profile")]
 public class ProfileController : ControllerBase
 {
-	[HttpPost("fetch-user/{userId}")]
+	[HttpGet("fetch-user/{userId}")]
 	public async Task<IActionResult> FetchUser([FromRoute] int userId)
 	{
 		return Ok();
 	}
 
 	[Authorize]
-	[HttpPost("edit-profile")]
+	[HttpPut("edit-profile")]
 	public async Task<IActionResult> EditProfile([FromBody] EditUserProfileRequestDto editUserProfileRequesteDto)
 	{
 		return Ok();

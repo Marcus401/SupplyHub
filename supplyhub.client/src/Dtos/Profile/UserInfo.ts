@@ -1,4 +1,4 @@
-export default interface UserInfo{
+export interface UserInfo{
     position: string,
     companyUserId: number
 }

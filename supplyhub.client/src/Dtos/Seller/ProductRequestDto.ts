@@ -1,4 +1,4 @@
-export default interface ProductRequestDto{
+export interface ProductRequestDto{
     thumbnail?: Uint8Array;
     images?: Uint8Array[];
     productName: string;

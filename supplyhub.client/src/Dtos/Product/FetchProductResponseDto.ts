@@ -1,4 +1,4 @@
-export default interface FetchProductResponseDto{
+export interface FetchProductResponseDto{
     productName: string;
     productType?: string;
     thumbnail?: Uint8Array;

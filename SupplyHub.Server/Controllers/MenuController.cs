@@ -13,7 +13,7 @@ namespace SupplyHub.Server.Controllers;
 [Route("api/menu")]
 public class MenuController : ControllerBase
 {
-	[HttpPost("navbar-info")]
+	[HttpGet("navbar-info")]
 	public async Task<IActionResult> NavbarInfo()
 	{
 		return Ok();
@@ -26,14 +26,14 @@ public class MenuController : ControllerBase
 		return Ok();
 	}
 	
-	[HttpPost("fetch-products-list")]
+	[HttpGet("fetch-products-list")]
 	public async Task<IActionResult> FetchProductsList()
 	{
 		return Ok();
 	}
 	
-	[HttpPost("fetch-sellers-list")]
-	public async Task<IActionResult> FetchSellersPage()
+	[HttpGet("fetch-sellers-list")]
+	public async Task<IActionResult> FetchSellersList()
 	{
 		return Ok();
 	}
