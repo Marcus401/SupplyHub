@@ -6,4 +6,5 @@ public class EditUserProfileRequestDto
 	public string? bio { get; set; }
 	public byte[]? ProfilePicture { get; set; }
 	public byte[]? CoverPicture { get; set; }
+	public required object AdditionalInfo { get; set; }
 }
