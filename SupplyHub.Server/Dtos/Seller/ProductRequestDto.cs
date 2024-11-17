@@ -11,5 +11,6 @@ public class ProductRequestDto
 	public string? Unit { get; set; }
 	public string? Timeframe { get; set; }
 	public string? Description { get; set; }
-	public string? Faq { get; set; }
+	public string[]? FaqQuestions { get; set; }
+	public string[]? FaqAnswers { get; set; }
 }

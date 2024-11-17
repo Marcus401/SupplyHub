@@ -65,7 +65,7 @@ namespace SupplyHub.Server.Migrations
                             NormalizedName = "SELLER"
                         });
                 });
-            
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
@@ -218,7 +218,10 @@ namespace SupplyHub.Server.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Faq")
+                    b.Property<string>("FaqAnswers")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FaqQuestions")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Images")
@@ -443,7 +446,7 @@ namespace SupplyHub.Server.Migrations
 
                     b.ToTable("UserInfos");
                 });
-
+            
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.HasOne("SupplyHub.Server.Models.User", null)
