@@ -15,14 +15,14 @@ public class ReviewController : ControllerBase
 {
 	[Authorize]
 	[HttpPost("review-seller/{sellerUserId}")]
-	public async Task<IActionResult> ReviewSeller([FromRoute] int sellerUserId, [FromBody] SellerReviewRequestDto reviewSellerRequestDto)
+	public async Task<IActionResult> ReviewSeller([FromRoute] int sellerUserId, [FromBody] ReviewRequestDto reviewRequestDto)
 	{
 		return Ok();
 	}
 
 	[Authorize]
 	[HttpPost("review-product/{productId}")]
-	public async Task<IActionResult> ReviewProduct([FromRoute] int productId, [FromBody] ProductReviewRequestDto reviewProductRequestDto)
+	public async Task<IActionResult> ReviewProduct([FromRoute] int productId, [FromBody] ReviewRequestDto reviewRequestDto)
 	{
 		return Ok();
 	}
