@@ -1,11 +1,26 @@
-import React from "react";
+//import React, { useEffect, useState } from "react";
 import { VscStarEmpty, VscStarFull } from "react-icons/vsc";
 import product_image from "../../../assets/default-placeholder.png";
 import { Link } from "react-router-dom";
 
-type Props = {};
+const BasicProductInfo = () => {
+  //const [isUserAuthenticated, setIsUserAuthenticated] = useState(true);
+  //const [isInquireFormVisible, setIsInquireFormVisible] = useState(false);
 
-const BasicProductInfo = (props: Props) => {
+  /*useEffect(() => {
+    const userIsAuthenticated = false;
+    setIsUserAuthenticated(userIsAuthenticated);
+  }, []);
+
+  const handleInquireButtonClick = (event: { preventDefault: () => void }) => {
+    if (!isUserAuthenticated) {
+      event.preventDefault();
+      alert("Please log in or sign-up to inquire");
+    } else {
+      setIsInquireFormVisible(true);
+    }
+  }; */
+
   return (
     <div className="items-center mx-auto border p-4 flex max-w-[1100px] w-full rounded-md">
       <div className="flex-shrink-0">
@@ -29,7 +44,8 @@ const BasicProductInfo = (props: Props) => {
         </div>
         <Link
           className="max-h-9 mt-1 px-4 py-1 bg-black no-underline hover:text-white items-center text-white rounded"
-          to={"/chat/31"}
+          //onClick={handleInquireButtonClick}
+          to="/chat/31"
         >
           Inquire
         </Link>

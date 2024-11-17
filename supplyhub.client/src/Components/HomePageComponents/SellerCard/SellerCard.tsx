@@ -1,12 +1,28 @@
 import { Link } from "react-router-dom";
 import company_logo from "../../../assets/default-placeholder.png";
+//import { useEffect, useState } from "react";
 
-type Props = {};
+const SellerCard = () => {
+  /*const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
+  const [isChatVisible, setIsChatVisible] = useState(false);
 
-const SellerCard = (props: Props) => {
+  useEffect(() => {
+    const userIsAuthenticated = false;
+    setIsUserAuthenticated(userIsAuthenticated);
+  }, []);
+
+  const handleInquireButtonClick = (event: { preventDefault: () => void }) => {
+    if (!isUserAuthenticated) {
+      event.preventDefault();
+      alert("Please log in or sign-up to inquire");
+    } else {
+      setIsChatVisible(true);
+    }
+  }; */
   return (
     <div className="w-full max-w-[1200px] mx-auto p-4 flex items-center bg-white shadow-lg rounded-lg hover:bg-gray-50 border border-gray-100">
       <Link
+        //onClick={handleInquireButtonClick}
         className="w-full flex items-center no-underline text-black"
         to="/profile/seller/31"
       >
@@ -21,7 +37,7 @@ const SellerCard = (props: Props) => {
           </p>
           <Link
             className="mt-2 bg-black text-white text-sm px-4 py-1 items-center flex no-underline rounded hover:bg-gray-800 hover:text-white w-max h-9"
-            to={"/chat/15"}
+            to="/chat/15"
           >
             Inquire
           </Link>

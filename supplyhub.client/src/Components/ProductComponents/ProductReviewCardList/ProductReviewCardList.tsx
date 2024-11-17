@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ProductReviewCard from "../ProductReviewCard/ProductReviewCard";
 import ReviewFormPopUp from "../ReviewFormPopUp/ReviewFormPopUp";
 
@@ -24,11 +24,8 @@ const reviews = [
 ];
 
 const ProductReviewCardList = () => {
-  useEffect(() => {
-    document.title = "Reviews";
-  }, []);
-
   const [isReviewFormVisible, setIsReviewFormVisible] = useState(false);
+
   const handleReviewButtonClick = () => {
     setIsReviewFormVisible(true);
   };
