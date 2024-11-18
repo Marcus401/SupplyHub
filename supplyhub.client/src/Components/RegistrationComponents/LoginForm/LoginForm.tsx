@@ -17,8 +17,6 @@ const LoginForm: React.FC = () => {
     };
     
     const loginSuccess = await loginUser(loginDto);
-    console.log(email);
-    console.log(password);
     if (loginSuccess) {
       navigate('/');
     } 
