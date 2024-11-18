@@ -7,7 +7,7 @@ export const productsList = async (): Promise<SellerProductListResponseDtoObj[] 
         const response =  await api.get(`/products-list`)
         return response.data as SellerProductListResponseDtoObj[];
     } catch (error) {
-        handleApiError(error, 'Error ');
+        handleApiError(error, 'Error Fetching Products List');
         return null;
     }
 }
@@ -21,7 +21,7 @@ export const addProduct = async (dto : ProductRequestDto): Promise<boolean | nul
         console.error('Unexpected response format:', response.data);
         return false;
     } catch (error) {
-        handleApiError(error, 'Error ');
+        handleApiError(error, 'Error Creating Product');
         return false;
     }
 }

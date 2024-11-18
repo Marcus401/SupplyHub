@@ -6,7 +6,7 @@ export const fetchProduct = async (productId : number): Promise<FetchProductResp
         const response =  await api.get(`/fetch-product/${productId}`)
         return response.data as FetchProductResponseDto;
     } catch (error) {
-        handleApiError(error, 'Error ');
+        handleApiError(error, 'Error Fetching Product Information');
         return null;
     }
 }

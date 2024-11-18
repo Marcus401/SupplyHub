@@ -7,7 +7,7 @@ export const navbarInfo = async (): Promise<Uint8Array | null> => {
         const response =  await api.get(`/menu/navbar-info`)
         return response.data as Uint8Array;
     } catch (error) {
-        handleApiError(error, 'Error ');
+        handleApiError(error, 'Error Fetching Navbar Info');
         return null;
     }
 }
@@ -17,7 +17,7 @@ export const inquireUser = async (userId : number): Promise<number | null> => {
         const response =  await api.post(`/menu/inquire-user/${userId}`)
         return response.data as number;
     } catch (error) {
-        handleApiError(error, 'Error ');
+        handleApiError(error, 'Error Inquiring User');
         return null;
     }
 }
@@ -27,7 +27,7 @@ export const fetchProductsList = async (): Promise<MenuProductListResponseDtoObj
         const response =  await api.get(`/menu/fetch-products-list`)
         return response.data as MenuProductListResponseDtoObj[];
     } catch (error) {
-        handleApiError(error, 'Error ');
+        handleApiError(error, 'Error Fetching Products List');
         return null;
     }
 }
@@ -37,7 +37,7 @@ export const fetchSellersList = async (): Promise<MenuSellerListResponseDtoObj[]
         const response =  await api.get(`/menu/fetch-sellers-list`)
         return response.data as MenuSellerListResponseDtoObj[];
     } catch (error) {
-        handleApiError(error, 'Error ');
+        handleApiError(error, 'Error Fetching Sellers List');
         return null;
     }
 }

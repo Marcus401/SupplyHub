@@ -10,7 +10,7 @@ export const reviewSeller = async (sellerUserId : number, dto : ReviewRequestDto
         console.error('Unexpected response format:', response.data);
         return false;
     } catch (error) {
-        handleApiError(error, 'Error ');
+        handleApiError(error, 'Error Sending Seller Review');
         return false;
     }
 }
@@ -24,7 +24,7 @@ export const reviewProduct = async (productId : number, dto : ReviewRequestDto):
         console.error('Unexpected response format:', response.data);
         return false;
     } catch (error) {
-        handleApiError(error, 'Error ');
+        handleApiError(error, 'Error Sending Product Review');
         return false;
     }
 }

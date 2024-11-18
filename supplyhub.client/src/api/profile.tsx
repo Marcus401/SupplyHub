@@ -7,7 +7,7 @@ export const fetchUser = async (userId : number): Promise<UserProfileResponseDto
         const response =  await api.get(`/fetch-user/${userId}`)
         return response.data as UserProfileResponseDto;
     } catch (error) {
-        handleApiError(error, 'Error ');
+        handleApiError(error, 'Error Fetching User Information');
         return null;
     }
 }
@@ -17,7 +17,7 @@ export const editProfile = async (dto : EditUserProfileRequestDto): Promise<User
         const response =  await api.put(`/edit-profile`, dto)
         return response.data as UserProfileResponseDto;
     } catch (error) {
-        handleApiError(error, 'Error ');
+        handleApiError(error, 'Error Editing Profile');
         return null;
     }
 }
