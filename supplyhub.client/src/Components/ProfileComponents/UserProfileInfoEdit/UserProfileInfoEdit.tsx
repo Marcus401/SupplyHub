@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { VscArrowLeft } from "react-icons/vsc";
 import { BsUpload } from "react-icons/bs";
 
-type Props = {};
-
-const UserProfileInfoEdit = (props: Props) => {
+const UserProfileInfoEdit = () => {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [position, setPosition] = useState("");
@@ -50,16 +48,17 @@ const UserProfileInfoEdit = (props: Props) => {
       <div className="relative w-full overflow-visible items-center">
         <img
           src="https://wallpaperaccess.com/full/1560881.png"
-          alt="Background"
           className="object-cover w-full h-[50px]"
         />
+
         <Link
           className="absolute top-2 left-2 p-2 rounded-full shadow-lg"
           to="/profile/me"
-          state={{ fromSellerProfile: true }}
+          state={{ fromSellerProfile: false }}
         >
           <VscArrowLeft className="text-white w-5 h-5" />
         </Link>
+
         <div className="-mt-[45px] flex justify-end max-w-[500px] pl-[140px] pb-4 ml-auto">
           <button
             onClick={handleSave}
