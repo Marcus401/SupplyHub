@@ -1,47 +1,42 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { VscArrowLeft, VscEdit } from "react-icons/vsc";
-import user_image from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
+import profilePic from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
 
-type Props = {};
-
-const UserProfileInfo = (props: Props) => {
+const UserProfileInfo = () => {
   useEffect(() => {
     document.title = "UserProfile: {name}";
   }, []);
 
   return (
-    <div className="flex flex-col mx-auto max-w-[1100px] w-full pb-20 p-4">
-      <div className="relative w-full overflow-visible items-center pb-2">
+    <div className="flex flex-col mx-auto max-w-[1100px] w-full p-4">
+      <div className="relative flex h-[50px] overflow-hidden items-center">
         <img
           src="https://wallpaperaccess.com/full/1560881.png"
-          alt="Background"
-          className="object-cover w-full h-[50px]"
+          className="object-cover w-full"
         />
+
         <Link
           className="absolute top-2 left-2 p-2 rounded-full shadow-lg"
           to="/profile/me"
-          state={{ fromSellerProfile: false }}
         >
           <VscArrowLeft className="text-white w-5 h-5" />
         </Link>
-        <div className="max-w-[1200px] w-full max-h-[300px] h-full">
-          <img
-            src="https://s-media-cache-ak0.pinimg.com/originals/e2/3c/10/e23c10c0dee11fac2bb11c5e856f3926.jpg"
-            className="object-cover w-full h-full"
-          />
-        </div>
-
-        <div className="absolute -bottom-[57px] left-0 w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
-          <img
-            src={user_image}
-            alt="Avatar"
-            className="object-cover w-full h-full"
-          />
-        </div>
       </div>
 
-      <div className="flex items-center justify-between max-w-[1050px] pl-[140px] pb-2">
+      <div className="relative w-full h-[300px] overflow-hidden bg-gray-500">
+        <img src="" className="object-cover w-full h-full" />
+      </div>
+
+      <div className="relative bottom-[57px] left-0 overflow-visible items-center ">
+        <img
+          src={profilePic}
+          className="object-cover rounded-full w-32 h-32 border-4 border-white shadow-lg"
+          alt="Profile"
+        />
+      </div>
+
+      <div className="flex items-center justify-between max-w-[1050px] pl-[140px] -mt-[120px]">
         <div className="text-left">
           <h2 className="mb-0 text-2xl font-bold">Name</h2>
           <p className="text-sm text-black">Affiliated Company</p>
