@@ -65,7 +65,7 @@ namespace SupplyHub.Server.Migrations
                             NormalizedName = "SELLER"
                         });
                 });
-
+            
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")

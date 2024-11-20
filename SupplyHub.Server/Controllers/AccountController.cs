@@ -13,12 +13,17 @@ namespace SupplyHub.Server.Controllers;
 
 [ApiController]
 [Route("api/account")]
-public class AccountController(UserManager<User> userManager, SignInManager<User> signInManager, SupplyhubDbContext context, IAuthService authService) : ControllerBase
+public class AccountController
+	(UserManager<User> userManager, 
+		SignInManager<User> signInManager, 
+		SupplyhubDbContext context, IAuthService authService, 
+		RoleManager<IdentityRole<int>> roleManager) : ControllerBase
 {
 	private readonly UserManager<User> _userManager = userManager;
 	private readonly SignInManager<User> _signInManager = signInManager;
 	private readonly SupplyhubDbContext _context = context;
 	private readonly IAuthService _authService = authService;
+	private readonly RoleManager<IdentityRole<int>> _roleManager = roleManager;
 	
 	[HttpPost("register-user")]
 	public async Task<IActionResult> RegisterUser([FromBody] UserSignUpRequestDto userSignUpRequestDto)
@@ -26,6 +31,12 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
 		if (string.IsNullOrWhiteSpace(userSignUpRequestDto.Password))
 		{
 			return BadRequest("Password cannot be null or empty.");
+		}
+		
+		var exists = await _userManager.FindByEmailAsync(userSignUpRequestDto.Email);
+		if (exists != null)
+		{
+			return BadRequest("User with this email already exists.");
 		}
 		
 		var user = new User
@@ -49,6 +60,8 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
 			CompanyUser = null,
 		};
 		
+		await userManager.AddToRoleAsync(user, "User");
+		
 		await _context.UserInfos.AddAsync(info);
 		
 		await _context.SaveChangesAsync();
@@ -63,6 +76,12 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
 		if (string.IsNullOrWhiteSpace(sellerSignUpRequestDto.Password))
 		{
 			return BadRequest("Password cannot be null or empty.");
+		}
+		
+		var exists = await _userManager.FindByEmailAsync(sellerSignUpRequestDto.Email);
+		if (exists != null)
+		{
+			return BadRequest("User with this email already exists.");
 		}
 		
 		var user = new User
@@ -85,6 +104,7 @@ public class AccountController(UserManager<User> userManager, SignInManager<User
 			Location = sellerSignUpRequestDto.Location,
 			Rating = 0
 		};
+		await userManager.AddToRoleAsync(user, "Seller");
 		
 		await _context.SellerInfos.AddAsync(info);
 		

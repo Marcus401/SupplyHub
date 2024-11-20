@@ -12,7 +12,7 @@ using SupplyHub.Server.Data;
 namespace SupplyHub.Server.Migrations
 {
     [DbContext(typeof(SupplyhubDbContext))]
-    [Migration("20241117031914_InitialCreate")]
+    [Migration("20241120195543_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
