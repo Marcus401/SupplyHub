@@ -3,6 +3,11 @@ import product_image from "../../../assets/upload_image_placeholder.png";
 
 type Props = {};
 
+interface FAQ {
+    question: string;
+    answer: string;
+  }
+  
 const SellerEditProductForm = (props: Props) => {
     useEffect(() => {
         document.title = "Edit Product";
@@ -19,6 +24,11 @@ const SellerEditProductForm = (props: Props) => {
     const [failedSubmission, setFailedSubmission] = useState<boolean>(false);
     const [imageList, setImageList] = useState<File[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+    const [faqs, setFaqs] = useState<FAQ[]>([]);
+    const [faqQuestion, setFaqQuestion] = useState<string>("");
+    const [faqAnswer, setFaqAnswer] = useState<string>("");
+    const [isAddProductVisible, setIsAddProductVisible] = useState<boolean>(true);
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -74,7 +84,24 @@ const SellerEditProductForm = (props: Props) => {
     const removeProduct = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
     }
+  // FAQ Management
 
+  const addFaq = () => {
+    if (faqQuestion && faqAnswer) {
+      setFaqs([...faqs, { question: faqQuestion, answer: faqAnswer }]);
+      setFaqQuestion("");
+      setFaqAnswer("");
+    }
+  };
+
+  const removeFaq = (index: number) => {
+    const newFaqs = faqs.filter((_, i) => i !== index);
+    setFaqs(newFaqs);
+};
+
+  const toggleFaq = (index: number) => {
+    setExpandedIndex(index === expandedIndex ? null : index);
+  };
     return (
         <div className="grid w-full md:grid-rows-[50px_auto] md:grid-cols-[240px_auto] gap-x-2 mx-2 ">
             <div
@@ -183,42 +210,98 @@ const SellerEditProductForm = (props: Props) => {
                             id="description"
                             className="w-full p-2 border border-gray-300 rounded-lg mb-2  h-[10rem]"/>
                     </div>
-                    <button
-                        onClick={addProduct}
-                        className="flex absolute right-0 bottom-2 mr-10 no-underline bg-gray-800 rounded-lg lg:w-[150px] lg:h-[40px] justify-center items-center w-[120px] h-[40px]">
-                        <h6 className="lg:text-lg text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-white">
-                            Publish
-                        </h6>
-                    </button>
-                    {failedSubmission && (
-                        <div className="">
-                            <p className="text-lg text-red-700 opacity-70">Please fill in all fields</p>
-                        </div>
-                    )}
-                </div>
+
+            {/* FAQ Section */}
+          <div className="mb-6">
+            <h4 className="text-lg font-bold mb-2">Frequently Asked Questions</h4>
+            <div className="mb-4">
+              <input
+                type="text"
+                value={faqQuestion}
+                onChange={(e) => setFaqQuestion(e.target.value)}
+                placeholder="Enter question"
+                className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+              />
+              <input
+                type="text"
+                value={faqAnswer}
+                onChange={(e) => setFaqAnswer(e.target.value)}
+                placeholder="Enter answer"
+                className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+              />
+              <button
+                onClick={addFaq}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              >
+                Add to FAQ
+              </button>
             </div>
 
-            <div
-                className="flex justify-between row-start-10 md:row-start-9 col-start-1 md:col-span-2 lg:row-start-6 lg:col-span-6 relative h-[30px] lg:ml-8">
-                <div className="">
-                    <button
-                        onClick={handleAddImageButtonClick}
-                        className="flex absolute left-0 bottom-0 mr-10 no-underline bg-white border-2 border-gray-800 rounded-lg lg:w-[180px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]">
-                        <input type="file" accept=".png, .jpg, .jpeg, .jfif" className="hidden" id="imageUpload"
-                               onChange={addToImageListChange} ref={fileInputRef}>
-                        </input>
-                        <h6 className="lg:text-lg text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-black">
-                            Add Image {imageList.length} / 8
-                        </h6>
-                    </button>
-                </div>
-                <div
-                    className="lg:ml-8 mr-10 flex ">
-                    <button
-                        onClick={removeProduct}
-                        className="text-base overflow-hidden bg-white text-ellipsis line-clamp-1 whitespace-nowrap text-red-700 no-underline border-2 border-red-700 rounded-lg lg:w-[150px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]">
-                            remove item
-                    </button>
+                {/* Render FAQ List */}
+                <div className="space-y-4">
+                    {faqs.map((faq, index) => (
+                        <div key={index} className="border border-gray-300 rounded-lg p-3 shadow-sm">
+                            <div
+                                className="flex justify-between items-center cursor-pointer"
+                                onClick={() => toggleFaq(index)}
+                            >
+                                <p
+                                    className={`font-medium ${
+                                        expandedIndex === index ? 'text-blue-500' : 'text-gray-800'
+                                    }`}
+                                >
+                                    {faq.question}
+                                </p>
+                                <button className="text-blue-500 font-bold text-xl">
+                                    {expandedIndex === index ? '-' : '+'}
+                                </button>
+                            </div>
+                            {expandedIndex === index && (
+                                <p className="mt-2 text-gray-600">{faq.answer}</p>
+                            )}
+
+                            {/* Remove FAQ Button */}
+                            <button
+                                onClick={() => removeFaq(index)}
+                                className="mt-2 text-red-500 text-sm font-semibold hover:text-red-700"
+                            >
+                                Remove
+                            </button>
+                        </div>
+                    ))}
+            </div>
+          </div>    
+          <div className="flex justify-between items-center mb-6">
+            {/* Add Image Button */}
+            <button
+              onClick={handleAddImageButtonClick}
+              className="bg-white border-2 border-gray-800 rounded-lg flex items-center p-2 hover:bg-gray-100"
+            >
+              <input
+                type="file"
+                accept=".png, .jpg, .jpeg, .jfif"
+                className="hidden"
+                id="imageUpload"
+                onChange={addToImageListChange}
+                ref={fileInputRef}
+              />
+              <span>Add Image {imageList.length} / 8</span>
+            </button>
+
+            {/* Publish Button */}
+            <button
+              onClick={addProduct}
+              className="bg-gray-800 text-white px-10 py-2 rounded-lg hover:bg-gray-700"
+            >
+              Publish
+            </button>
+
+          </div>
+          <button
+                    onClick={removeProduct}
+                    className="text-base overflow-hidden bg-white text-red-700 no-underline border-2 border-red-700 rounded-lg p-2">
+                    Remove Item
+            </button>
                 </div>
             </div>
             <div
