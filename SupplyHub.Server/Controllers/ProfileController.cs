@@ -6,13 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using SupplyHub.Server.Data;
 
 namespace SupplyHub.Server.Controllers;
 
 [ApiController]
 [Route("api/profile")]
-public class ProfileController : ControllerBase
+public class ProfileController(SupplyhubDbContext context) : ControllerBase
 {
+	SupplyhubDbContext _context = context;
+
 	[HttpGet("fetch-user/{userId}")]
 	public async Task<IActionResult> FetchUser([FromRoute] int userId)
 	{
