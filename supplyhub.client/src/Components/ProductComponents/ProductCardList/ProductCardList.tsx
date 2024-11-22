@@ -1,28 +1,33 @@
+import React, { useEffect, useState } from "react";
+import { MenuProductListResponseDtoObj } from "../../../Dtos/Menu/MenuProductListResponseDtoObj";
 import ProductCard from "../ProductCard/ProductCard";
+import { fetchProductsList } from "../../../api/menu";
 
-type Props = {};
+interface ProductCardListProps {
+  products: MenuProductListResponseDtoObj[] | null;
+}
 
-const ProductCardList = (props: Props): JSX.Element => {
+const ProductCardList: React.FC<ProductCardListProps> = (): JSX.Element => {
+  const [products, setProducts] = useState<MenuProductListResponseDtoObj[]>([]);
+
+  useEffect(() => {
+    fetchProductsList()
+      .then((data) => {
+        if (data) setProducts(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching sellers list:", error);
+      });
+  }, []);
+  if (!products || products.length === 0) {
+    return <p>No products available</p>;
+  }
+
   return (
     <div className="grid grid-cols-6 gap-2.5">
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      {products.map((product, index) => (
+        <ProductCard key={index} product={product} />
+      ))}
     </div>
   );
 };

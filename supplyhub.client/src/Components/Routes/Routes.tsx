@@ -1,4 +1,4 @@
-import {Navigate, createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import App from "../../App.tsx";
 import HomePage from "../../Pages/HomePage/HomePage.tsx";
 import Register from "../../Pages/Register/Register.tsx";
@@ -62,88 +62,79 @@ Webpages
  */
 
 export const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "", element: <HomePage /> },
+      {
+        path: "register",
+        element: <Register />,
         children: [
-            {path: "", element: <HomePage />},
-            {
-                path: "register",
-                element: <Register />,
-                children: [
-                    {index: true, element: <Navigate to="user" replace />},
-                    {path: "user", element: <UserSignUpForm/>},
-                    {path: "seller", element: <SellerSignUpForm/>},
-                ]
-            },
-            {path: "login", element: <Login/>},
-            {path: "search-results/:text", element: <SearchResults/>},
-            {
-                path: "profile",
-                element: <Profile/>,
-                children: [
-                    {
-                        path: ":user_id", 
-                        element: <UserProfileInfo/>,
-                        children: [
-                            {path: "review", element: <ReviewFormPopUp/>},
-                        ]
-                    },
-                    {
-                        path: "me", 
-                        element: <ProfileInfo/>,
-                        children: [
-                            {path: "edit", element: <UserProfileInfoEdit/>},
-                        ]
-                    },
-                ]
-            },
-            {
-                path: "chat",
-                element: <Chat />,
-                children: [
-                    {path: ":chat_id", element: <ChatMessageList messages={[]}/>},
-                ]
-            },
-            {
-                path: "product/:item_id", 
-                element: <Product/>,
-                children: [
-                    {path: "review", element: <ReviewFormPopUp/>}
-                ]
-            },
-            {
-                path: "seller",
-                element: <Seller/>,
-                children: [
-                    {index: true, element: <Navigate to="products/list" replace />},
-                    {path: "products/list", element: <SellerProductCardList/>,},
-                    {path: "products/add", element: <SellerAddProductForm/>},
-                    {path: "edit/:product_id", element: <SellerEditProductForm/>},
-                    {path: "inventory", element: <SellerInventoryTable/>},
-                    {path: "reviews", element: <SellerReviewsList/>},
-                    {path: "billing", element: <SellerBilling/>},
-                    {
-                        path: "advertising",
-                        element: <Advertising/>,
-                        children: [
-                            {path: "apply", element: <SellerAdvertisingForm/>},
-                        ]
-                    },
-                ]
-            },
-            {path: "help", element: <Help/>},
-            {
-                path: "settings",
-                element: <Settings/>,
-                children: [
-                    {path: "change-password", element: <UserChangePasswordForm/>},
-                ]
-            },
-            {path: "about-us", element: <AboutUs/>},
-            {path: "design", element: <Design/>},
-        ]
-    },
-    {path: "*", element: <Error404/>}
-])
-
+          { index: true, element: <Navigate to="user" replace /> },
+          { path: "user", element: <UserSignUpForm /> },
+          { path: "seller", element: <SellerSignUpForm /> },
+        ],
+      },
+      { path: "login", element: <Login /> },
+      { path: "search-results/:text", element: <SearchResults /> },
+      {
+        path: "profile",
+        element: <Profile />,
+        children: [
+          {
+            path: "me",
+            element: <UserProfileInfo />,
+            children: [{ path: "edit", element: <UserProfileInfoEdit /> }],
+          },
+          {
+            path: ":user_id",
+            element: <ProfileInfo />,
+            children: [{ path: "review", element: <ReviewFormPopUp /> }],
+          },
+        ],
+      },
+      {
+        path: "chat",
+        element: <Chat />,
+        children: [
+          { path: ":chat_id", element: <ChatMessageList messages={[]} /> },
+        ],
+      },
+      {
+        path: "product/:item_id",
+        element: <Product />,
+        children: [{ path: "review", element: <ReviewFormPopUp /> }],
+      },
+      {
+        path: "seller",
+        element: <Seller />,
+        children: [
+          { index: true, element: <Navigate to="products/list" replace /> },
+          { path: "products/list", element: <SellerProductCardList /> },
+          { path: "products/add", element: <SellerAddProductForm /> },
+          { path: "edit/:product_id", element: <SellerEditProductForm /> },
+          { path: "inventory", element: <SellerInventoryTable /> },
+          { path: "reviews", element: <SellerReviewsList /> },
+          { path: "billing", element: <SellerBilling /> },
+          {
+            path: "advertising",
+            element: <Advertising />,
+            children: [{ path: "apply", element: <SellerAdvertisingForm /> }],
+          },
+        ],
+      },
+      { path: "help", element: <Help /> },
+      {
+        path: "settings",
+        element: <Settings />,
+        children: [
+          { path: "change-password", element: <UserChangePasswordForm /> },
+        ],
+      },
+      { path: "about-us", element: <AboutUs /> },
+      { path: "design", element: <Design /> },
+    ],
+  },
+  { path: "*", element: <Error404 /> },
+]);
