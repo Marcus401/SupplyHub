@@ -1,15 +1,15 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 import user_image from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
 import logo_image from "../../../assets/logo.png";
-import { VscBell } from "react-icons/vsc";
-import { VscComment } from "react-icons/vsc";
-import { VscSearch } from "react-icons/vsc";
+import { VscBell, VscComment, VscSearch } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 
 type Props = {};
 
-const NavBar = (props: Props) => {
+const NavBar = () => {
   const [searchText, setSearchText] = useState<string>("");
+  const navigate = useNavigate(); 
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
@@ -22,7 +22,10 @@ const NavBar = (props: Props) => {
 
   const logOut = () => {
     console.log("Logging out...");
-  };
+    localStorage.removeItem("authToken"); 
+    sessionStorage.removeItem("authToken"); // Optional
+    navigate("/login"); 
+  }
 
   return (
     <div>
@@ -65,8 +68,6 @@ const NavBar = (props: Props) => {
           />
           <button onClick={onClick} className="text-2xl p-4">
             <Link to="search-results/text">
-              {" "}
-              {/* to be replaced with actual search prompt */}
               <VscSearch className="text-black" />
             </Link>
           </button>
@@ -74,8 +75,6 @@ const NavBar = (props: Props) => {
 
         <div className="flex items-center space-x-2">
           <Link to="chat/432">
-            {" "}
-            {/* to be replaced with actual chat_id */}
             <button className="text-3xl p-2">
               <VscComment className="text-black" />
             </button>
@@ -85,8 +84,6 @@ const NavBar = (props: Props) => {
           </button>
           <div className="w-8 h-8 ml-5">
             <Link to="profile/12">
-              {" "}
-              {/* to be replaced with actual user_id */}
               <img
                 src={user_image}
                 alt="User Avatar"
