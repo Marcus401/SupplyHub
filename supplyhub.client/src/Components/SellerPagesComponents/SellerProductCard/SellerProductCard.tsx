@@ -1,22 +1,30 @@
-import React from 'react'
-import product_image from "../../../assets/default-placeholder.png";
-import {Link} from "react-router-dom";
+import React from 'react';
+import { ProductRequestDto } from '../../../Dtos/Seller/ProductRequestDto';
+import { Link } from 'react-router-dom';
 
-type Props = {};
+type Props = {
+    product: ProductRequestDto; 
+};
 
-const SellerProductCard = (props: Props) => {
+const SellerProductCard: React.FC<Props> = ({ product }) => {
+    const { thumbnail, productName, description } = product;
+
     return (
-        <div
-            className="flex mx-4 rounded-3xl h-[190px] pt-2">
+        <div className="flex mx-4 rounded-3xl h-[190px] pt-2">
             <img
-                src={product_image} alt="product image"
-                className="w-[150px] h-[150px] row-span-3 row-start-1 - col-start-1 mx-4 mt-2"/>
+                src={thumbnail ? URL.createObjectURL(new Blob([thumbnail])) : require("../../../assets/default-placeholder.png")}
+                alt="product image"
+                className="w-[150px] h-[150px] row-span-3 row-start-1 - col-start-1 mx-4 mt-2"
+            />
             <div className="flex-row w-full relative">
-                <h3 className="line-clamp-1 whitespace-nowrap truncate">Product Name</h3>
-                <p className="mx-5 h-20 overflow-hidden text-ellipsis line-clamp-3">Lorem ipsum dolor sit amet. Sed voluptatem dolor 33 velit accusamus eum tempore officia qui eligendi quidem non galisum dolorum. Eum facilis quibusdam eos enim fugiat et rerum tenetur sit dignissimos explicabo cum aliquid beatae. Qui consequatur velit vel quod voluptatibus 33 deserunt vitae et itaque dolores 33 quae explicabo.</p>
+                <h3 className="line-clamp-1 whitespace-nowrap truncate">{productName || 'No Name'}</h3>
+                <p className="mx-5 h-20 overflow-hidden text-ellipsis line-clamp-3">
+                    {description || 'No description available.'}
+                </p>
                 <Link
-                    to="/seller/edit/129" // to be replaced with actual product id
-                    className="absolute bottom-2 flex justify-center no-underline items-center text-gray-800 hover:text-gray-800 right-10 bg-white border-black border-2 rounded-xl w-24 h-10 text-lg">
+                    to={`/seller/edit/${productName}`} // Replace with actual product ID when available
+                    className="absolute bottom-2 flex justify-center no-underline items-center text-gray-800 hover:text-gray-800 right-10 bg-white border-black border-2 rounded-xl w-24 h-10 text-lg"
+                >
                     Edit
                 </Link>
             </div>
