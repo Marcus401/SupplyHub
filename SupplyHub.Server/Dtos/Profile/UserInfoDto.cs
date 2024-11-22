@@ -1,4 +1,4 @@
-﻿namespace DefaultNamespace;
+﻿namespace Dtos.Profile;
 
 public class UserInfoDto
 {
