@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { VscArrowLeft, VscEdit } from "react-icons/vsc";
 import profilePic from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
+import coverPic from "../../../assets/default-cover-image.png";
 
 const UserProfileInfo = () => {
   useEffect(() => {
@@ -12,7 +13,7 @@ const UserProfileInfo = () => {
     <div className="flex flex-col mx-auto max-w-[1100px] w-full p-4">
       <div className="relative flex h-[50px] overflow-hidden items-center">
         <img
-          src="https://wallpaperaccess.com/full/1560881.png"
+          src={coverPic}
           className="object-cover w-full"
         />
 

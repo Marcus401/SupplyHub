@@ -22,8 +22,8 @@ const NavBar = () => {
 
   const logOut = () => {
     console.log("Logging out...");
-    localStorage.removeItem("authToken"); 
-    sessionStorage.removeItem("authToken"); // Optional
+    localStorage.removeItem("JwtToken"); 
+    sessionStorage.removeItem("JwtToken"); // Optional
     navigate("/login"); 
   }
 

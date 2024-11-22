@@ -8,22 +8,17 @@ using SupplyHub.Server.Data;
 using SupplyHub.Server.Services;
 using System.Security.Claims;
 using SupplyHub.Server.Interfaces;
+using System.IO;
 
 namespace SupplyHub.Server.Controllers;
-
+	
 [ApiController]
 [Route("api/account")]
 public class AccountController
-	(UserManager<User> userManager, 
-		SignInManager<User> signInManager, 
-		SupplyhubDbContext context, IAuthService authService, 
-		RoleManager<IdentityRole<int>> roleManager) : ControllerBase
+	(UserManager<User> _userManager, 
+		SupplyhubDbContext _context, 
+		IAuthService _authService) : ControllerBase
 {
-	private readonly UserManager<User> _userManager = userManager;
-	private readonly SignInManager<User> _signInManager = signInManager;
-	private readonly SupplyhubDbContext _context = context;
-	private readonly IAuthService _authService = authService;
-	private readonly RoleManager<IdentityRole<int>> _roleManager = roleManager;
 	
 	[HttpPost("register-user")]
 	public async Task<IActionResult> RegisterUser([FromBody] UserSignUpRequestDto userSignUpRequestDto)
@@ -39,10 +34,15 @@ public class AccountController
 			return BadRequest("User with this email already exists.");
 		}
 		
+		byte[] defaultAvatarBytes = System.IO.File.ReadAllBytes("Resources/default-avatar.png");
+		byte[] defaultCoverBytes = System.IO.File.ReadAllBytes("Resources/default-cover-image.png");
+		
 		var user = new User
 		{
 			UserName = userSignUpRequestDto.FirstName + " " + userSignUpRequestDto.LastName,
-			Email = userSignUpRequestDto.Email
+			Email = userSignUpRequestDto.Email,
+			ProfilePicture = defaultAvatarBytes,
+			CoverPicture = defaultCoverBytes
 		};
 		
 		var result = await _userManager.CreateAsync(user, userSignUpRequestDto.Password);
@@ -60,7 +60,7 @@ public class AccountController
 			CompanyUser = null,
 		};
 		
-		await userManager.AddToRoleAsync(user, "User");
+		await _userManager.AddToRoleAsync(user, "User");
 		
 		await _context.UserInfos.AddAsync(info);
 		
@@ -84,10 +84,15 @@ public class AccountController
 			return BadRequest("User with this email already exists.");
 		}
 		
+		byte[] defaultAvatarBytes = System.IO.File.ReadAllBytes("Resources/default-avatar.png");
+		byte[] defaultCoverBytes = System.IO.File.ReadAllBytes("Resources/default-cover-image.png");
+		
 		var user = new User
 		{
 			UserName = sellerSignUpRequestDto.FirstName + " " + sellerSignUpRequestDto.LastName,
-			Email = sellerSignUpRequestDto.Email
+			Email = sellerSignUpRequestDto.Email,
+			ProfilePicture = defaultAvatarBytes,
+			CoverPicture = defaultCoverBytes
 		};
 		
 		var result = await _userManager.CreateAsync(user, sellerSignUpRequestDto.Password);
@@ -104,7 +109,7 @@ public class AccountController
 			Location = sellerSignUpRequestDto.Location,
 			Rating = 0
 		};
-		await userManager.AddToRoleAsync(user, "Seller");
+		await _userManager.AddToRoleAsync(user, "Seller");
 		
 		await _context.SellerInfos.AddAsync(info);
 		
@@ -121,7 +126,6 @@ public class AccountController
 		{
 			return BadRequest(ModelState);
 		}
-		
                 var user = await _userManager.FindByEmailAsync(userLoginRequestDto.Email);
                 if (user == null || !await _userManager.CheckPasswordAsync(user, userLoginRequestDto.Password))
                 {
