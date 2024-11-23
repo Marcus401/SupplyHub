@@ -1,11 +1,8 @@
 ﻿import {Outlet, useLocation} from "react-router-dom";
 import NavBar from "../NavigationBarComponents/NavBar/NavBar.tsx";
 import GuestNavBar from "../NavigationBarComponents/GuestNavBar/GuestNavBar.tsx";
-import jwt from 'jsonwebtoken';
 
-type Props = {};
-
-const AppLayout = (props: Props) => {
+const AppLayout = () => {
     const location = useLocation();
     const noNavBarPaths = [
         "/login",
