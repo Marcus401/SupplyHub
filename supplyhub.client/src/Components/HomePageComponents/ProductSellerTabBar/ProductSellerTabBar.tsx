@@ -1,7 +1,11 @@
 import { useLocation } from "react-router-dom";
 import ProductCardList from "../../ProductComponents/ProductCardList/ProductCardList";
 import SellerCardList from "../SellerCardList/SellerCardList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchProductsList, fetchSellersList } from "../../../api/menu";
+import { MenuProductListResponseDtoObj } from "../../../Dtos/Menu/MenuProductListResponseDtoObj";
+import { MenuSellerListResponseDtoObj } from "../../../Dtos/Menu/MenuSellerListResponseDtoObj";
+
 interface TabProps {
   label: string;
   content: React.ReactNode;
@@ -13,9 +17,34 @@ const Tab: React.FC = () => {
   const initialTab = location.state?.fromSellerProfile ? 1 : 0;
   const [activeTab, setActiveTab] = useState(initialTab);
 
+  const [productsList, setProductsList] = useState<
+    MenuProductListResponseDtoObj[] | null
+  >(null);
+  const [sellersList, setSellersList] = useState<
+    MenuSellerListResponseDtoObj[] | null
+  >(null);
+
+  useEffect(() => {
+    fetchProductsList()
+      .then((data) => {
+        if (data) setProductsList(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching product list:", error);
+      });
+
+    fetchSellersList()
+      .then((data) => {
+        if (data) setSellersList(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching sellers list:", error);
+      });
+  }, []);
+
   const tabs: TabProps[] = [
-    { label: "PRODUCTS", content: <ProductCardList /> },
-    { label: "SELLER", content: <SellerCardList /> },
+    { label: "PRODUCTS", content: <ProductCardList products={productsList} /> },
+    { label: "SELLER", content: <SellerCardList sellers={sellersList} /> },
   ];
 
   return (

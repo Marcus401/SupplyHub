@@ -44,7 +44,7 @@ const UserProfileInfoEdit = () => {
   };
 
   return (
-    <div className="flex flex-col mx-auto max-w-[1100px] w-full pb-20 p-4">
+    <div className="relative flex-col mx-auto max-w-[1100px] w-full pb-20 p-4">
       <div className="relative w-full overflow-visible items-center">
         <img
           src="https://wallpaperaccess.com/full/1560881.png"

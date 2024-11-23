@@ -1,21 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SellerCard from "../SellerCard/SellerCard";
+import { inquireUser, fetchSellersList } from "../../../api/menu";
+import { MenuSellerListResponseDtoObj } from "../../../Dtos/Menu/MenuSellerListResponseDtoObj";
+interface SellerCardListProps {
+  sellers: MenuSellerListResponseDtoObj[] | null;
+}
 
-type Props = {};
+const SellerCardList: React.FC<SellerCardListProps> = () => {
+  const [sellers, setSellers] = useState<MenuSellerListResponseDtoObj[]>([]);
 
-const SellerCardList = (props: Props) => {
+  useEffect(() => {
+    fetchSellersList()
+      .then((data) => {
+        if (data) setSellers(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching sellers list:", error);
+      });
+  }, []);
+
+  const handleInquire = async (sellerId: number) => {
+    try {
+      const chatId = await inquireUser(sellerId);
+      if (chatId) {
+        window.location.href = `/chat/${chatId}`;
+      }
+    } catch (error) {
+      console.error("Error inquiring user:", error);
+    }
+  };
+
   return (
-    <div className="space-y-2">
-      <SellerCard />
-      <SellerCard />
-      <SellerCard />
-      <SellerCard />
-      <SellerCard />
-      <SellerCard />
-      <SellerCard />
-      <SellerCard />
-      <SellerCard />
-      <SellerCard />
+    <div className="space-y-4">
+      {sellers.map((seller) => (
+        <SellerCard seller={seller} onInquire={handleInquire} />
+      ))}
     </div>
   );
 };

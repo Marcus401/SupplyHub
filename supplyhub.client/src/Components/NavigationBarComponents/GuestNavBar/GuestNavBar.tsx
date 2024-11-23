@@ -1,7 +1,5 @@
-import user_image from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
 import logo_image from "../../../assets/logo.png";
-import { VscBell, VscSearch } from "react-icons/vsc";
-import { VscComment } from "react-icons/vsc";
+import { VscSearch } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 
