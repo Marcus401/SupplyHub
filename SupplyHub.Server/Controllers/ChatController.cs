@@ -6,13 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using SupplyHub.Server.Data;
 
 namespace SupplyHub.Server.Controllers;
 
 [ApiController]
 [Route("api/chat")]
-public class ChatController : ControllerBase
+public class ChatController(SupplyhubDbContext context) : ControllerBase
 {
+	private readonly SupplyhubDbContext _context = context;
+
 	[Authorize]
 	[HttpGet("fetch-chat-history/{chatId}")]
 	public async Task<IActionResult> FetchChatHistory([FromRoute] int chatId)

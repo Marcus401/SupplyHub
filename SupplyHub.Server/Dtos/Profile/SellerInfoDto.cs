@@ -1,6 +1,6 @@
 ﻿namespace Dtos.Profile;
 
-public class SellerInfo
+public class SellerInfoDto
 {
 	public int? Rating { get; set; }
 	public string? Socials { get; set; }
