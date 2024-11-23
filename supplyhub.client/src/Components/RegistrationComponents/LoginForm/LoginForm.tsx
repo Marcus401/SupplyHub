@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from "../../../api/account.tsx";
 import { UserLoginRequestDto } from "../../../Dtos/Account/UserLoginRequestDto.ts";
-import default_avatar from "../../../assets/default-avatar.png"
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -32,12 +31,6 @@ const LoginForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    const byteArray = await fetch(default_avatar).then(res => res.arrayBuffer()).then(buffer => new Uint8Array(buffer));
-    const byteArrayString = Array.from(byteArray).join(", ");
-    
-    
-    console.log(byteArrayString);
 
     const validationError = validatePassword(password);
     if (validationError) {
