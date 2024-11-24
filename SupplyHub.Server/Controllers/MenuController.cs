@@ -6,13 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using SupplyHub.Server.Data;
 
 namespace SupplyHub.Server.Controllers;
 
 [ApiController]
 [Route("api/menu")]
-public class MenuController : ControllerBase
+public class MenuController(SupplyhubDbContext context) : ControllerBase
 {
+	private readonly SupplyhubDbContext _context = context;
+
 	[HttpGet("navbar-info")]
 	public async Task<IActionResult> NavbarInfo()
 	{

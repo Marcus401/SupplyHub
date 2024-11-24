@@ -1,15 +1,14 @@
-import { ChangeEvent, SyntheticEvent, useState } from "react";
+import {ChangeEvent, SyntheticEvent, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import user_image from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
 import logo_image from "../../../assets/logo.png";
 import { VscBell, VscComment, VscSearch } from "react-icons/vsc";
 import { Link } from "react-router-dom";
-
-type Props = {};
+import {navbarInfo} from "../../../api/menu.tsx";
 
 const NavBar = () => {
   const [searchText, setSearchText] = useState<string>("");
-  const navigate = useNavigate();
+  const [userImage, setUserImage] = useState<string | null>(null);
+  const navigate = useNavigate(); 
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
@@ -21,12 +20,25 @@ const NavBar = () => {
   };
 
   const logOut = () => {
-    console.log("Logging out...");
-    localStorage.removeItem("authToken");
-    sessionStorage.removeItem("authToken"); // Optional
-    navigate("/login");
-  };
-
+    localStorage.removeItem("JwtToken"); 
+    sessionStorage.removeItem("JwtToken"); // Optional
+    navigate("/login"); 
+  }
+  
+  useEffect( () => {
+    navbarInfo().then((data) => {
+      if (data === null) {
+        console.error('Failed to fetch navbar info.');
+        return;
+      }
+      setUserImage(URL.createObjectURL(new Blob([data], { type: 'image/png' })));
+    })
+        .catch((error) => {
+          console.error('Error fetching navbar info:', error);
+        });
+    
+  }, []);
+  
   return (
     <div>
       <div className="flex justify-end items-center px-4 py-0 bg-white text-sm font-medium text-black space-x-7">
@@ -84,13 +96,15 @@ const NavBar = () => {
           </button>
           <div className="w-8 h-8 ml-5">
             <Link to="profile/me">
-              {" "}
-              {/* to be replaced with actual user_id */}
-              <img
-                src={user_image}
-                alt="User Avatar"
-                className="w-8 h-8 rounded-full"
-              />
+              {userImage ? (
+                  <img
+                      src={userImage}
+                      alt="User Avatar"
+                      className="w-8 h-8 rounded-full"
+                  />
+              ) : (
+                  <div className="w-8 h-8 rounded-full bg-gray-200"></div> 
+              )}
             </Link>
           </div>
         </div>

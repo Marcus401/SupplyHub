@@ -20,6 +20,7 @@ const LoginForm: React.FC = () => {
     if (!/[0-9]/.test(password)) {
       return 'Password must include at least one number.';
     }
+    
     return null; 
   };
 
