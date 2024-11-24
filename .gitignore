@@ -2,4 +2,5 @@
 .idea/
 SupplyHub.Server/bin
 SupplyHub.Server/obj
+SupplyHub.Server/appsettings.json
 
