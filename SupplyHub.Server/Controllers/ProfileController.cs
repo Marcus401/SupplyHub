@@ -30,7 +30,6 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 		var userRole = userRoles.First();
 
 		object additionalInfo = null;
-
 		if (userRole == "Seller")
 		{
 			var sellerInfo = await _context.SellerInfos.Where(u => u.UserId == userId).FirstOrDefaultAsync();
@@ -66,8 +65,28 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 
 	[Authorize]
 	[HttpPut("edit-profile")]
-	public async Task<IActionResult> EditProfile([FromBody] EditUserProfileRequestDto editUserProfileRequesteDto)
+	public async Task<IActionResult> EditProfile([FromBody] EditUserProfileRequestDto editUserProfileRequestDto)
 	{
-		return Ok();
+		var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+		if (userId == null)
+		{
+			return Unauthorized();
+		}
+
+		var userProfile = await _userManager.FindByIdAsync(userId);
+		if (userProfile == null)
+		{
+			return NotFound("Profile not found");
+		}
+		var userRoles = await _userManager.GetRolesAsync(userProfile);
+		var userRole = userRoles.First();
+
+		userProfile.UserName = editUserProfileRequestDto.UserName;
+		userProfile.Bio = editUserProfileRequestDto.Bio;
+		userProfile.ProfilePicture = editUserProfileRequestDto.ProfilePicture;
+		userProfile.CoverPicture = editUserProfileRequestDto.CoverPicture;
+		await _context.SaveChangesAsync();
+
+		return Ok(new { Message = "Profile updated successfully!" });
 	}
 }
