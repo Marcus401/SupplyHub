@@ -1,5 +1,5 @@
 import user_image from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
-import { VscStarEmpty } from "react-icons/vsc";
+import { VscStarEmpty, VscStarFull } from "react-icons/vsc";
 
 type Props = {};
 
@@ -20,11 +20,8 @@ const SellerReviewCard = (props: Props) => {
             <div className="flex flex-row space-x-1 mb-0">
               <VscStarFull />
               <VscStarFull />
-
               <VscStarFull />
-
               <VscStarFull />
-
               <VscStarEmpty />
             </div>
           </div>
