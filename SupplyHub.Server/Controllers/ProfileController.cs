@@ -29,38 +29,47 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 		var userRoles = await _userManager.GetRolesAsync(userProfile);
 		var userRole = userRoles.First();
 
-		object additionalInfo = null;
+		object userProfileResponseDto = null;
 		if (userRole == "Seller")
 		{
 			var sellerInfo = await _context.SellerInfos.Where(u => u.UserId == userId).FirstOrDefaultAsync();
-			additionalInfo = new SellerInfoDto
+			userProfileResponseDto = new UserProfileResponseDto<SellerInfoDto>
 			{
-				Rating = sellerInfo.Rating,
-				Socials = sellerInfo.Socials,
-				BusinessType = sellerInfo.BusinessType,
-				Location = sellerInfo.Location
+				UserName = userProfile.UserName,
+				PhoneNumber = userProfile.PhoneNumber,
+				Bio = userProfile.Bio,
+				ProfilePicture = userProfile.ProfilePicture,
+				CoverPicture = userProfile.CoverPicture,
+				Role = userRole,
+				AdditionalInfo = new SellerInfoDto
+				{
+					Rating = sellerInfo.Rating,
+					Socials = sellerInfo.Socials,
+					BusinessType = sellerInfo.BusinessType,
+					Location = sellerInfo.Location
+				}
 			};
 		}
 		else if (userRole == "User")
 		{
 			var userInfo = await _context.UserInfos.Where(u => u.UserId == userId).FirstOrDefaultAsync();
-			additionalInfo = new UserInfoDto
+			userProfileResponseDto = new UserProfileResponseDto<UserInfoDto>
 			{
-				Position = userInfo.Position,
-				CompanyUserId = userInfo.CompanyUserId
+				UserName = userProfile.UserName,
+				PhoneNumber = userProfile.PhoneNumber,
+				Bio = userProfile.Bio,
+				ProfilePicture = userProfile.ProfilePicture,
+				CoverPicture = userProfile.CoverPicture,
+				Role = userRole,
+				AdditionalInfo = new UserInfoDto
+				{
+					Position = userInfo.Position,
+					CompanyUserId = userInfo.CompanyUserId
+				}
 			};
 		}
 
-		return Ok(new UserProfileResponseDto
-		{
-			UserName = userProfile.UserName,
-			PhoneNumber = userProfile.PhoneNumber,
-			Bio = userProfile.Bio,
-			ProfilePicture = userProfile.ProfilePicture,
-			CoverPicture = userProfile.CoverPicture,
-			Role = userRole,
-			AdditionalInfo = additionalInfo
-		});
+		return Ok(userProfileResponseDto);
 	}
 
 	[Authorize]
