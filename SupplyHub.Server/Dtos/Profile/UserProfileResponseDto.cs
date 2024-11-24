@@ -1,6 +1,6 @@
 ﻿namespace Dtos.Profile;
 
-public class EditUserProfileResponseDto
+public class UserProfileResponseDto
 {
 	public required string UserName { get; set; }
 	public string? PhoneNumber { get; set; }

@@ -52,7 +52,7 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 			};
 		}
 
-		return Ok(new EditUserProfileResponseDto
+		return Ok(new UserProfileResponseDto
 		{
 			UserName = userProfile.UserName,
 			PhoneNumber = userProfile.PhoneNumber,
