@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { UserSignUpRequestDto } from "../../../Dtos/Account/UserSignUpRequestDto.ts";
 import { registerUser } from "../../../api/account.tsx";
 
@@ -23,7 +23,7 @@ const UserSignUpForm: React.FC = () => {
     if (!/[0-9]/.test(password)) {
       return 'Password must include at least one number.';
     }
-    if (!/[!@#$%^&*(),.?":{}|<>~`_+\-=\\[\]\\//]/.test(password)) { 
+    if (!/[!@#$%^&*(),.?":{}|<>~`_+\-=\\[\]\/]/.test(password)) { 
       return 'Password must include at least one special character.';
     }
     return null;
