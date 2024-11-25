@@ -29,13 +29,13 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 		var userRoles = await _userManager.GetRolesAsync(userProfile);
 		var userRole = userRoles.First();
 
-		object userProfileResponseDto = null;
+		object userProfileResponseDto = null!;
 		if (userRole == "Seller")
 		{
 			var sellerInfo = await _context.SellerInfos.Where(u => u.UserId == userId).FirstOrDefaultAsync();
 			userProfileResponseDto = new UserProfileResponseDto<SellerInfoDto>
 			{
-				UserName = userProfile.UserName,
+				UserName = userProfile.UserName!,
 				PhoneNumber = userProfile.PhoneNumber,
 				Bio = userProfile.Bio,
 				ProfilePicture = userProfile.ProfilePicture,
@@ -43,7 +43,7 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 				Role = userRole,
 				AdditionalInfo = new SellerInfoDto
 				{
-					Rating = sellerInfo.Rating,
+					Rating = sellerInfo!.Rating,
 					Socials = sellerInfo.Socials,
 					BusinessType = sellerInfo.BusinessType,
 					Location = sellerInfo.Location
@@ -55,7 +55,7 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 			var userInfo = await _context.UserInfos.Where(u => u.UserId == userId).FirstOrDefaultAsync();
 			userProfileResponseDto = new UserProfileResponseDto<UserInfoDto>
 			{
-				UserName = userProfile.UserName,
+				UserName = userProfile.UserName!,
 				PhoneNumber = userProfile.PhoneNumber,
 				Bio = userProfile.Bio,
 				ProfilePicture = userProfile.ProfilePicture,
@@ -63,7 +63,7 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 				Role = userRole,
 				AdditionalInfo = new UserInfoDto
 				{
-					Position = userInfo.Position,
+					Position = userInfo!.Position,
 					CompanyUserId = userInfo.CompanyUserId
 				}
 			};
@@ -74,7 +74,7 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 
 	[Authorize]
 	[HttpPut("edit-profile")]
-	public async Task<IActionResult> EditProfile([FromBody] EditUserProfileRequestDto editUserProfileRequestDto)
+	public async Task<IActionResult> EditProfile([FromBody] EditUserProfileRequestDto<object> editUserProfileRequestDto)
 	{
 		var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 		if (userId == null)
@@ -83,17 +83,28 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 		}
 
 		var userProfile = await _userManager.FindByIdAsync(userId);
-		if (userProfile == null)
-		{
-			return NotFound("Profile not found");
-		}
-		var userRoles = await _userManager.GetRolesAsync(userProfile);
+		var userRoles = await _userManager.GetRolesAsync(userProfile!);
 		var userRole = userRoles.First();
 
-		userProfile.UserName = editUserProfileRequestDto.UserName;
+		userProfile!.UserName = editUserProfileRequestDto.UserName;
 		userProfile.Bio = editUserProfileRequestDto.Bio;
 		userProfile.ProfilePicture = editUserProfileRequestDto.ProfilePicture;
 		userProfile.CoverPicture = editUserProfileRequestDto.CoverPicture;
+		if (userRole == "Seller")
+		{
+			var sellerInfo = await _context.SellerInfos.Where(u => u.UserId == userProfile.Id).FirstOrDefaultAsync();
+			var additionalInfo = editUserProfileRequestDto?.AdditionalInfo as SellerInfoDto;
+			sellerInfo!.Socials = additionalInfo?.Socials;
+			sellerInfo.BusinessType = additionalInfo?.BusinessType;
+			sellerInfo.Location = additionalInfo?.Location;
+		}
+		else if (userRole == "User")
+		{
+			var userInfo = await _context.UserInfos.Where(u => u.UserId == userProfile.Id).FirstOrDefaultAsync();
+			var additionalInfo = editUserProfileRequestDto?.AdditionalInfo as UserInfoDto;
+			userInfo!.Position = additionalInfo?.Position;
+			userInfo.CompanyUserId = additionalInfo?.CompanyUserId;
+		}
 		await _context.SaveChangesAsync();
 
 		return Ok(new { Message = "Profile updated successfully!" });
