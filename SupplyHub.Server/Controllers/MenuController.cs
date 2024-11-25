@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using SupplyHub.Server.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace SupplyHub.Server.Controllers;
 
@@ -19,14 +20,28 @@ public class MenuController(SupplyhubDbContext context) : ControllerBase
 	[HttpGet("navbar-info")]
 	public async Task<IActionResult> NavbarInfo()
 	{
-		return Ok();
+		if (!User.Identity.IsAuthenticated)
+		{
+			return NoContent();
+		}
+
+		var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+		int intUserId = int.Parse(userId);
+
+		var user = await _context.Users.FindAsync(intUserId);
+		if (user == null)
+		{
+			return NotFound(new { Message = "User not found." });
+		}
+
+		return Ok(user.ProfilePicture);
 	}
 	
 	[Authorize]
 	[HttpPost("inquire-user/{userId}")]
 	public async Task<IActionResult> InquireUser([FromRoute] int userId)
 	{
-		return Ok();
+		return Ok()
 	}
 	
 	[HttpGet("fetch-products-list")]
