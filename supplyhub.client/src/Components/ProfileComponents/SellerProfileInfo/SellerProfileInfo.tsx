@@ -1,19 +1,40 @@
 import { useEffect, useState } from "react";
 import { VscArrowLeft, VscStarFull, VscStarHalf } from "react-icons/vsc";
 import user_image from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ReviewCardList from "../../SellerPagesComponents/SellerReviewsList/SellerReviewsList";
-import ReviewFormPopUp from "../../ProductComponents/ReviewFormPopUp/ReviewFormPopUp";
+
+export interface ReviewRequestDto {
+  rating: number;
+  reviewText: string;
+}
+
 type Props = {};
 
 const SellerProfileInfo = (props: Props) => {
   useEffect(() => {
     document.title = "Seller Profile";
   }, []);
-  const [isReviewFormVisible, setIsReviewFormVisible] = useState(false);
+
+  const location = useLocation(); 
+  const [reviewType, setReviewType] = useState<"product" | "seller" | null>(
+    null
+  );
+
   const handleReviewButtonClick = () => {
-    setIsReviewFormVisible(true);
+   
+    if (location.state?.fromSellerProfile) {
+      setReviewType("seller");
+    } else if (location.state?.fromProductPage) {
+      setReviewType("product");
+    } else {
+      setReviewType(null); 
+    }
+
+   
+    console.log(`Review type: ${reviewType}`);
   };
+
   return (
     <div className="flex flex-col mx-auto max-w-[1100px] w-full pb-20 p-4">
       <div className="relative w-full overflow-visible items-center pb-2">
@@ -69,8 +90,6 @@ const SellerProfileInfo = (props: Props) => {
       <div className="relative w-[610px] -top-36 ml-[510px]">
         <ReviewCardList />
       </div>
-
-      {isReviewFormVisible && <ReviewFormPopUp />}
     </div>
   );
 };
