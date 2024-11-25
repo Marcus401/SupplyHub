@@ -1,5 +1,5 @@
 import React from "react";
-import SellerProfileInfo from "../../Components/ProfileComponents/SellerProfileInfo/SellerProfileInfo";
+import SellerProfileInfo from "../../Components/ProfileComponents/UserSellerProfileInfo/UserSellerProfileInfo";
 import ReviewCardList from "../../Components/SellerPagesComponents/SellerReviewsList/SellerReviewsList";
 
 type Props = {};

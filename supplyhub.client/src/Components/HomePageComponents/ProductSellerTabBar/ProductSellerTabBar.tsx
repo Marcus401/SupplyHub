@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom";
 import ProductCardList from "../../ProductComponents/ProductCardList/ProductCardList";
 import SellerCardList from "../SellerCardList/SellerCardList";
-import { useEffect, useState } from "react";
-import { fetchProductsList, fetchSellersList } from "../../../api/menu";
-import { MenuProductListResponseDtoObj } from "../../../Dtos/Menu/MenuProductListResponseDtoObj";
-import { MenuSellerListResponseDtoObj } from "../../../Dtos/Menu/MenuSellerListResponseDtoObj";
+import { /*useEffect*/ useState } from "react";
+//import { fetchProductsList, fetchSellersList } from "../../../api/menu";
+//import { MenuProductListResponseDtoObj } from "../../../Dtos/Menu/MenuProductListResponseDtoObj";
+//import { MenuSellerListResponseDtoObj } from "../../../Dtos/Menu/MenuSellerListResponseDtoObj";
 
 interface TabProps {
   label: string;
@@ -17,7 +17,8 @@ const Tab: React.FC = () => {
   const initialTab = location.state?.fromSellerProfile ? 1 : 0;
   const [activeTab, setActiveTab] = useState(initialTab);
 
-  const [productsList, setProductsList] = useState<
+  {
+    /*const [productsList, setProductsList] = useState<
     MenuProductListResponseDtoObj[] | null
   >(null);
   const [sellersList, setSellersList] = useState<
@@ -40,11 +41,18 @@ const Tab: React.FC = () => {
       .catch((error) => {
         console.error("Error fetching sellers list:", error);
       });
-  }, []);
+  }, []); */
+  }
 
   const tabs: TabProps[] = [
-    { label: "PRODUCTS", content: <ProductCardList products={productsList} /> },
-    { label: "SELLER", content: <SellerCardList sellers={sellersList} /> },
+    {
+      label: "PRODUCTS",
+      content: <ProductCardList /*products={null} products={productsList}*/ />,
+    },
+    {
+      label: "SELLER",
+      content: <SellerCardList sellers={null} /*sellers={sellersList}*/ />,
+    },
   ];
 
   return (

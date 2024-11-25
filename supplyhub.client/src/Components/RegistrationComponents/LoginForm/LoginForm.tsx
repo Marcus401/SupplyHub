@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from "../../../api/account.tsx";
 import { UserLoginRequestDto } from "../../../Dtos/Account/UserLoginRequestDto.ts";
+import * as jwt_decode from "jwt-decode";
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -45,7 +46,20 @@ const LoginForm: React.FC = () => {
 
     const loginSuccess = await loginUser(loginDto);
     if (loginSuccess) {
-      navigate('/');
+      const token = localStorage.getItem('JwtToken');
+      if (!token) {
+        return;
+      }
+
+      let decodedToken = jwt_decode.jwtDecode<{role : string}>(token);
+      console.log(decodedToken);
+      const role = decodedToken?.role; 
+      
+      if (role === 'Seller') {
+        navigate('/seller/products/list');
+      } else {
+        navigate('/');
+      }
     }
   };
 

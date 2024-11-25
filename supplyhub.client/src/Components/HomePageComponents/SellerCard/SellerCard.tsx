@@ -17,7 +17,10 @@ const SellerCard: React.FC<SellerCardProps> = ({ seller, onInquire }) => {
   };
 
   return (
-    <div className="w-full max-w-[1200px] mx-auto p-4 flex items-center bg-white shadow-lg rounded-lg hover:bg-gray-50 border border-gray-100">
+    <Link
+      to={`/profile/${seller.userId}`}
+      className="w-full max-w-[1200px] mx-auto p-4 no-underline flex items-center bg-white shadow-lg rounded-lg hover:bg-gray-50 border border-gray-100"
+    >
       <div className="w-[100px] h-[100px] bg-gray-200 rounded-lg overflow-hidden">
         <img
           src={
@@ -32,17 +35,22 @@ const SellerCard: React.FC<SellerCardProps> = ({ seller, onInquire }) => {
         />
       </div>
       <div className="ml-6 flex flex-col justify-between">
-        <h1 className="text-lg font-semibold mb-0">{seller.userName}</h1>
-        <p className="text-sm text-gray-600 m-1">{seller.bio}</p>
+        <h1 className="text-lg font-semibold mb-0">
+          {seller.userName || "Seller Name"}
+        </h1>
+        <p className="text-sm text-gray-600 m-1">
+          {seller.bio ||
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit."}
+        </p>
         <Link
-          to={`/chat/${seller.userId}`}
-          className="mt-2 bg-black text-white text-sm px-4 py-1 items-center flex no-underline rounded hover:bg-gray-800 hover:text-white w-max h-9"
-          onClick={handleInquireButtonClick}
+          to="/chat/45" /*{`/chat/${seller.userId}`}*/
+          className="mt-2 bg-black text-white text-sm px-4 py-1 flex items-center no-underline rounded hover:bg-gray-800 w-max h-9"
+          //onClick={handleInquireButtonClick}
         >
           Inquire
         </Link>
       </div>
-    </div>
+    </Link>
   );
 };
 

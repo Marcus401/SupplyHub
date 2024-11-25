@@ -1,36 +1,23 @@
-// supplyhub.client/src/Components/ChatMessageList/ChatMessageList.tsx
+// ChatMessageList.tsx
 
 import React from 'react';
 import ChatMessageExternal from '../ChatMessageExternal/ChatMessageExternal';
 import ChatMessageSelf from '../ChatMessageSelf/ChatMessageSelf';
-
-interface Message {
-    messageID: number;
-    chatUserID: number;
-    text: string;
-    attachment?: File | null;
-}
+import { ChatHistoryResponseObj } from '../../../Dtos/Chat/ChatHistoryResponseObj';
 
 interface ChatMessageListProps {
-    messages: Message[];
+    messages: ChatHistoryResponseObj[]; 
+    userId: number; // Define userId prop here
 }
 
-const ChatMessageList: React.FC<ChatMessageListProps> = ({ messages }) => {
+const ChatMessageList: React.FC<ChatMessageListProps> = ({ messages, userId }) => {
     return (
         <div className="flex-grow p-4 space-y-4 overflow-y-auto">
-            {messages.map((message) =>
-                message.chatUserID === 1 ? (
-                    <ChatMessageSelf
-                        key={message.messageID}  // Assign key separately
-                        text={message.text}
-                        attachment={message.attachment}
-                    />
+            {messages.map((message, index) =>
+                message.userId === userId ? (
+                    <ChatMessageSelf key={index} text={message.text} />
                 ) : (
-                    <ChatMessageExternal
-                        key={message.messageID}  // Assign key separately
-                        text={message.text}
-                        attachment={message.attachment}
-                    />
+                    <ChatMessageExternal key={index} text={message.text} />
                 )
             )}
         </div>
