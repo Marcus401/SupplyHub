@@ -3,5 +3,5 @@
 public class ChatListResponseDtoObj
 {
 	public byte[]? ProfilePicture { get; set; }
-	public required string UserName { get; set; }	
+	public string? UserName { get; set; }	
 }
