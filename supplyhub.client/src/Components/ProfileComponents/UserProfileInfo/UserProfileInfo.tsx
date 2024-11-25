@@ -11,8 +11,7 @@ const UserProfileInfo = () => {
 
   return (
     <div className="flex-col mx-auto max-w-[1100px] w-full p-4">
-      <div className="relative flex h-[50px] overflow-hidden items-center">
-        <img src={coverPic} className="object-cover w-full" />
+      <div className="relative flex h-[50px] overflow-hidden items-center bg-black">
         <Link
           className="absolute top-2 left-2 p-2 rounded-full shadow-lg"
           to="/"
@@ -37,8 +36,8 @@ const UserProfileInfo = () => {
           <h2 className="mb-10 text-4xl font-bold">Name</h2>
         </div>
         <Link
-          className="relative text-black text-2xl -mt-6"
-          to={"/profile/me/edit"}
+          className="relative text-black text-2xl -mt-6 z-10"
+          to="/profile/me/edit"
         >
           <VscEdit />
         </Link>
