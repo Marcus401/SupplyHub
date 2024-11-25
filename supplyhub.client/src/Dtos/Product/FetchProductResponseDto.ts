@@ -1,4 +1,5 @@
-export interface FetchProductResponseDto{
+export interface FetchProductResponseDto {
+    productID: number;
     productName: string;
     productType?: string;
     thumbnail?: Uint8Array;
@@ -6,8 +7,10 @@ export interface FetchProductResponseDto{
     stockAvailable?: number;
     price: number;
     unit?: string;
+    faqQuestions?: string[]; 
+    faqAnswers?: string[];   
     timeFrame?: string;
     description?: string;
-    faqQuestions?: string[];
-    faqAnswers?: string[];
+    isActive?: boolean;
+    dateAdded?: string;
 }
