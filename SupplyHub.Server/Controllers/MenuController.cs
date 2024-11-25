@@ -13,9 +13,10 @@ namespace SupplyHub.Server.Controllers;
 
 [ApiController]
 [Route("api/menu")]
-public class MenuController(SupplyhubDbContext context) : ControllerBase
+public class MenuController(SupplyhubDbContext context, UserManager<User> userManager) : ControllerBase
 {
 	private readonly SupplyhubDbContext _context = context;
+	private readonly UserManager<User> _userManager = userManager;
 
 	[HttpGet("navbar-info")]
 	public async Task<IActionResult> NavbarInfo()
@@ -41,18 +42,47 @@ public class MenuController(SupplyhubDbContext context) : ControllerBase
 	[HttpPost("inquire-user/{userId}")]
 	public async Task<IActionResult> InquireUser([FromRoute] int userId)
 	{
-		return Ok()
+		return Ok();
 	}
 	
 	[HttpGet("fetch-products-list")]
 	public async Task<IActionResult> FetchProductsList()
 	{
-		return Ok();
+		var products = await _context.Products.ToListAsync();
+
+		List<MenuProductListResponseDtoObj> menuProductListResponseDtoObjs = products.Select(p => new MenuProductListResponseDtoObj
+		{
+			Thumbnail = p.Thumbnail,
+			ProductId = p.Id,
+			Price = p.Price,
+			ProductName = p.ProductName,
+			Unit = p.Unit
+		}).ToList();
+
+		return Ok(menuProductListResponseDtoObjs);
 	}
 	
 	[HttpGet("fetch-sellers-list")]
 	public async Task<IActionResult> FetchSellersList()
 	{
-		return Ok();
+		var users = await _context.Users.ToListAsync();
+
+		List<MenuSellerListResponseDtoObj> menuSellerListResponseDtoObjs = new List<MenuSellerListResponseDtoObj>();
+		foreach (var user in users)
+		{
+			var userRoles = await _userManager.GetRolesAsync(user);
+			if (userRoles.First() == "Seller")
+			{
+				menuSellerListResponseDtoObjs.Add(new MenuSellerListResponseDtoObj
+				{
+					ProfilePicture = user.ProfilePicture,
+					UserName = user.UserName!,
+					Bio = user.Bio,
+					UserId = user.Id
+				});
+			}
+		}
+
+		return Ok(menuSellerListResponseDtoObjs);
 	}
 }

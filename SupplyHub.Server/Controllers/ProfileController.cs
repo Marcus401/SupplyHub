@@ -76,40 +76,6 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 	[HttpPut("edit-profile")]
 	public async Task<IActionResult> EditProfile([FromBody] EditUserProfileRequestDto editUserProfileRequestDto)
 	{
-		var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-		if (userId == null)
-		{
-			return Unauthorized();
-		}
-
-		var userProfile = await _userManager.FindByIdAsync(userId);
-		var userRoles = await _userManager.GetRolesAsync(userProfile!);
-		var userRole = userRoles.First();
-
-		userProfile!.UserName = editUserProfileRequestDto.UserName;
-		userProfile.Bio = editUserProfileRequestDto.Bio;
-		userProfile.ProfilePicture = editUserProfileRequestDto.ProfilePicture;
-		userProfile.CoverPicture = editUserProfileRequestDto.CoverPicture;
-		if (userRole == "Seller")
-		{
-			var sellerInfo = await _context.SellerInfos.FindAsync(Convert.ToInt32(userId));
-			var additionalInfo = editUserProfileRequestDto!.AdditionalInfo as Dtos.Profile.SellerInfo;
-			sellerInfo!.Socials = additionalInfo?.Socials;
-			sellerInfo.BusinessType = additionalInfo?.BusinessType;
-			sellerInfo.Location = additionalInfo?.Location;
-			_context.Entry(sellerInfo).State = EntityState.Modified;
-			await _context.SaveChangesAsync();
-		}
-		else if (userRole == "User")
-		{
-			var userInfo = await _context.UserInfos.FindAsync(Convert.ToInt32(userId));
-			var additionalInfo = editUserProfileRequestDto!.AdditionalInfo as Dtos.Profile.UserInfo;
-			userInfo!.Position = additionalInfo?.Position;
-			userInfo.CompanyUserId = additionalInfo?.CompanyUserId;
-			_context.Entry(userInfo).State = EntityState.Modified;
-			await _context.SaveChangesAsync();
-		}
-
-		return Ok("Profile updated successfully!");
+		return Ok();
 	}
 }
