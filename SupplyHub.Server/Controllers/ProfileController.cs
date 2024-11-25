@@ -33,7 +33,7 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 		if (userRole == "Seller")
 		{
 			var sellerInfo = await _context.SellerInfos.Where(u => u.UserId == userId).FirstOrDefaultAsync();
-			userProfileResponseDto = new UserProfileResponseDto<SellerInfoDto>
+			userProfileResponseDto = new UserProfileResponseDto
 			{
 				UserName = userProfile.UserName!,
 				PhoneNumber = userProfile.PhoneNumber,
@@ -41,7 +41,7 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 				ProfilePicture = userProfile.ProfilePicture,
 				CoverPicture = userProfile.CoverPicture,
 				Role = userRole,
-				AdditionalInfo = new SellerInfoDto
+				AdditionalInfo = new Dtos.Profile.SellerInfo
 				{
 					Rating = sellerInfo!.Rating,
 					Socials = sellerInfo.Socials,
@@ -53,7 +53,7 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 		else if (userRole == "User")
 		{
 			var userInfo = await _context.UserInfos.Where(u => u.UserId == userId).FirstOrDefaultAsync();
-			userProfileResponseDto = new UserProfileResponseDto<UserInfoDto>
+			userProfileResponseDto = new UserProfileResponseDto
 			{
 				UserName = userProfile.UserName!,
 				PhoneNumber = userProfile.PhoneNumber,
@@ -61,7 +61,7 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 				ProfilePicture = userProfile.ProfilePicture,
 				CoverPicture = userProfile.CoverPicture,
 				Role = userRole,
-				AdditionalInfo = new UserInfoDto
+				AdditionalInfo = new Dtos.Profile.UserInfo
 				{
 					Position = userInfo!.Position,
 					CompanyUserId = userInfo.CompanyUserId
@@ -74,7 +74,7 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 
 	[Authorize]
 	[HttpPut("edit-profile")]
-	public async Task<IActionResult> EditProfile([FromBody] EditUserProfileRequestDto<object> editUserProfileRequestDto)
+	public async Task<IActionResult> EditProfile([FromBody] EditUserProfileRequestDto editUserProfileRequestDto)
 	{
 		var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 		if (userId == null)
@@ -92,21 +92,24 @@ public class ProfileController(SupplyhubDbContext context, UserManager<User> use
 		userProfile.CoverPicture = editUserProfileRequestDto.CoverPicture;
 		if (userRole == "Seller")
 		{
-			var sellerInfo = await _context.SellerInfos.Where(u => u.UserId == userProfile.Id).FirstOrDefaultAsync();
-			var additionalInfo = editUserProfileRequestDto?.AdditionalInfo as SellerInfoDto;
+			var sellerInfo = await _context.SellerInfos.FindAsync(Convert.ToInt32(userId));
+			var additionalInfo = editUserProfileRequestDto!.AdditionalInfo as Dtos.Profile.SellerInfo;
 			sellerInfo!.Socials = additionalInfo?.Socials;
 			sellerInfo.BusinessType = additionalInfo?.BusinessType;
 			sellerInfo.Location = additionalInfo?.Location;
+			_context.Entry(sellerInfo).State = EntityState.Modified;
+			await _context.SaveChangesAsync();
 		}
 		else if (userRole == "User")
 		{
-			var userInfo = await _context.UserInfos.Where(u => u.UserId == userProfile.Id).FirstOrDefaultAsync();
-			var additionalInfo = editUserProfileRequestDto?.AdditionalInfo as UserInfoDto;
+			var userInfo = await _context.UserInfos.FindAsync(Convert.ToInt32(userId));
+			var additionalInfo = editUserProfileRequestDto!.AdditionalInfo as Dtos.Profile.UserInfo;
 			userInfo!.Position = additionalInfo?.Position;
 			userInfo.CompanyUserId = additionalInfo?.CompanyUserId;
+			_context.Entry(userInfo).State = EntityState.Modified;
+			await _context.SaveChangesAsync();
 		}
-		await _context.SaveChangesAsync();
 
-		return Ok(new { Message = "Profile updated successfully!" });
+		return Ok("Profile updated successfully!");
 	}
 }

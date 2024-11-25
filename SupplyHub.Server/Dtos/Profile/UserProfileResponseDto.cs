@@ -1,6 +1,6 @@
 ﻿namespace Dtos.Profile;
 
-public class UserProfileResponseDto<T>
+public class UserProfileResponseDto
 {
 	public required string UserName { get; set; }
 	public string? PhoneNumber { get; set; }
@@ -8,5 +8,5 @@ public class UserProfileResponseDto<T>
 	public byte[]? ProfilePicture { get; set; }
 	public byte[]? CoverPicture { get; set; }
 	public required string Role { get; set; }
-	public required T AdditionalInfo { get; set; }
+	public required object AdditionalInfo { get; set; }
 }
