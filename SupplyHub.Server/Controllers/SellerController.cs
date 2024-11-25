@@ -24,8 +24,33 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
 	[HttpGet("products-list")]
 	public async Task<IActionResult> ProductsList()
 	{
-		return Ok();
-	}
+        var user = await _userManager.FindByNameAsync(User.Identity?.Name);
+        if (user == null)
+        {
+            return Unauthorized(new { Message = "User not found" });
+        }
+
+        try
+        {
+            var products = await _context.Products
+                .Where(p => p.UserId == user.Id)
+                .Select(p => new SellerProductListResponseDtoObj
+                {
+                    ProductName = p.ProductName,
+                    Thumbnail = p.Thumbnail,
+                    Description = p.Description,
+                    StockAvailable = p.StockAvailable,
+                    IsAvailable = p.IsActive
+                })
+                .ToListAsync();
+
+            return Ok(new { Products = products });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { Message = "Failed to retrieve products", Error = ex.Message });
+        }
+    }
 
     [Authorize(Roles = "Seller")]
     [HttpPut("add-product")]
@@ -82,13 +107,79 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
 	[HttpPost("edit-product/{productId}")]
 	public async Task<IActionResult> EditProduct([FromRoute] int productId, [FromBody] ProductRequestDto productRequestDto)
 	{
-		return Ok();
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var user = await _userManager.FindByNameAsync(User.Identity?.Name);
+        if (user == null)
+        {
+            return Unauthorized(new { Message = "User not found" });
+        }
+
+        var product = await _context.Products
+            .FirstOrDefaultAsync(p => p.Id == productId && p.UserId == user.Id);
+
+        if (product == null)
+        {
+            return NotFound(new { Message = "Product not found or you don't have permission to edit it" });
+        }
+
+        try
+        {
+            product.ProductName = productRequestDto.ProductName;
+            product.ProductType = productRequestDto.ProductType;
+            product.StockAvailable = productRequestDto.StockAvailable;
+            product.Price = productRequestDto.Price;
+            product.Unit = productRequestDto.Unit;
+            product.Timeframe = productRequestDto.Timeframe;
+            product.Description = productRequestDto.Description;
+            product.Thumbnail = productRequestDto.Thumbnail;
+            product.Images = productRequestDto.Images;
+            product.FaqQuestions = productRequestDto.FaqQuestions;
+            product.FaqAnswers = productRequestDto.FaqAnswers;
+
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Product updated successfully" });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { Message = "Failed to update product", Error = ex.Message });
+        }
 	}
 
 	[Authorize(Roles = "Seller")]
 	[HttpPatch("activate-product/{productId}")]
 	public async Task<IActionResult> ActivateProduct([FromRoute] int productId, [FromBody] bool activate)
 	{
-		return Ok();
+        var user = await _userManager.FindByNameAsync(User.Identity?.Name);
+        if (user == null)
+        {
+            return Unauthorized(new { Message = "User not found" });
+        }
+
+        var product = await _context.Products
+            .FirstOrDefaultAsync(p => p.Id == productId && p.UserId == user.Id);
+
+        if (product == null)
+        {
+            return NotFound(new { Message = "Product not found or you don't have permission to modify it" });
+        }
+
+        try
+        {
+            product.IsActive = activate;
+            await _context.SaveChangesAsync();
+
+            string status = activate ? "activated" : "deactivated";
+            return Ok(new { Message = $"Product successfully {status}" });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { Message = "Failed to update product status", Error = ex.Message });
+        }
 	}
 }
