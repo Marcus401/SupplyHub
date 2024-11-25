@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import {Link, useNavigate} from 'react-router-dom';
+=======
+import { Link, useNavigate } from 'react-router-dom';
+>>>>>>> reyes
 import { UserSignUpRequestDto } from "../../../Dtos/Account/UserSignUpRequestDto.ts";
 import { registerUser } from "../../../api/account.tsx";
 
