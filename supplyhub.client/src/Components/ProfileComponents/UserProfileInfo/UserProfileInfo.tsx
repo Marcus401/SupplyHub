@@ -36,8 +36,8 @@ const UserProfileInfo = () => {
           <h2 className="mb-10 text-4xl font-bold">Name</h2>
         </div>
         <Link
-          className="relative text-black text-2xl -mt-6 z-10"
-          to="/profile/me/edit"
+          to={"/profile/edit"}
+          className="relative text-black text-2xl -mt-6"
         >
           <VscEdit />
         </Link>

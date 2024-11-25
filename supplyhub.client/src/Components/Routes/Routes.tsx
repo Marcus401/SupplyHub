@@ -85,7 +85,10 @@ export const router = createBrowserRouter([
           {
             path: "me",
             element: <UserProfileInfo />,
-            children: [{ path: "edit", element: <UserProfileInfoEdit /> }],
+          },
+          {
+            path: "edit",
+            element: <UserProfileInfoEdit />,
           },
           {
             path: ":user_id",
