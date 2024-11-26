@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { SellerSignUpRequestDto } from "../../../Dtos/Account/SellerSignUpRequestDto.ts";
 import { registerSeller } from "../../../api/account.tsx";
 
@@ -35,7 +35,6 @@ const SellerSignUpForm: React.FC = () => {
     const inputPassword = e.target.value;
     setPassword(inputPassword);
 
-  
     const validationMessage = validatePassword(inputPassword);
     setPasswordError(validationMessage);
   };
@@ -71,54 +70,64 @@ const SellerSignUpForm: React.FC = () => {
         backgroundColor: 'rgba(0, 0, 0, 0.6)',
       }}
     >
-      <form onSubmit={handleSubmit} className="w-full relative">
-        {[ 
-          { id: 'firstname', label: 'First Name', value: firstName, setter: setFirstName },
-          { id: 'lastname', label: 'Last Name', value: lastName, setter: setLastName },
-          { id: 'email', label: 'Email', value: email, setter: setEmail, type: 'email' },
-          { id: 'location', label: 'Location', value: location, setter: setLocation },
-        ].map(({ id, label, value, setter, type = 'text' }) => (
-          <div key={id} className="mb-4">
-            <label htmlFor={id} className="block text-white font-semibold mb-2">{label}:</label>
+      <div className="w-full relative">
+        {/* User Sign-Up Link at the top */}
+        <p className="text-center text-white mb-4">
+          Signing up as a user?{' '}
+          <Link to="/register/user" className="text-blue-400 underline hover:text-blue-600">
+            Click here
+          </Link>
+        </p>
+
+        <form onSubmit={handleSubmit} className="w-full relative">
+          {[ 
+            { id: 'firstname', label: 'First Name', value: firstName, setter: setFirstName },
+            { id: 'lastname', label: 'Last Name', value: lastName, setter: setLastName },
+            { id: 'email', label: 'Email', value: email, setter: setEmail, type: 'email' },
+            { id: 'location', label: 'Location', value: location, setter: setLocation },
+          ].map(({ id, label, value, setter, type = 'text' }) => (
+            <div key={id} className="mb-4">
+              <label htmlFor={id} className="block text-white font-semibold mb-2">{label}:</label>
+              <input
+                type={type}
+                id={id}
+                value={value}
+                onChange={(e) => setter(e.target.value)}
+                required
+                className="w-full px-4 py-2 border border-gray-300 bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-white"
+              />
+            </div>
+          ))}
+          
+          <div className="mb-4 relative">
+            <label htmlFor="password" className="block text-white font-semibold mb-2">Password:</label>
             <input
-              type={type}
-              id={id}
-              value={value}
-              onChange={(e) => setter(e.target.value)}
+              type="password"
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
               required
               className="w-full px-4 py-2 border border-gray-300 bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-white"
             />
+            
+            {passwordError && (
+              <div
+                className="absolute right-0 top-0 mt-2 text-black bg-white text-xs p-2 rounded shadow-lg"
+                style={{ width: '200px', transform: 'translateX(110%)', zIndex: 10 }}
+              >
+                {passwordError}
+              </div>
+            )}
           </div>
-        ))}
-        
-        <div className="mb-4 relative">
-          <label htmlFor="password" className="block text-white font-semibold mb-2">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-            className="w-full px-4 py-2 border border-gray-300 bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-white"
-          />
-          
-          {passwordError && (
-            <div
-              className="absolute right-0 top-0 mt-2 text-black bg-white text-xs p-2 rounded shadow-lg"
-              style={{ width: '200px', transform: 'translateX(110%)', zIndex: 10 }}
-            >
-              {passwordError}
-            </div>
-          )}
-        </div>
 
-        <button
-          type="submit"
-          className="w-full bg-white text-black py-2 rounded hover:bg-gray-300 transition"
-        >
-          Sign Up
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="w-full bg-white text-black py-2 rounded hover:bg-gray-300 transition"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

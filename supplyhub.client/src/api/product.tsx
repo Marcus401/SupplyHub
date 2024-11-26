@@ -3,7 +3,7 @@ import {FetchProductResponseDto} from "../Dtos/Product/FetchProductResponseDto.t
 
 export const fetchProduct = async (productId : number): Promise<FetchProductResponseDto | null> => {
     try{
-        const response =  await api.get(`/fetch-product/${productId}`)
+        const response =  await api.get(`/product/fetch-product/${productId}`)
         return response.data as FetchProductResponseDto;
     } catch (error) {
         handleApiError(error, 'Error Fetching Product Information');

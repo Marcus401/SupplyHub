@@ -1,38 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import SellerProductCard from '../SellerProductCard/SellerProductCard';
-import { ProductRequestDto } from '../../../Dtos/Seller/ProductRequestDto';
 import { Link } from 'react-router-dom';
-
-const fetchSellerProducts = async (): Promise<ProductRequestDto[]> => {
-    const response = await fetch('/api/seller/products.tsx');
-    if (!response.ok) {
-        throw new Error('Failed to fetch products');
-    }
-    const data: ProductRequestDto[] = await response.json();
-    return data;
-};
+import {SellerProductListResponseDtoObj} from "../../../Dtos/Seller/SellerProductListResponseDtoObj.ts";
+import {productsList} from "../../../api/seller.tsx";
 
 const SellerProductCardList: React.FC = () => {
-    const [products, setProducts] = useState<ProductRequestDto[]>([]);
+    const [products, setProducts] = useState<SellerProductListResponseDtoObj[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         document.title = 'My Products';
 
-        const loadProducts = async () => {
+        const fetchProducts = async () => {
             try {
-                const fetchedProducts = await fetchSellerProducts();
-                setProducts(fetchedProducts);
+                const fetchedProducts = await productsList(); // Assuming productsList() returns a Promise
+                if (fetchedProducts === null) {
+                    return;
+                }
+                if(fetchedProducts.length === 0){
+                    setError('No products found.');
+                    return;
+                }
+                setProducts(fetchedProducts);  
             } catch (err) {
                 setError('Error fetching products. Please try again.');
-                console.error(err);
             } finally {
                 setLoading(false);
             }
         };
 
-        loadProducts();
+        fetchProducts();
     }, []);
 
     return (

@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 import product_image from "../../../assets/upload_image_placeholder.png";
+import {ProductRequestDto} from "../../../Dtos/Seller/ProductRequestDto.ts";
 
 type Props = {};
 
@@ -10,7 +11,7 @@ interface FAQ {
 
 const SellerAddProductForm = (props: Props) => {
   useEffect(() => {
-    document.title = 'Add Product';
+    document.title = "Add Product";
   }, []);
 
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -72,7 +73,9 @@ const SellerAddProductForm = (props: Props) => {
     setPriceUnit(e.target.value);
   };
 
-  const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleDescriptionChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setDescription(e.target.value);
   };
 
@@ -92,6 +95,7 @@ const SellerAddProductForm = (props: Props) => {
 
   const addProduct = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    
 
     // Check for empty fields and set errors accordingly
     const newErrors = {
@@ -104,19 +108,29 @@ const SellerAddProductForm = (props: Props) => {
       description: description === "",
       image: imageFile === null,
     };
-
-    // Update the errors state with the validation results
+    
     setErrors(newErrors);
-
-    // If any field is invalid, do not proceed with submission
+    
     const hasEmptyFields = Object.values(newErrors).includes(true);
     if (hasEmptyFields) {
-      setFailedSubmission(true);  // Optionally, you can use this state to show a global failure message
+      setFailedSubmission(true); // Optionally, you can use this state to show a global failure message
     } else {
-      // Proceed with product addition (e.g., submit data)
-      // Reset failed submission status
       setFailedSubmission(false);
     }
+    
+    const newProduct: ProductRequestDto = {
+      productName,
+      productType: category,
+      stockAvailable: stock,
+      price,
+      unit: priceUnit,
+      timeframe: stockUnit,
+      description,
+      faqQuestions: faqs.map((faq) => faq.question),
+      faqAnswers: faqs.map((faq) => faq.answer),
+    };
+    
+    
   };
 
   const handleAddImageButtonClick = () => {
@@ -165,7 +179,7 @@ const SellerAddProductForm = (props: Props) => {
         />
         <label htmlFor="imageUpload">
           <img
-            src={product_image}
+            src={imageFile ? URL.createObjectURL(imageFile) : product_image}
             alt="product image"
             className="w-[200px] h-[200px] rounded-2xl row-span-3 row-start-1 col-start-1 mx-4 mt-2 cursor-pointer"
           />
@@ -178,26 +192,45 @@ const SellerAddProductForm = (props: Props) => {
         </label>
         <input
           type="text"
-          className={`w-full p-2 border ${errors.productName ? 'border-red-500' : 'border-gray-300'} rounded-lg mb-2`}
+          className={`w-full p-2 border ${
+            errors.productName ? "border-red-500" : "border-gray-300"
+          } rounded-lg mb-2`}
           onChange={handleProductNameChange}
         />
-        {errors.productName && <p className="text-red-500 text-sm">Product name is required.</p>}
+        {errors.productName && (
+          <p className="text-red-500 text-sm">Product name is required.</p>
+        )}
       </div>
 
       <div className="row-start-4 md:row-start-3 col-start-1 md:col-start-2 lg:row-start-3 lg:col-start-2">
-        <label htmlFor="comboBox" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="comboBox"
+          className="block text-sm font-medium text-gray-700"
+        >
           Category
         </label>
         <select
           id="comboBox"
           onChange={handleCategoryChange}
-          className={`mt-1 block w-full rounded-md border ${errors.category ? 'border-red-500' : 'border-gray-300'} shadow-sm`}
+          className={`mt-1 block w-full rounded-md border ${
+            errors.category ? "border-red-500" : "border-gray-300"
+          } shadow-sm`}
         >
-          <option value="Option 1">Option 1</option>
-          <option value="Option 2">Option 2</option>
-          <option value="Option 3">Option 3</option>
+          <option value="Option 1">Food & Drinks</option>
+          <option value="Option 2">Hygiene</option>
+          <option value="Option 3">Clothing & Accesories</option>
+          <option value="Option 4">Make-up & Skincare</option>
+          <option value="Option 5">Hardware Supplies</option>
+          <option value="Option 6">Computer Parts</option>
+          <option value="Option 7">Furniture</option>
+          <option value="Option 8">Art Supplies</option>
+          <option value="Option 9">Pet Supplies</option>
+          <option value="Option 10">Toys</option>
+          <option value="Option 11">Books</option>
         </select>
-        {errors.category && <p className="text-red-500 text-sm">Category is required.</p>}
+        {errors.category && (
+          <p className="text-red-500 text-sm">Category is required.</p>
+        )}
       </div>
 
       <div className="row-start-5 md:row-start-4 col-start-1 md:col-start-2 lg:row-start-3 lg:col-start-3">
@@ -214,17 +247,23 @@ const SellerAddProductForm = (props: Props) => {
       </div>
 
       <div className="row-start-6 md:row-start-5 col-start-1 md:col-span-2 lg:row-start-3 lg:col-start-4 lg:col-span-3">
-        <label htmlFor="comboBox" className="block text-sm font-medium text-gray-700">
-          Per ???
+        <label
+          htmlFor="comboBox"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Time Period
         </label>
         <select
           id="comboBox"
           onChange={handleStockUnitChange}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         >
-          <option value="Option 1">Option 1</option>
-          <option value="Option 2">Option 2</option>
-          <option value="Option 3">Option 3</option>
+          <option value="Option 1">Weekly</option>
+          <option value="Option 2">Forthnightly</option>
+          <option value="Option 3">Monthly</option>
+          <option value="Option 4">Quarterly</option>
+          <option value="Option 5">Semi-Annually</option>
+          <option value="Option 6">Annually</option>
         </select>
       </div>
 
@@ -240,14 +279,21 @@ const SellerAddProductForm = (props: Props) => {
             step="100"
             type="number"
             id="price"
-            className={`w-full p-2 border ${errors.price ? 'border-red-500' : 'border-gray-300'} rounded-lg mb-2`}
+            className={`w-full p-2 border ${
+              errors.price ? "border-red-500" : "border-gray-300"
+            } rounded-lg mb-2`}
           />
         </div>
-        {errors.price && <p className="text-red-500 text-sm">Price is required.</p>}
+        {errors.price && (
+          <p className="text-red-500 text-sm">Price is required.</p>
+        )}
       </div>
 
       <div className="row-start-8 md:row-start-7 col-start-1 md:col-span-2 lg:row-start-4 lg:col-start-3 lg:col-span-1">
-        <label htmlFor="comboBox" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="comboBox"
+          className="block text-sm font-medium text-gray-700"
+        >
           Per ???
         </label>
         <select
@@ -255,9 +301,10 @@ const SellerAddProductForm = (props: Props) => {
           onChange={handlePriceUnitChange}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         >
-          <option value="Option 1">Option 1</option>
-          <option value="Option 2">Option 2</option>
-          <option value="Option 3">Option 3</option>
+          <option value="Option 1">Pre-unit</option>
+          <option value="Option 2">Kilogram</option>
+          <option value="Option 3">Gallon</option>
+          <option value="Option 4">Dozen </option>
         </select>
       </div>
 
@@ -272,16 +319,24 @@ const SellerAddProductForm = (props: Props) => {
                 <textarea
                   onChange={handleDescriptionChange}
                   id="description"
-                  className={`w-full p-2 border ${errors.description ? 'border-red-500' : 'border-gray-300'} rounded-lg mb-2 h-[10rem]`}
+                  className={`w-full p-2 border ${
+                    errors.description ? "border-red-500" : "border-gray-300"
+                  } rounded-lg mb-2 h-[10rem]`}
                 />
-                {errors.description && <p className="text-red-500 text-sm">Description is required.</p>}
+                {errors.description && (
+                  <p className="text-red-500 text-sm">
+                    Description is required.
+                  </p>
+                )}
               </div>
             </div>
           </div>
 
           {/* FAQ Section */}
           <div className="mb-6">
-            <h4 className="text-lg font-bold mb-2">Frequently Asked Questions</h4>
+            <h4 className="text-lg font-bold mb-2">
+              Frequently Asked Questions
+            </h4>
             <div className="mb-4">
               <input
                 type="text"
@@ -307,28 +362,33 @@ const SellerAddProductForm = (props: Props) => {
 
             {/* Render FAQ List */}
             <div className="space-y-4">
-            {faqs.map((faq, index) => (
-                <div key={index} className="border border-gray-300 rounded-lg p-3 shadow-sm">
+              {faqs.map((faq, index) => (
                 <div
+                  key={index}
+                  className="border border-gray-300 rounded-lg p-3 shadow-sm"
+                >
+                  <div
                     className="flex justify-between items-center cursor-pointer"
                     onClick={() => toggleFaq(index)}
-                >
+                  >
                     <p
-                    className={`font-medium ${
-                        expandedIndex === index ? 'text-blue-500' : 'text-gray-800'
-                    }`}
+                      className={`font-medium ${
+                        expandedIndex === index
+                          ? "text-blue-500"
+                          : "text-gray-800"
+                      }`}
                     >
-                    {faq.question}
+                      {faq.question}
                     </p>
                     <button className="text-blue-500 font-bold text-xl">
-                    {expandedIndex === index ? '-' : '+'}
+                      {expandedIndex === index ? "-" : "+"}
                     </button>
-                </div>
-                {expandedIndex === index && (
+                  </div>
+                  {expandedIndex === index && (
                     <p className="mt-2 text-gray-600">{faq.answer}</p>
-                )}
+                  )}
                 </div>
-            ))}
+              ))}
             </div>
           </div>
 
@@ -361,7 +421,7 @@ const SellerAddProductForm = (props: Props) => {
         </div>
       </div>
 
-      <div className="row-start-11 md:row-start-10 col-start-1 md:col-span-2 lg:row-start-7 lg:col-span-3 relative lg:ml-8">
+      <div className="row-start-12 md:row-start-12 col-start-1 md:col-span-2 lg:row-start-7 lg:col-span-3 relative lg:ml-8">
         <div className="flex-col">
           {imageList.map((image, index) => (
             <div key={index} className="flex items-center space-x-2">

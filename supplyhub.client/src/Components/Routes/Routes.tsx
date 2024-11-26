@@ -7,8 +7,6 @@ import SellerSignUpForm from "../RegistrationComponents/SellerSignUpForm/SellerS
 import Login from "../../Pages/Login/Login.tsx";
 import SearchResults from "../../Pages/SearchResults/SearchResults.tsx";
 import Profile from "../../Pages/Profile/Profile.tsx";
-import SellerProfileInfo from "../ProfileComponents/SellerProfileInfo/SellerProfileInfo.tsx";
-import SellerProfileInfoEdit from "../ProfileComponents/SellerProfileInfoEdit/SellerProfileInfoEdit.tsx";
 import UserProfileInfoEdit from "../ProfileComponents/UserProfileInfoEdit/UserProfileInfoEdit.tsx";
 import UserProfileInfo from "../ProfileComponents/UserProfileInfo/UserProfileInfo.tsx";
 import Chat from "../../Pages/Chat/Chat.tsx";
@@ -85,7 +83,10 @@ export const router = createBrowserRouter([
           {
             path: "me",
             element: <UserProfileInfo />,
-            children: [{ path: "edit", element: <UserProfileInfoEdit /> }],
+          },
+          {
+            path: "edit",
+            element: <UserProfileInfoEdit />,
           },
           {
             path: ":user_id",
@@ -136,5 +137,5 @@ export const router = createBrowserRouter([
       { path: "design", element: <Design /> },
     ],
   },
-  { path: "*", element: <Error404 /> },
+  { path: "*", element: <Error404 />, errorElement: <Navigate to="/" /> },
 ]);

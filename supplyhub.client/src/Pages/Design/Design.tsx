@@ -1,5 +1,5 @@
 import React from "react";
-import UserProfileInfoEdit from "../../Components/ProfileComponents/UserProfileInfoEdit/UserProfileInfoEdit";
+import Advertising from "../Advertising/Advertising";
 
 type Props = {};
 
@@ -7,7 +7,7 @@ const Design = (props: Props) => {
   return (
     <div>
       <div>
-        <UserProfileInfoEdit />
+        <Advertising />
       </div>
     </div>
   );

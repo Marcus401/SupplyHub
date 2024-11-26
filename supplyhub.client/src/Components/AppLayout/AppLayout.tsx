@@ -8,7 +8,6 @@ const AppLayout = () => {
         "/login",
         "/register/user",
         "/register/seller",
-        "/seller/advertising",
         "/settings",
         "*",
     ];

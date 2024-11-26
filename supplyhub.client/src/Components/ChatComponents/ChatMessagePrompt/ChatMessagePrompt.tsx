@@ -1,5 +1,3 @@
-// supplyhub.client/src/Components/ChatMessagePrompt/ChatMessagePrompt.tsx
-
 import React, { ChangeEvent, FormEvent } from 'react';
 
 interface ChatMessagePromptProps {

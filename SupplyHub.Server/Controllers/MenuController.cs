@@ -29,13 +29,13 @@ public class MenuController(SupplyhubDbContext context, UserManager<User> userMa
 		var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 		int intUserId = int.Parse(userId);
 
-		var user = await _context.Users.FindAsync(intUserId);
-		if (user == null)
+		var myProfile = await _context.Users.FindAsync(intUserId);
+		if (myProfile == null)
 		{
 			return NotFound(new { Message = "User not found." });
 		}
 
-		return Ok(user.ProfilePicture);
+		return File(myProfile.ProfilePicture, "image/png");
 	}
 	
 	[Authorize]

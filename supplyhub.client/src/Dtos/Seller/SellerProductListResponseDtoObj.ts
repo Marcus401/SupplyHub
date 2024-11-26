@@ -4,4 +4,5 @@ export interface SellerProductListResponseDtoObj{
     description?: string;
     stockAvailable?: number;
     isAvailable: boolean;
+    productId: number;
 }

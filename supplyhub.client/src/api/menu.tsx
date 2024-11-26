@@ -2,15 +2,23 @@
 import {MenuProductListResponseDtoObj} from "../Dtos/Menu/MenuProductListResponseDtoObj.ts";
 import {MenuSellerListResponseDtoObj} from "../Dtos/Menu/MenuSellerListResponseDtoObj.ts";
 
-export const navbarInfo = async (): Promise<Uint8Array | null> => {
-    try{
-        const response =  await api.get(`/menu/navbar-info`)
-        return response.data as Uint8Array;
+export const navbarInfo = async (): Promise<string | null> => {
+    try {
+        const response = await api.get('/menu/navbar-info', { responseType: 'blob' });
+        
+        const blobData = response.data as Blob;
+
+        if (response.status === 200) {
+            return URL.createObjectURL(blobData); 
+        }
+
+        console.error('Failed to fetch navbar info. Response status:', response.status);
+        return null;
     } catch (error) {
-        handleApiError(error, 'Error Fetching Navbar Info');
+        console.error('Error fetching navbar info:', error);
         return null;
     }
-}
+};
 
 export const inquireUser = async (userId : number): Promise<number | null> => {
     try{
