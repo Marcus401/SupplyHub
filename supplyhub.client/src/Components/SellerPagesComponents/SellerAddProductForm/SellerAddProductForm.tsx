@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import product_image from "../../../assets/upload_image_placeholder.png";
+import {ProductRequestDto} from "../../../Dtos/Seller/ProductRequestDto.ts";
 
 type Props = {};
 
@@ -94,6 +95,7 @@ const SellerAddProductForm = (props: Props) => {
 
   const addProduct = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    
 
     // Check for empty fields and set errors accordingly
     const newErrors = {
@@ -106,19 +108,29 @@ const SellerAddProductForm = (props: Props) => {
       description: description === "",
       image: imageFile === null,
     };
-
-    // Update the errors state with the validation results
+    
     setErrors(newErrors);
-
-    // If any field is invalid, do not proceed with submission
+    
     const hasEmptyFields = Object.values(newErrors).includes(true);
     if (hasEmptyFields) {
       setFailedSubmission(true); // Optionally, you can use this state to show a global failure message
     } else {
-      // Proceed with product addition (e.g., submit data)
-      // Reset failed submission status
       setFailedSubmission(false);
     }
+    
+    const newProduct: ProductRequestDto = {
+      productName,
+      productType: category,
+      stockAvailable: stock,
+      price,
+      unit: priceUnit,
+      timeframe: stockUnit,
+      description,
+      faqQuestions: faqs.map((faq) => faq.question),
+      faqAnswers: faqs.map((faq) => faq.answer),
+    };
+    
+    
   };
 
   const handleAddImageButtonClick = () => {
@@ -167,7 +179,7 @@ const SellerAddProductForm = (props: Props) => {
         />
         <label htmlFor="imageUpload">
           <img
-            src={product_image}
+            src={imageFile ? URL.createObjectURL(imageFile) : product_image}
             alt="product image"
             className="w-[200px] h-[200px] rounded-2xl row-span-3 row-start-1 col-start-1 mx-4 mt-2 cursor-pointer"
           />
@@ -239,7 +251,7 @@ const SellerAddProductForm = (props: Props) => {
           htmlFor="comboBox"
           className="block text-sm font-medium text-gray-700"
         >
-          Per
+          Time Period
         </label>
         <select
           id="comboBox"
@@ -409,7 +421,7 @@ const SellerAddProductForm = (props: Props) => {
         </div>
       </div>
 
-      <div className="row-start-11 md:row-start-10 col-start-1 md:col-span-2 lg:row-start-7 lg:col-span-3 relative lg:ml-8">
+      <div className="row-start-12 md:row-start-12 col-start-1 md:col-span-2 lg:row-start-7 lg:col-span-3 relative lg:ml-8">
         <div className="flex-col">
           {imageList.map((image, index) => (
             <div key={index} className="flex items-center space-x-2">

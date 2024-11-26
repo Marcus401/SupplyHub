@@ -28,7 +28,6 @@ const SellerEditProductForm = (props: Props) => {
   const [faqs, setFaqs] = useState<FAQ[]>([]);
   const [faqQuestion, setFaqQuestion] = useState<string>("");
   const [faqAnswer, setFaqAnswer] = useState<string>("");
-  const [isAddProductVisible, setIsAddProductVisible] = useState<boolean>(true);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -185,7 +184,7 @@ const SellerEditProductForm = (props: Props) => {
           htmlFor="comboBox"
           className="block text-sm font-medium text-gray-700"
         >
-          Per ???
+          Time Period
         </label>
         <select
           id="comboBox"
