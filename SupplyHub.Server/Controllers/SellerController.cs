@@ -40,7 +40,8 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
                     Thumbnail = p.Thumbnail,
                     Description = p.Description,
                     StockAvailable = p.StockAvailable,
-                    IsAvailable = p.IsActive
+                    IsAvailable = p.IsActive,
+                    ProductId = p.Id
                 })
                 .ToListAsync();
 
