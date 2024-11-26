@@ -42,10 +42,6 @@ const NavBar = () => {
         });
   }, []);  // Empty dependency array means it runs only once after component mounts
   
-  useEffect(() => {
-    console.log("Generated Object URL:", userImage);
-  }, [userImage]);
-  
   return (
     <div>
       <div className="flex justify-end items-center px-4 py-0 bg-white text-sm font-medium text-black space-x-7">

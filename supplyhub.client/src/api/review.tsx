@@ -3,7 +3,7 @@ import {ReviewRequestDto} from "../Dtos/Review/ReviewRequestDto.ts";
 
 export const reviewSeller = async (sellerUserId : number, dto : ReviewRequestDto): Promise<boolean | null> => {
     try{
-        const response =  await api.post(`/review-seller/${sellerUserId}`, dto)
+        const response =  await api.post(`/review/review-seller/${sellerUserId}`, dto)
         if (typeof response.data === 'boolean') {
             return response.data;
         }
@@ -17,7 +17,7 @@ export const reviewSeller = async (sellerUserId : number, dto : ReviewRequestDto
 
 export const reviewProduct = async (productId : number, dto : ReviewRequestDto): Promise<boolean | null> => {
     try{
-        const response =  await api.post(`/review-product/${productId}`, dto)
+        const response =  await api.post(`/review/review-product/${productId}`, dto)
         if (typeof response.data === 'boolean') {
             return response.data;
         }

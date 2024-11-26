@@ -1,9 +1,9 @@
 import React from 'react';
-import { ProductRequestDto } from '../../../Dtos/Seller/ProductRequestDto';
 import { Link } from 'react-router-dom';
+import {SellerProductListResponseDtoObj} from "../../../Dtos/Seller/SellerProductListResponseDtoObj.ts";
 
 type Props = {
-    product: ProductRequestDto; 
+    product: SellerProductListResponseDtoObj; 
 };
 
 const SellerProductCard: React.FC<Props> = ({ product }) => {

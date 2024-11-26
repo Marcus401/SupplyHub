@@ -4,7 +4,7 @@ import {UserProfileResponseDto} from "../Dtos/Profile/UserProfileResponseDto.ts"
 
 export const fetchUser = async (userId : number): Promise<UserProfileResponseDto | null> => {
     try{
-        const response =  await api.get(`/fetch-user/${userId}`)
+        const response =  await api.get(`/profile/fetch-user/${userId}`)
         return response.data as UserProfileResponseDto;
     } catch (error) {
         handleApiError(error, 'Error Fetching User Information');
@@ -14,7 +14,7 @@ export const fetchUser = async (userId : number): Promise<UserProfileResponseDto
 
 export const editProfile = async (dto : EditUserProfileRequestDto): Promise<UserProfileResponseDto | null> => {
     try{
-        const response =  await api.put(`/edit-profile`, dto)
+        const response =  await api.put(`/profile/edit-profile`, dto)
         return response.data as UserProfileResponseDto;
     } catch (error) {
         handleApiError(error, 'Error Editing Profile');
