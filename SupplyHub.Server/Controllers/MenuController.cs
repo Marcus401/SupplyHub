@@ -42,7 +42,38 @@ public class MenuController(SupplyhubDbContext context, UserManager<User> userMa
 	[HttpPost("inquire-user/{userId}")]
 	public async Task<IActionResult> InquireUser([FromRoute] int userId)
 	{
-		return Ok();
+		var fromUser = User.FindFirst(ClaimTypes.NameIdentifier);
+		if (fromUser == null)
+		{
+			return Unauthorized();
+		}
+
+		var toUser = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+		if (toUser == null)
+		{
+			return NotFound();
+		}
+
+		var convo = await _context.ConversationUsers.Include(u => u.ConversationEntry).FirstOrDefaultAsync(u => u.UserId == userId);
+		if (convo == null) 
+		{
+			Conversation conversation = new Conversation();
+			_context.Conversations.Add(conversation);
+			await _context.SaveChangesAsync();
+
+			ConversationUser conversationUser = new ConversationUser
+			{
+				ConversationId = conversation.Id,
+				UserId = userId,
+				ConversationEntry = conversation,
+				UserEntry = toUser
+			};
+			_context.ConversationUsers.Add(conversationUser);
+			await _context.SaveChangesAsync();
+			return Ok(conversation.Id);
+		}
+
+		return Ok(convo.ConversationId);
 	}
 	
 	[HttpGet("fetch-products-list")]
