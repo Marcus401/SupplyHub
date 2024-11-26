@@ -7,7 +7,7 @@ import {navbarInfo} from "../../../api/menu.tsx";
 
 const NavBar = () => {
   const [searchText, setSearchText] = useState<string>("");
-  const [userImage, setUserImage] = useState<string | null>(null);
+  const [userImage, setUserImage] = useState<string | undefined>(undefined);
   const navigate = useNavigate(); 
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,20 +24,27 @@ const NavBar = () => {
     sessionStorage.removeItem("JwtToken"); // Optional
     navigate("/login"); 
   }
-  
-  useEffect( () => {
-    navbarInfo().then((data) => {
-      if (data === null) {
-        console.error('Failed to fetch navbar info.');
-        return;
-      }
-      setUserImage(URL.createObjectURL(new Blob([data], { type: 'image/png' })));
-    })
+
+  useEffect(() => {
+    // Fetch the image URL when the component mounts
+    navbarInfo()
+        .then((url) => {
+          if (url) {
+            // If the URL is valid, set it to the state
+            setUserImage(url);
+          } else {
+            console.error("No image URL received.");
+          }
+        })
         .catch((error) => {
-          console.error('Error fetching navbar info:', error);
+          // Handle any error that occurs during fetching
+          console.error("Error fetching navbar info:", error);
         });
-    
-  }, []);
+  }, []);  // Empty dependency array means it runs only once after component mounts
+  
+  useEffect(() => {
+    console.log("Generated Object URL:", userImage);
+  }, [userImage]);
   
   return (
     <div>

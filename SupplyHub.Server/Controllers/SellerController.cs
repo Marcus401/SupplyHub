@@ -44,7 +44,7 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
                 })
                 .ToListAsync();
 
-            return Ok(new { Products = products });
+            return Ok(products);
         }
         catch (Exception ex)
         {
