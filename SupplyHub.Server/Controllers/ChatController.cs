@@ -65,7 +65,7 @@ public class ChatController(SupplyhubDbContext _context) : ControllerBase
                 
                 var userProfiles = await _context.ConversationUsers
 	                .Where(m => conversationIds.Contains(m.ConversationId) && m.UserId != id)
-	                .Select(m => m.User) 
+	                .Select(m => m.UserEntry) 
 	                .Distinct()
 	                .Select(u => new ChatListResponseDtoObj
 	                {

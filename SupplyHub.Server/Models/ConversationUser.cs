@@ -7,6 +7,6 @@ public class ConversationUser
 {
 	public int ConversationId { get; set; }
 	public int UserId { get; set; }
-	public required Conversation Conversation { get; set; }
-	public required User User { get; set; }	
+	public required Conversation ConversationEntry { get; set; }
+	public required User UserEntry { get; set; }	
 }

@@ -90,12 +90,12 @@ public class SupplyhubDbContext : IdentityDbContext<User, IdentityRole<int>, int
 			entity.HasKey(e => new { e.ConversationId, e.UserId })
 				.HasName("PK_ConversationUser");
 			
-			entity.HasOne(e => e.Conversation)
+			entity.HasOne(e => e.ConversationEntry)
 				.WithMany()
 				.HasForeignKey(e => e.ConversationId)
 				.OnDelete(DeleteBehavior.ClientSetNull);
 			
-			entity.HasOne(e => e.User)
+			entity.HasOne(e => e.UserEntry)
 				.WithMany()
 				.HasForeignKey(e => e.UserId)
 				.OnDelete(DeleteBehavior.ClientSetNull);
