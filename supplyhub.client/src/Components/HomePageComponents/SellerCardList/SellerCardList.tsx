@@ -39,29 +39,6 @@ const SellerCardList: React.FC = () => {
           onInquire={handleInquire}
         />
       ))}
-
-      <SellerCard
-        seller={{
-          userId: 1,
-          userName: "Seller 1",
-          bio: "This is a mock bio for Seller 1.",
-          profilePicture: profilePic,
-        }}
-        onInquire={(sellerId) =>
-          console.log(`Inquired about seller ${sellerId}`)
-        }
-      />
-      <SellerCard
-        seller={{
-          userId: 2,
-          userName: "Seller 2",
-          bio: "This is another mock bio for Seller 2.",
-          profilePicture: profilePic,
-        }}
-        onInquire={(sellerId) =>
-          console.log(`Inquired about seller ${sellerId}`)
-        }
-      />
     </div>
   );
 };

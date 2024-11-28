@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import {SellerProductListResponseDtoObj} from "../../../Dtos/Seller/SellerProductListResponseDtoObj.ts";
 import defaultPlaceholder from "../../../assets/default-placeholder.png";
@@ -10,10 +10,14 @@ type Props = {
 const SellerProductCard: React.FC<Props> = ({ product }) => {
     const { thumbnail, productName, description , productId} = product;
 
+    function base64ToImageUrl(base64: string, mimeType: string): string {
+        return `data:${mimeType};base64,${base64}`;
+    }
+
     return (
-        <div className="flex mx-4 rounded-3xl h-[190px] pt-2">
+        <div className="flex mx-4 rounded-3xl h-[190px] pt-2 w-full">
             <img
-                src={thumbnail ? URL.createObjectURL(new Blob([thumbnail])) : defaultPlaceholder}
+                src={thumbnail ? base64ToImageUrl(thumbnail, "image/png") : defaultPlaceholder}
                 alt="product image"
                 className="w-[150px] h-[150px] row-span-3 row-start-1 - col-start-1 mx-4 mt-2"
             />

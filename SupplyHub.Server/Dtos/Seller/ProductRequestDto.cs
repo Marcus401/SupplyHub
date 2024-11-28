@@ -2,8 +2,8 @@
 
 public class ProductRequestDto
 {
-	public byte[]? Thumbnail { get; set; }
-	public byte[][]? Images { get; set; }
+	public string? Thumbnail { get; set; }
+	public string[]? Images { get; set; }
 	public required string ProductName { get; set; }
 	public required string ProductType { get; set; }
 	public int StockAvailable { get; set; }

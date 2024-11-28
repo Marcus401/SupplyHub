@@ -9,6 +9,11 @@ interface SellerCardProps {
 }
 
 const SellerCard: React.FC<SellerCardProps> = ({ seller, onInquire }) => {
+
+  function base64ToImageUrl(base64: string, mimeType: string): string {
+    return `data:${mimeType};base64,${base64}`;
+  }
+  
   const handleInquireButtonClick = (
     event: React.MouseEvent<HTMLAnchorElement>
   ) => {
@@ -24,10 +29,8 @@ const SellerCard: React.FC<SellerCardProps> = ({ seller, onInquire }) => {
       <div className="w-[100px] h-[100px] bg-gray-200 rounded-lg overflow-hidden">
         <img
           src={
-            seller.profilePicture instanceof Uint8Array
-              ? `data:image/png;base64,${btoa(
-                  String.fromCharCode(...seller.profilePicture)
-                )}`
+            seller.profilePicture
+              ? base64ToImageUrl(seller.profilePicture.toString(), "image/png")
               : seller.profilePicture || company_logo
           }
           alt="Seller Logo"

@@ -29,43 +29,6 @@ const ProductCardList: React.FC = (): JSX.Element => {
       {products.map((product) => (
         <ProductCard key={product.productId} product={product} />
       ))}
-
-      <ProductCard
-        product={{
-          productId: 1,
-          productName: "Mock Product 1",
-        }}
-      />
-      <ProductCard
-        product={{
-          productId: 2,
-          productName: "Mock Product 2",
-        }}
-      />
-      <ProductCard
-        product={{
-          productId: 3,
-          productName: "Mock Product 3",
-        }}
-      />
-      <ProductCard
-        product={{
-          productId: 4,
-          productName: "Mock Product 4",
-        }}
-      />
-      <ProductCard
-        product={{
-          productId: 5,
-          productName: "Mock Product 5",
-        }}
-      />
-      <ProductCard
-        product={{
-          productId: 6,
-          productName: "Mock Product 6",
-        }}
-      />
     </div>
   );
 };

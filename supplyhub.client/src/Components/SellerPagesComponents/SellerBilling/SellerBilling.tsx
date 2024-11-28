@@ -66,8 +66,8 @@ function BillingPage() {
     setPaymentPeriod(event.target.value);
   };
 
-  const incrementSlots = () => setSlots(slots + 1);
-  const decrementSlots = () => setSlots(Math.max(slots - 1, 0));
+  const incrementSlots = () => setSlots(slots + 5);
+  const decrementSlots = () => setSlots(Math.max(slots - 5, 5));
 
   const handlePaymentMethodSelect = (method: string) => {
     setSelectedPaymentMethod(method);
@@ -151,8 +151,7 @@ function BillingPage() {
             {/* Summary */}
             <div className="mb-4">
               <strong className="block mb-1">Summary</strong>
-              <p>Subscription Plan: ₱999.99</p>
-              <p>Total: ₱{(999.99 * (paymentPeriod === "yearly" ? 12 : 1)).toFixed(2)}</p>
+              <p>Total: ₱{((slots * 30 - 100) * (paymentPeriod === "yearly" ? 11 : 1)).toFixed(2)}</p>
             </div>
 
             {/* Payment Method */}

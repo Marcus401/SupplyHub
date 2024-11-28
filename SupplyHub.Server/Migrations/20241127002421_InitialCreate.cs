@@ -61,7 +61,7 @@ namespace SupplyHub.Server.Migrations
                 {
                     table.PrimaryKey("PK_UserProfile", x => x.Id);
                 });
-
+            
             migrationBuilder.CreateTable(
                 name: "ConversationUsers",
                 columns: table => new
