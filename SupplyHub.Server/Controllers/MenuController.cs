@@ -32,7 +32,7 @@ public class MenuController(SupplyhubDbContext context, UserManager<User> userMa
 		var myProfile = await _context.Users.FindAsync(intUserId);
 		if (myProfile == null)
 		{
-			return NotFound(new { Message = "User not found." });
+			return NotFound(new { Message = "User not found" });
 		}
 
 		return File(myProfile.ProfilePicture, "image/png");
@@ -45,13 +45,13 @@ public class MenuController(SupplyhubDbContext context, UserManager<User> userMa
 		var fromUser = User.FindFirst(ClaimTypes.NameIdentifier);
 		if (fromUser == null)
 		{
-			return Unauthorized();
+			return Unauthorized("You must log-in to access this feature");
 		}
 
 		var toUser = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
 		if (toUser == null)
 		{
-			return NotFound();
+			return NotFound(new { Message = "User not found" });
 		}
 
 		var convo = await _context.ConversationUsers.Include(u => u.ConversationEntry).FirstOrDefaultAsync(u => u.UserId == userId);
