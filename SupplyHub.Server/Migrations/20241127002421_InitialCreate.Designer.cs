@@ -12,7 +12,7 @@ using SupplyHub.Server.Data;
 namespace SupplyHub.Server.Migrations
 {
     [DbContext(typeof(SupplyhubDbContext))]
-    [Migration("20241120195543_InitialCreate")]
+    [Migration("20241127002421_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -568,19 +568,19 @@ namespace SupplyHub.Server.Migrations
 
             modelBuilder.Entity("SupplyHub.Server.Models.ConversationUser", b =>
                 {
-                    b.HasOne("SupplyHub.Server.Models.Conversation", "Conversation")
+                    b.HasOne("SupplyHub.Server.Models.Conversation", "ConversationEntry")
                         .WithMany()
                         .HasForeignKey("ConversationId")
                         .IsRequired();
 
-                    b.HasOne("SupplyHub.Server.Models.User", "User")
+                    b.HasOne("SupplyHub.Server.Models.User", "UserEntry")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .IsRequired();
 
-                    b.Navigation("Conversation");
+                    b.Navigation("ConversationEntry");
 
-                    b.Navigation("User");
+                    b.Navigation("UserEntry");
                 });
 
             modelBuilder.Entity("SupplyHub.Server.Models.Message", b =>

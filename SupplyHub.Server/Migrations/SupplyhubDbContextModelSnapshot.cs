@@ -499,19 +499,19 @@ namespace SupplyHub.Server.Migrations
 
             modelBuilder.Entity("SupplyHub.Server.Models.ConversationUser", b =>
                 {
-                    b.HasOne("SupplyHub.Server.Models.Conversation", "Conversation")
+                    b.HasOne("SupplyHub.Server.Models.Conversation", "ConversationEntry")
                         .WithMany()
                         .HasForeignKey("ConversationId")
                         .IsRequired();
 
-                    b.HasOne("SupplyHub.Server.Models.User", "User")
+                    b.HasOne("SupplyHub.Server.Models.User", "UserEntry")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .IsRequired();
 
-                    b.Navigation("Conversation");
+                    b.Navigation("ConversationEntry");
 
-                    b.Navigation("User");
+                    b.Navigation("UserEntry");
                 });
 
             modelBuilder.Entity("SupplyHub.Server.Models.Message", b =>

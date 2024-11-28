@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import product_image from "../../../assets/upload_image_placeholder.png";
 import {ProductRequestDto} from "../../../Dtos/Seller/ProductRequestDto.ts";
-
-type Props = {};
+import {addProduct} from "../../../api/seller.tsx";
+import {useNavigate} from "react-router-dom";
 
 interface FAQ {
   question: string;
   answer: string;
 }
 
-const SellerAddProductForm = (props: Props) => {
+const SellerAddProductForm = () => {
   useEffect(() => {
     document.title = "Add Product";
   }, []);
@@ -30,6 +30,7 @@ const SellerAddProductForm = (props: Props) => {
   const [faqQuestion, setFaqQuestion] = useState<string>("");
   const [faqAnswer, setFaqAnswer] = useState<string>("");
   const [isAddProductVisible, setIsAddProductVisible] = useState<boolean>(true);
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({
     productName: false,
@@ -88,37 +89,67 @@ const SellerAddProductForm = (props: Props) => {
     }
   };
 
+  const toBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const reader = new FileReader();
+      
+      reader.onload = () => {
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+
+          if (!ctx) {
+            reject('Canvas context is not available');
+            return;
+          }
+
+          canvas.width = 400;
+          canvas.height = 400;
+
+          ctx.drawImage(img, 0, 0, 400, 400);
+
+          const base64String = canvas.toDataURL();
+
+          const base64Cleaned = base64String.split(',')[1];
+
+          resolve(base64Cleaned); 
+        };
+
+        img.src = reader.result as string; 
+      };
+
+      reader.onerror = (error) => reject(error);
+      
+      reader.readAsDataURL(file);
+    });
+  };
+
+
+
   const removeImageFromList = (index: number) => {
     const newImageList = imageList.filter((_, i) => i !== index);
     setImageList(newImageList);
   };
 
-  const addProduct = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const addProductHandle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     
-
-    // Check for empty fields and set errors accordingly
-    const newErrors = {
-      productName: productName === "",
-      category: category === "",
-      stock: stock === 0,
-      stockUnit: stockUnit === "",
-      price: price === 0,
-      priceUnit: priceUnit === "",
-      description: description === "",
-      image: imageFile === null,
-    };
+    console.log(imageFile ? toBase64(imageFile) : undefined);
     
-    setErrors(newErrors);
-    
-    const hasEmptyFields = Object.values(newErrors).includes(true);
-    if (hasEmptyFields) {
-      setFailedSubmission(true); // Optionally, you can use this state to show a global failure message
-    } else {
-      setFailedSubmission(false);
-    }
+    console.log(imageList.length > 0
+        ? await Promise.all(imageList.map((image) => toBase64(image)))
+        : []);
     
     const newProduct: ProductRequestDto = {
+      thumbnail: imageFile ? await toBase64(imageFile) : undefined,
+      images: imageList.length > 0
+          ? await Promise.all(
+              imageList.map((image) =>
+                  toBase64(image) 
+              )
+          )
+          : [],
       productName,
       productType: category,
       stockAvailable: stock,
@@ -130,7 +161,15 @@ const SellerAddProductForm = (props: Props) => {
       faqAnswers: faqs.map((faq) => faq.answer),
     };
     
+    console.log(newProduct);
     
+    const success = await addProduct(newProduct);
+    if (success) {
+      console.log("Product added successfully!");
+      navigate("/seller");
+    } else {
+      console.log("Failed to add product.");
+    }
   };
 
   const handleAddImageButtonClick = () => {
@@ -216,17 +255,17 @@ const SellerAddProductForm = (props: Props) => {
             errors.category ? "border-red-500" : "border-gray-300"
           } shadow-sm`}
         >
-          <option value="Option 1">Food & Drinks</option>
-          <option value="Option 2">Hygiene</option>
-          <option value="Option 3">Clothing & Accesories</option>
-          <option value="Option 4">Make-up & Skincare</option>
-          <option value="Option 5">Hardware Supplies</option>
-          <option value="Option 6">Computer Parts</option>
-          <option value="Option 7">Furniture</option>
-          <option value="Option 8">Art Supplies</option>
-          <option value="Option 9">Pet Supplies</option>
-          <option value="Option 10">Toys</option>
-          <option value="Option 11">Books</option>
+          <option value="Food & Drinks">Food & Drinks</option>
+          <option value="Hygiene">Hygiene</option>
+          <option value="Clothing & Accesories">Clothing & Accesories</option>
+          <option value="Make-up & Skincare">Make-up & Skincare</option>
+          <option value="Hardware Supplies">Hardware Supplies</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Furniture">Furniture</option>
+          <option value="Art Supplies">Art Supplies</option>
+          <option value="Pet Supplies">Pet Supplies</option>
+          <option value="Toys">Toys</option>
+          <option value="Books">Books</option>
         </select>
         {errors.category && (
           <p className="text-red-500 text-sm">Category is required.</p>
@@ -258,12 +297,12 @@ const SellerAddProductForm = (props: Props) => {
           onChange={handleStockUnitChange}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         >
-          <option value="Option 1">Weekly</option>
-          <option value="Option 2">Forthnightly</option>
-          <option value="Option 3">Monthly</option>
-          <option value="Option 4">Quarterly</option>
-          <option value="Option 5">Semi-Annually</option>
-          <option value="Option 6">Annually</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Forthnightly">Forthnightly</option>
+          <option value="Monthly">Monthly</option>
+          <option value="Quarterly">Quarterly</option>
+          <option value="Semi-Annually">Semi-Annually</option>
+          <option value="Annually">Annually</option>
         </select>
       </div>
 
@@ -301,10 +340,10 @@ const SellerAddProductForm = (props: Props) => {
           onChange={handlePriceUnitChange}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         >
-          <option value="Option 1">Pre-unit</option>
-          <option value="Option 2">Kilogram</option>
-          <option value="Option 3">Gallon</option>
-          <option value="Option 4">Dozen </option>
+          <option value="Pre-unit">Pre-unit</option>
+          <option value="Kilogram">Kilogram</option>
+          <option value="Gallon">Gallon</option>
+          <option value="Dozen">Dozen </option>
         </select>
       </div>
 
@@ -392,54 +431,50 @@ const SellerAddProductForm = (props: Props) => {
             </div>
           </div>
 
-          {/* Image and Publish Button Section */}
           <div className="flex justify-between items-center mb-6">
             {/* Add Image Button */}
             <button
-              onClick={handleAddImageButtonClick}
-              className="bg-white border-2 border-gray-800 rounded-lg flex items-center space-x-2 p-2 hover:bg-gray-100"
+                onClick={handleAddImageButtonClick}
+                className="bg-white border-2 border-gray-800 rounded-lg flex items-center space-x-2 p-2 hover:bg-gray-100"
             >
               <input
-                type="file"
-                accept=".png, .jpg, .jpeg, .jfif"
-                className="hidden"
-                id="imageUpload"
-                onChange={addToImageListChange}
-                ref={fileInputRef}
+                  type="file"
+                  accept=".png, .jpg, .jpeg, .jfif"
+                  className="hidden"
+                  id="imageUpload"
+                  onChange={addToImageListChange}
+                  ref={fileInputRef}
               />
               <span>Add Image {imageList.length} / 8</span>
             </button>
-
-            {/* Publish Button */}
+            
             <button
-              onClick={addProduct}
-              className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700"
+                onClick={addProductHandle}
+                className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700"
             >
               Publish
             </button>
           </div>
-        </div>
-      </div>
-
-      <div className="row-start-12 md:row-start-12 col-start-1 md:col-span-2 lg:row-start-7 lg:col-span-3 relative lg:ml-8">
-        <div className="flex-col">
-          {imageList.map((image, index) => (
-            <div key={index} className="flex items-center space-x-2">
-              <img
-                src={URL.createObjectURL(image)}
-                alt="product image"
-                className="w-[100px] h-[100px] rounded-2xl"
-              />
-              <button
-                onClick={() => removeImageFromList(index)}
-                className="flex no-underline rounded-lg lg:w-[120px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]"
-              >
-                <h6 className="lg:text-md text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-red-700">
-                  Remove Image
-                </h6>
-              </button>
-            </div>
-          ))}
+          
+          <div className="flex-col mb-4">
+            {imageList.map((image, index) => (
+                <div key={index} className="flex items-center space-x-2 mb-2">
+                  <img
+                      src={URL.createObjectURL(image)}
+                      alt="product image"
+                      className="w-[100px] h-[100px] rounded-2xl"
+                  />
+                  <button
+                      onClick={() => removeImageFromList(index)}
+                      className="flex no-underline rounded-lg lg:w-[120px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]"
+                  >
+                    <h6 className="lg:text-md text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-red-700">
+                      Remove Image
+                    </h6>
+                  </button>
+                </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

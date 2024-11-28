@@ -1,6 +1,6 @@
 export interface SellerProductListResponseDtoObj{
     productName: string;
-    thumbnail?: Uint8Array;
+    thumbnail?: string;
     description?: string;
     stockAvailable?: number;
     isAvailable: boolean;

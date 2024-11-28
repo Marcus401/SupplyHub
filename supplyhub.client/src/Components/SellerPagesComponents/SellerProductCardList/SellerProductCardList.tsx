@@ -34,8 +34,8 @@ const SellerProductCardList: React.FC = () => {
     }, []);
 
     return (
-        <div className="w-full">
-            <div className="flex relative">
+        <div className="w-full relative">
+            <div className="flex ">
                 <div className="justify-between items-center">
                     <h3 className="lg:text-3xl md:text-xl text-base overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap truncate my-4 mx-6 font-bold">
                         My Products ({products.length} Products)
@@ -50,7 +50,7 @@ const SellerProductCardList: React.FC = () => {
                     </h6>
                 </Link>
             </div>
-            <div className="absolute h-[calc(100vh-170px)] overflow-y-auto min-h-[190px]">
+            <div className="absolute h-[calc(100vh-170px)] overflow-y-auto min-h-[190px] w-full pr-8">
                 {loading && <p className="text-center text-white">Loading...</p>}
                 {error && <p className="text-center text-red-500">{error}</p>}
                 {!loading && !error && products.length === 0 && (

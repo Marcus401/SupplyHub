@@ -26,21 +26,18 @@ const NavBar = () => {
   }
 
   useEffect(() => {
-    // Fetch the image URL when the component mounts
     navbarInfo()
         .then((url) => {
           if (url) {
-            // If the URL is valid, set it to the state
             setUserImage(url);
           } else {
             console.error("No image URL received.");
           }
         })
         .catch((error) => {
-          // Handle any error that occurs during fetching
           console.error("Error fetching navbar info:", error);
         });
-  }, []);  // Empty dependency array means it runs only once after component mounts
+  }, []);  
   
   return (
     <div>

@@ -1,31 +1,47 @@
 //import React, { useEffect, useState } from "react";
 import { VscStarEmpty, VscStarFull } from "react-icons/vsc";
 import product_image from "../../../assets/default-placeholder.png";
-import { Link } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {FetchProductResponseDto} from "../../../Dtos/Product/FetchProductResponseDto.ts";
+import {fetchProduct} from "../../../api/product.tsx";
 
 const BasicProductInfo = () => {
-  //const [isUserAuthenticated, setIsUserAuthenticated] = useState(true);
-  //const [isInquireFormVisible, setIsInquireFormVisible] = useState(false);
+  const [product, setProduct] = useState<FetchProductResponseDto>();
+  const initiate = () => {
+      useEffect(() => {
+          const {id} = useParams();
+          if(!id) return;
+        fetchProduct(parseInt(id, 10))
+            .then((data) => {
+              if (data) setProduct(data);
+            })
+            .catch((error) => {
+              console.error("Error fetching product:", error);
+            });
+      }, []);
+  initiate();
+  }
 
-  /*useEffect(() => {
-    const userIsAuthenticated = false;
-    setIsUserAuthenticated(userIsAuthenticated);
-  }, []);
+    function base64ToFile(base64: string, fileName: string, mimeType: string): File {
+        // Decode Base64 string to binary string
+        const binaryString = atob(base64);
 
-  const handleInquireButtonClick = (event: { preventDefault: () => void }) => {
-    if (!isUserAuthenticated) {
-      event.preventDefault();
-      alert("Please log in or sign-up to inquire");
-    } else {
-      setIsInquireFormVisible(true);
+        // Convert binary string to Uint8Array
+        const byteArray = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+            byteArray[i] = binaryString.charCodeAt(i);
+        }
+
+        // Create and return the File object
+        return new File([byteArray], fileName, { type: mimeType });
     }
-  }; */
 
   return (
     <div className="items-center mx-auto border p-4 flex max-w-[1100px] w-full rounded-md">
       <div className="flex-shrink-0">
         <img
-          src={product_image}
+          src={product.thumbnail ? base64ToFile(product.thumbnail.toString(), "product_image", "image/png") : product_image}
           alt="Main Product Image"
           className="h-full max-h-[200px] w-full max-w-[200px] object-cover rounded-lg"
         />

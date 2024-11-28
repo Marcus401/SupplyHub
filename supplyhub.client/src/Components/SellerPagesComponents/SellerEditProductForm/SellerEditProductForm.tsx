@@ -1,16 +1,59 @@
 import React, { useEffect, useRef, useState } from "react";
 import product_image from "../../../assets/upload_image_placeholder.png";
-
-type Props = {};
+import {useParams} from "react-router-dom";
+import {fetchProduct} from "../../../api/product.tsx";
 
 interface FAQ {
   question: string;
   answer: string;
 }
 
-const SellerEditProductForm = (props: Props) => {
+const SellerEditProductForm = () => {
+  const { product_id } = useParams();
+  
+  function base64ToFile(base64: string, fileName: string, mimeType: string): File {
+    // Decode Base64 string to binary string
+    const binaryString = atob(base64);
+
+    // Convert binary string to Uint8Array
+    const byteArray = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      byteArray[i] = binaryString.charCodeAt(i);
+    }
+
+    // Create and return the File object
+    return new File([byteArray], fileName, { type: mimeType });
+  }
+  
+
   useEffect(() => {
     document.title = "Edit Product";
+    if (!product_id) {
+      return;
+    }
+    const id = parseInt(product_id);
+    fetchProduct(id).then((product) => {
+      if (!product) {
+        return;
+      }
+      setProductName(product.productName);
+      if(product.productType) setCategory(product.productType);
+      if(product.stockAvailable) setStock(product.stockAvailable);
+      if(product.timeFrame) setStockUnit(product.timeFrame);
+      if(product.unit) setPriceUnit(product.unit);
+      if(product.description)setDescription(product.description);
+      setImageFile(product.thumbnail ? base64ToFile(product.thumbnail.toString(), "thumbnail", "image/png") : null);
+
+      setPrice(product.price);
+      if (!product.faqQuestions || !product.faqAnswers) return;
+      setFaqs(
+          product.faqQuestions.map((question, index) => ({
+            question,
+            answer: product.faqAnswers![index],
+          }))
+      );
+
+    });
   }, []);
 
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -58,6 +101,7 @@ const SellerEditProductForm = (props: Props) => {
   ) => {
     setDescription(e.target.value);
   };
+  
   const addToImageListChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
@@ -88,9 +132,7 @@ const SellerEditProductForm = (props: Props) => {
       fileInputRef.current.click();
     }
   };
-  const removeProduct = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-  };
+
   // FAQ Management
 
   const addFaq = () => {
@@ -126,7 +168,7 @@ const SellerEditProductForm = (props: Props) => {
         />
         <label htmlFor="imageUpload">
           <img
-            src={product_image}
+            src={imageFile ? URL.createObjectURL(imageFile) : product_image}
             alt="product image"
             className="w-[200px] h-[200px] rounded-2xl row-span-3 row-start-1 col-start-1 mx-4 mt-2 cursor-pointer"
           />
@@ -138,6 +180,7 @@ const SellerEditProductForm = (props: Props) => {
         </label>
         <input
           type="text"
+          value={productName}
           className="w-full p-2 border border-gray-300 rounded-lg mb-2"
           onChange={handleProductNameChange}
         />
@@ -151,6 +194,7 @@ const SellerEditProductForm = (props: Props) => {
         </label>
         <select
           id="comboBox"
+          value={category}
           onChange={handleCategoryChange}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         >
@@ -174,6 +218,7 @@ const SellerEditProductForm = (props: Props) => {
         <input
           onChange={handleStockChange}
           type="number"
+          value={stock}
           id="stock"
           min="0"
           className="w-full p-2 border border-gray-300 rounded-lg mb-2"
@@ -188,6 +233,7 @@ const SellerEditProductForm = (props: Props) => {
         </label>
         <select
           id="comboBox"
+          value={stockUnit}
           onChange={handleStockUnitChange}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         >
@@ -208,6 +254,7 @@ const SellerEditProductForm = (props: Props) => {
           <input
             onChange={handlePriceChange}
             min="0"
+            value={price}
             step="100"
             type="number"
             id="price"
@@ -224,6 +271,7 @@ const SellerEditProductForm = (props: Props) => {
         </label>
         <select
           id="comboBox"
+          value={priceUnit}
           onChange={handlePriceUnitChange}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         >
@@ -240,9 +288,10 @@ const SellerEditProductForm = (props: Props) => {
               Description
             </label>
             <textarea
-              onChange={handleDescriptionChange}
-              id="description"
-              className="w-full p-2 border border-gray-300 rounded-lg mb-2  h-[10rem]"
+                onChange={handleDescriptionChange}
+                value={description}
+                id="description"
+                className="w-full p-2 border border-gray-300 rounded-lg mb-2  h-[10rem]"
             />
           </div>
 
@@ -253,22 +302,22 @@ const SellerEditProductForm = (props: Props) => {
             </h4>
             <div className="mb-4">
               <input
-                type="text"
-                value={faqQuestion}
-                onChange={(e) => setFaqQuestion(e.target.value)}
-                placeholder="Enter question"
-                className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+                  type="text"
+                  value={faqQuestion}
+                  onChange={(e) => setFaqQuestion(e.target.value)}
+                  placeholder="Enter question"
+                  className="w-full p-2 border border-gray-300 rounded-lg mb-2"
               />
               <input
-                type="text"
-                value={faqAnswer}
-                onChange={(e) => setFaqAnswer(e.target.value)}
-                placeholder="Enter answer"
-                className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+                  type="text"
+                  value={faqAnswer}
+                  onChange={(e) => setFaqAnswer(e.target.value)}
+                  placeholder="Enter answer"
+                  className="w-full p-2 border border-gray-300 rounded-lg mb-2"
               />
               <button
-                onClick={addFaq}
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                  onClick={addFaq}
+                  className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
               >
                 Add to FAQ
               </button>
@@ -277,94 +326,86 @@ const SellerEditProductForm = (props: Props) => {
             {/* Render FAQ List */}
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="border border-gray-300 rounded-lg p-3 shadow-sm"
-                >
                   <div
-                    className="flex justify-between items-center cursor-pointer"
-                    onClick={() => toggleFaq(index)}
+                      key={index}
+                      className="border border-gray-300 rounded-lg p-3 shadow-sm"
                   >
-                    <p
-                      className={`font-medium ${
-                        expandedIndex === index
-                          ? "text-blue-500"
-                          : "text-gray-800"
-                      }`}
+                    <div
+                        className="flex justify-between items-center cursor-pointer"
+                        onClick={() => toggleFaq(index)}
                     >
-                      {faq.question}
-                    </p>
-                    <button className="text-blue-500 font-bold text-xl">
-                      {expandedIndex === index ? "-" : "+"}
+                      <p
+                          className={`font-medium ${
+                              expandedIndex === index
+                                  ? "text-blue-500"
+                                  : "text-gray-800"
+                          }`}
+                      >
+                        {faq.question}
+                      </p>
+                      <button className="text-blue-500 font-bold text-xl">
+                        {expandedIndex === index ? "-" : "+"}
+                      </button>
+                    </div>
+                    {expandedIndex === index && (
+                        <p className="mt-2 text-gray-600">{faq.answer}</p>
+                    )}
+
+                    {/* Remove FAQ Button */}
+                    <button
+                        onClick={() => removeFaq(index)}
+                        className="mt-2 text-red-500 text-sm font-semibold hover:text-red-700"
+                    >
+                      Remove
                     </button>
                   </div>
-                  {expandedIndex === index && (
-                    <p className="mt-2 text-gray-600">{faq.answer}</p>
-                  )}
-
-                  {/* Remove FAQ Button */}
-                  <button
-                    onClick={() => removeFaq(index)}
-                    className="mt-2 text-red-500 text-sm font-semibold hover:text-red-700"
-                  >
-                    Remove
-                  </button>
-                </div>
               ))}
             </div>
           </div>
           <div className="flex justify-between items-center mb-6">
             {/* Add Image Button */}
             <button
-              onClick={handleAddImageButtonClick}
-              className="bg-white border-2 border-gray-800 rounded-lg flex items-center p-2 hover:bg-gray-100"
+                onClick={handleAddImageButtonClick}
+                className="bg-white border-2 border-gray-800 rounded-lg flex items-center space-x-2 p-2 hover:bg-gray-100"
             >
               <input
-                type="file"
-                accept=".png, .jpg, .jpeg, .jfif"
-                className="hidden"
-                id="imageUpload"
-                onChange={addToImageListChange}
-                ref={fileInputRef}
+                  type="file"
+                  accept=".png, .jpg, .jpeg, .jfif"
+                  className="hidden"
+                  id="imageUpload"
+                  onChange={addToImageListChange}
+                  ref={fileInputRef}
               />
               <span>Add Image {imageList.length} / 8</span>
             </button>
 
-            {/* Publish Button */}
             <button
-              onClick={addProduct}
-              className="bg-gray-800 text-white px-10 py-2 rounded-lg hover:bg-gray-700"
+                onClick={addProduct}
+                className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700"
             >
               Publish
             </button>
           </div>
-          <button
-            onClick={removeProduct}
-            className="text-base overflow-hidden bg-white text-red-700 no-underline border-2 border-red-700 rounded-lg p-2"
-          >
-            Remove Item
-          </button>
-        </div>
-      </div>
-      <div className="row-start-11 md:row-start-10 col-start-1 md:col-span-2 lg:row-start-7 lg:col-span-3 relative lg:ml-8">
-        <div className="flex-col">
-          {imageList.map((image, index) => (
-            <div key={index} className="flex items-center space-x-2">
-              <img
-                src={URL.createObjectURL(image)}
-                alt="product image"
-                className="w-[100px] h-[100px] rounded-2xl"
-              />
-              <button
-                onClick={() => removeImageFromList(index)}
-                className="flex no-underline rounded-lg lg:w-[120px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]"
-              >
-                <h6 className="lg:text-md text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-red-700">
-                  Remove Image
-                </h6>
-              </button>
-            </div>
-          ))}
+
+          <div className="flex-col mb-4">
+            {imageList.map((image, index) => (
+                <div key={index} className="flex items-center space-x-2 mb-2">
+                  <img
+                      src={URL.createObjectURL(image)}
+                      alt="product image"
+                      className="w-[100px] h-[100px] rounded-2xl"
+                  />
+                  <button
+                      onClick={() => removeImageFromList(index)}
+                      className="flex no-underline rounded-lg lg:w-[120px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]"
+                  >
+                    <h6 className="lg:text-md text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-red-700">
+                      Remove Image
+                    </h6>
+                  </button>
+                </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

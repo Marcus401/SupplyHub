@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using SupplyHub.Server.Data;
 using SupplyHub.Server.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using SupplyHub.Server.Helpers;
 
 namespace SupplyHub.Server.Controllers;
 
@@ -54,7 +55,7 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
     }
 
     [Authorize(Roles = "Seller")]
-    [HttpPut("add-product")]
+    [HttpPost("add-product")]
     public async Task<IActionResult> AddProduct([FromBody] ProductRequestDto productRequestDto)
     {
         if (!ModelState.IsValid)
@@ -68,14 +69,9 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
             return Unauthorized(new { Message = "User not found" });
         }
 
-        var userRoles = await _userManager.GetRolesAsync(user);
-        if (!userRoles.Contains("Seller"))
-        {
-            return Unauthorized(new { Message = "Only sellers are authorized to add products" });
-        }
-
         try
         {
+            
             var newProduct = new Product
             {
                 UserId = user.Id,
@@ -87,13 +83,12 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
                 Unit = productRequestDto.Unit,
                 Timeframe = productRequestDto.Timeframe,
                 Description = productRequestDto.Description,
-                Thumbnail = productRequestDto.Thumbnail,
-                Images = productRequestDto.Images,
+                Thumbnail = Convert.FromBase64String(productRequestDto.Thumbnail),
+                Images = Base64StringArrayToBytes.ConvertBase64StringArrayToByteArrayArray(productRequestDto.Images),
                 FaqQuestions = productRequestDto.FaqQuestions,
                 FaqAnswers = productRequestDto.FaqAnswers,
                 IsActive = true
             };
-
             await _context.Products.AddAsync(newProduct);
             await _context.SaveChangesAsync();
         }
@@ -101,7 +96,7 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
         {
             return BadRequest(new { Message = "Failed to create product", Error = ex.Message });
         }
-        return Ok();
+        return Ok(true);
     }
 
     [Authorize(Roles = "Seller")]
@@ -136,8 +131,8 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
             product.Unit = productRequestDto.Unit;
             product.Timeframe = productRequestDto.Timeframe;
             product.Description = productRequestDto.Description;
-            product.Thumbnail = productRequestDto.Thumbnail;
-            product.Images = productRequestDto.Images;
+            product.Thumbnail = Convert.FromBase64String(productRequestDto.Thumbnail);
+            product.Images = Base64StringArrayToBytes.ConvertBase64StringArrayToByteArrayArray(productRequestDto.Images);
             product.FaqQuestions = productRequestDto.FaqQuestions;
             product.FaqAnswers = productRequestDto.FaqAnswers;
 

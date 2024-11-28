@@ -5,6 +5,7 @@ import {ProductRequestDto} from "../Dtos/Seller/ProductRequestDto.ts";
 export const productsList = async (): Promise<SellerProductListResponseDtoObj[] | null> => {
     try{
         const response =  await api.get(`/seller/products-list`)
+
         return response.data as SellerProductListResponseDtoObj[];
     } catch (error) {
         handleApiError(error, 'Error Fetching Products List');
