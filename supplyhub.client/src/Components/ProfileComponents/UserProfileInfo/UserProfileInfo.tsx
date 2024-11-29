@@ -1,10 +1,15 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { VscArrowLeft, VscEdit } from "react-icons/vsc";
-import profilePic from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
-import coverPic from "../../../assets/default-cover-image.png";
 
-const UserProfileInfo = () => {
+import { UserProfileResponseDto } from "../../../Dtos/Profile/UserProfileResponseDto";
+interface UserProfileProps {
+  profile: UserProfileResponseDto;
+}
+
+const UserProfileInfo: React.FC<UserProfileProps> = ({
+  profile,
+}): JSX.Element => {
   useEffect(() => {
     document.title = "UserProfile: {name}";
   }, []);
@@ -20,12 +25,15 @@ const UserProfileInfo = () => {
         </Link>
       </div>
       <div className="relative w-full h-[300px] items-center overflow-hidden mx-auto">
-        <img src={coverPic} className="object-cover w-full h-full" />
+        <img
+          src={profile.coverPicture}
+          className="object-cover w-full h-full"
+        />
       </div>
 
       <div className="relative bottom-[57px] left-0 overflow-visible items-center ">
         <img
-          src={profilePic}
+          src={profile.profilePicture}
           className="object-cover rounded-full w-32 h-32 border-4 border-white shadow-lg"
           alt="Profile"
         />
@@ -33,7 +41,7 @@ const UserProfileInfo = () => {
 
       <div className="flex items-center justify-between max-w-[1050px] pl-[140px] -mt-[120px]">
         <div className="text-left">
-          <h2 className="mb-10 text-4xl font-bold">Name</h2>
+          <h2 className="mb-10 text-4xl font-bold">{profile.userName}</h2>
         </div>
         <Link
           to={"/profile/edit"}
@@ -43,10 +51,7 @@ const UserProfileInfo = () => {
         </Link>
       </div>
       <div className="min-h-[100px] max-h-[500px] w-full max-w-[500px] p-4 mt-4 border border-gray-100 rounded-lg">
-        <p className="text-black text-base">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, eaque
-          odio atque culpa voluptas sequi neque sint placeat vero tempore!
-        </p>
+        <p className="text-black text-base">{profile.bio}</p>
       </div>
     </div>
   );

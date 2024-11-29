@@ -2,8 +2,8 @@ export interface UserProfileResponseDto{
     userName: string;
     phoneNumber?: number;
     bio?: string;
-    profilePicture?: Uint8Array;
-    coverPicture?: Uint8Array;
+    profilePicture?: string;
+    coverPicture?: string;
     role: string;
     additionalInfo: object;
 }

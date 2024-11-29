@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import SellerCard from "../SellerCard/SellerCard";
-import profilePic from "../../../assets/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.webp";
 import { inquireUser, fetchSellersList } from "../../../api/menu";
 import { MenuSellerListResponseDtoObj } from "../../../Dtos/Menu/MenuSellerListResponseDtoObj";
 
 const SellerCardList: React.FC = () => {
   const [sellers, setSellers] = useState<MenuSellerListResponseDtoObj[]>([]);
 
-  // Fetch sellers list on component mount
   useEffect(() => {
     fetchSellersList()
       .then((data) => {
@@ -18,17 +16,20 @@ const SellerCardList: React.FC = () => {
       });
   }, []);
 
-  // Handle inquire button click
   const handleInquire = async (sellerId: number) => {
     try {
       const chatId = await inquireUser(sellerId);
       if (chatId) {
-        window.location.href = `/chat/${chatId}`; // Navigate to the chat page
+        window.location.href = `/chat/${chatId}`;
       }
     } catch (error) {
       console.error("Error inquiring user:", error);
     }
   };
+
+  if (!sellers || sellers.length === 0) {
+    return <p>No sellers available</p>;
+  }
 
   return (
     <div className="space-y-4">
