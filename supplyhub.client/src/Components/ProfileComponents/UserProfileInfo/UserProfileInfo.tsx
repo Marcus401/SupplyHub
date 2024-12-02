@@ -27,6 +27,7 @@ const UserProfileInfo: React.FC<UserProfileProps> = ({
       <div className="relative w-full h-[300px] items-center overflow-hidden mx-auto">
         <img
           src={profile.coverPicture}
+          alt="Cover Picture"
           className="object-cover w-full h-full"
         />
       </div>

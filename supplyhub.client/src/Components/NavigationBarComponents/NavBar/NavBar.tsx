@@ -95,7 +95,7 @@ const NavBar = () => {
             <VscBell />
           </button>
           <div className="w-8 h-8 ml-5">
-            <Link to="profile/me">
+            <Link to="profile/1">
               {userImage ? (
                   <img
                       src={userImage}

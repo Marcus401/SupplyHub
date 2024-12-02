@@ -1,7 +1,7 @@
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FetchProductResponseDto } from "../../../Dtos/Product/FetchProductResponseDto";
 
 interface ImageSliderProps {
@@ -24,19 +24,32 @@ const ProductImageSlider: React.FC<ImageSliderProps> = ({ product }) => {
     afterChange: (current) => setCenterSlide(current),
   };
 
-  const { images = [] } = product;
+  function base64ToImageUrl(base64: string, mimeType: string): string {
+    const binaryString = atob(base64);
 
+    const byteArray = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      byteArray[i] = binaryString.charCodeAt(i);
+    }
+
+    const blob = new Blob([byteArray], { type: mimeType });
+
+    return URL.createObjectURL(blob); 
+  }
+
+  
+  product.images = product.images || [];
   return (
     <div className="slider-container w-full max-w-[700px] mx-auto px-2 overflow-hidden border border-gray-200 rounded-md">
-      {images.length > 0 ? (
+      {product.images.length > 0 ? (
         <Slider {...settings}>
-          {images.map((image, index) => (
+          {product.images.map((image, index) => (
             <div
               key={index}
               className="slide-item md:w-[250px] md:h-[250px] mx-0 p-1 my-2 flex items-center justify-center"
             >
               <img
-                src={image}
+                src={base64ToImageUrl(image, "image/png")}
                 alt={`Slide ${index + 1}`}
                 className={`w-full h-full object-cover transition-transform duration-300 ${
                   centerSlide === index

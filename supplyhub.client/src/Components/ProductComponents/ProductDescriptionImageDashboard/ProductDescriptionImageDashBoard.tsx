@@ -1,8 +1,12 @@
 import ProductImageSlider from "../ProductImageSlider/ProductImageSlider";
+import {FetchProductResponseDto} from "../../../Dtos/Product/FetchProductResponseDto.ts";
+import React from "react";
 
-type Props = {};
+interface ImageSliderProps {
+  product: FetchProductResponseDto;
+}
 
-const ProductDescriptionImageDashBoard = (props: Props) => {
+const ProductDescriptionImageDashBoard : React.FC<ImageSliderProps> = ({ product }) => {
   return (
     <div className="max-w-[1200px] mx-auto pl-0 pr-0 p-4 pb-0">
       <div className="flex gap-4 items-start mb-4">
@@ -17,7 +21,7 @@ const ProductDescriptionImageDashBoard = (props: Props) => {
         </div>
 
         <div className="flex-1 pr-0">
-          <ProductImageSlider />
+          {/*<ProductImageSlider product={product}/>*/}
         </div>
       </div>
     </div>

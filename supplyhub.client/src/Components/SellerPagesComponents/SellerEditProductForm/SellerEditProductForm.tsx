@@ -12,16 +12,13 @@ const SellerEditProductForm = () => {
   const { product_id } = useParams();
   
   function base64ToFile(base64: string, fileName: string, mimeType: string): File {
-    // Decode Base64 string to binary string
     const binaryString = atob(base64);
 
-    // Convert binary string to Uint8Array
     const byteArray = new Uint8Array(binaryString.length);
     for (let i = 0; i < binaryString.length; i++) {
       byteArray[i] = binaryString.charCodeAt(i);
     }
-
-    // Create and return the File object
+    
     return new File([byteArray], fileName, { type: mimeType });
   }
   
@@ -43,7 +40,13 @@ const SellerEditProductForm = () => {
       if(product.unit) setPriceUnit(product.unit);
       if(product.description)setDescription(product.description);
       setImageFile(product.thumbnail ? base64ToFile(product.thumbnail.toString(), "thumbnail", "image/png") : null);
-
+        if (product.images) {
+            setImageList(
+                product.images.map((image, index) =>
+                    base64ToFile(image, `image-${index}`, "image/png")
+                )
+            );
+        }
       setPrice(product.price);
       if (!product.faqQuestions || !product.faqAnswers) return;
       setFaqs(

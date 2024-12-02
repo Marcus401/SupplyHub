@@ -1,5 +1,5 @@
 //import React, { useEffect, useState } from "react";
-import { VscStarEmpty, VscStarFull } from "react-icons/vsc";
+import {VscStarEmpty, VscStarFull} from "react-icons/vsc";
 import product_image from "../../../assets/default-placeholder.png";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -14,6 +14,9 @@ const BasicProductInfo = () => {
           if(!id) return;
         fetchProduct(parseInt(id, 10))
             .then((data) => {
+                if (!product) {
+                    return;
+                }
               if (data) setProduct(data);
             })
             .catch((error) => {
@@ -23,26 +26,25 @@ const BasicProductInfo = () => {
   initiate();
   }
 
-    function base64ToFile(base64: string, fileName: string, mimeType: string): File {
-        // Decode Base64 string to binary string
+    function base64ToImageUrl(base64: string, mimeType: string): string {
         const binaryString = atob(base64);
 
-        // Convert binary string to Uint8Array
         const byteArray = new Uint8Array(binaryString.length);
         for (let i = 0; i < binaryString.length; i++) {
             byteArray[i] = binaryString.charCodeAt(i);
         }
 
-        // Create and return the File object
-        return new File([byteArray], fileName, { type: mimeType });
+        const blob = new Blob([byteArray], { type: mimeType });
+
+        return URL.createObjectURL(blob);
     }
 
   return (
     <div className="items-center mx-auto border p-4 flex max-w-[1100px] w-full rounded-md">
       <div className="flex-shrink-0">
         <img
-          src={product.thumbnail ? base64ToFile(product.thumbnail.toString(), "product_image", "image/png") : product_image}
-          alt="Main Product Image"
+            src={product?.thumbnail ? base64ToImageUrl(product.thumbnail.toString(), "image/png") : product_image}
+            alt="Main Product Image"
           className="h-full max-h-[200px] w-full max-w-[200px] object-cover rounded-lg"
         />
       </div>
