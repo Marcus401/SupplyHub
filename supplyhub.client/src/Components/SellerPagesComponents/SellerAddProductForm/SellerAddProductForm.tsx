@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import product_image from "../../../assets/upload_image_placeholder.png";
-import {ProductRequestDto} from "../../../Dtos/Seller/ProductRequestDto.ts";
-import {addProduct} from "../../../api/seller.tsx";
-import {useNavigate} from "react-router-dom";
+import { ProductRequestDto } from "../../../Dtos/Seller/ProductRequestDto.ts";
+import { addProduct } from "../../../api/seller.tsx";
+import { useNavigate } from "react-router-dom";
 
 interface FAQ {
   question: string;
@@ -93,14 +93,14 @@ const SellerAddProductForm = () => {
     return new Promise((resolve, reject) => {
       const img = new Image();
       const reader = new FileReader();
-      
+
       reader.onload = () => {
         img.onload = () => {
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
 
           if (!ctx) {
-            reject('Canvas context is not available');
+            reject("Canvas context is not available");
             return;
           }
 
@@ -111,21 +111,19 @@ const SellerAddProductForm = () => {
 
           const base64String = canvas.toDataURL();
 
-          const base64Cleaned = base64String.split(',')[1];
+          const base64Cleaned = base64String.split(",")[1];
 
-          resolve(base64Cleaned); 
+          resolve(base64Cleaned);
         };
 
-        img.src = reader.result as string; 
+        img.src = reader.result as string;
       };
 
       reader.onerror = (error) => reject(error);
-      
+
       reader.readAsDataURL(file);
     });
   };
-
-
 
   const removeImageFromList = (index: number) => {
     const newImageList = imageList.filter((_, i) => i !== index);
@@ -134,21 +132,20 @@ const SellerAddProductForm = () => {
 
   const addProductHandle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    
+
     console.log(imageFile ? toBase64(imageFile) : undefined);
-    
-    console.log(imageList.length > 0
+
+    console.log(
+      imageList.length > 0
         ? await Promise.all(imageList.map((image) => toBase64(image)))
-        : []);
-    
+        : []
+    );
+
     const newProduct: ProductRequestDto = {
       thumbnail: imageFile ? await toBase64(imageFile) : undefined,
-      images: imageList.length > 0
-          ? await Promise.all(
-              imageList.map((image) =>
-                  toBase64(image) 
-              )
-          )
+      images:
+        imageList.length > 0
+          ? await Promise.all(imageList.map((image) => toBase64(image)))
           : [],
       productName,
       productType: category,
@@ -160,9 +157,9 @@ const SellerAddProductForm = () => {
       faqQuestions: faqs.map((faq) => faq.question),
       faqAnswers: faqs.map((faq) => faq.answer),
     };
-    
+
     console.log(newProduct);
-    
+
     const success = await addProduct(newProduct);
     if (success) {
       console.log("Product added successfully!");
@@ -344,6 +341,9 @@ const SellerAddProductForm = () => {
           <option value="Kilogram">Kilogram</option>
           <option value="Gallon">Gallon</option>
           <option value="Dozen">Dozen </option>
+          <option value="Bulk">Bulk </option>
+          <option value="Piece">Piece </option>
+          <option value="Ounce">Ounce</option>
         </select>
       </div>
 
@@ -434,45 +434,45 @@ const SellerAddProductForm = () => {
           <div className="flex justify-between items-center mb-6">
             {/* Add Image Button */}
             <button
-                onClick={handleAddImageButtonClick}
-                className="bg-white border-2 border-gray-800 rounded-lg flex items-center space-x-2 p-2 hover:bg-gray-100"
+              onClick={handleAddImageButtonClick}
+              className="bg-white border-2 border-gray-800 rounded-lg flex items-center space-x-2 p-2 hover:bg-gray-100"
             >
               <input
-                  type="file"
-                  accept=".png, .jpg, .jpeg, .jfif"
-                  className="hidden"
-                  id="imageUpload"
-                  onChange={addToImageListChange}
-                  ref={fileInputRef}
+                type="file"
+                accept=".png, .jpg, .jpeg, .jfif"
+                className="hidden"
+                id="imageUpload"
+                onChange={addToImageListChange}
+                ref={fileInputRef}
               />
               <span>Add Image {imageList.length} / 8</span>
             </button>
-            
+
             <button
-                onClick={addProductHandle}
-                className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700"
+              onClick={addProductHandle}
+              className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700"
             >
               Publish
             </button>
           </div>
-          
+
           <div className="flex-col mb-4">
             {imageList.map((image, index) => (
-                <div key={index} className="flex items-center space-x-2 mb-2">
-                  <img
-                      src={URL.createObjectURL(image)}
-                      alt="product image"
-                      className="w-[100px] h-[100px] rounded-2xl"
-                  />
-                  <button
-                      onClick={() => removeImageFromList(index)}
-                      className="flex no-underline rounded-lg lg:w-[120px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]"
-                  >
-                    <h6 className="lg:text-md text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-red-700">
-                      Remove Image
-                    </h6>
-                  </button>
-                </div>
+              <div key={index} className="flex items-center space-x-2 mb-2">
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt="product image"
+                  className="w-[100px] h-[100px] rounded-2xl"
+                />
+                <button
+                  onClick={() => removeImageFromList(index)}
+                  className="flex no-underline rounded-lg lg:w-[120px] lg:h-[35px] justify-center items-center w-[120px] h-[40px]"
+                >
+                  <h6 className="lg:text-md text-sm overflow-hidden text-ellipsis line-clamp-1 whitespace-nowrap text-red-700">
+                    Remove Image
+                  </h6>
+                </button>
+              </div>
             ))}
           </div>
         </div>
