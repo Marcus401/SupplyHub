@@ -25,11 +25,9 @@ Created with **ReactJS** using **Typescript** with **Tailwind CSS** and **Vite**
 
 ### Database:
 **MSSQL** Database
-*(Originally made with Azure SQL Database)*
 
 ### Deployment:
 **Localhost**
-*(Originally made with Azure App Service)*
 
 - - -
 ## Key Features
