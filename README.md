@@ -39,10 +39,10 @@ Created with **ReactJS** using **Typescript** with **Tailwind CSS** and **Vite**
 - Identity Framework for database management and interactions with the underlying relational database
 - - -
 # Members and Responsibilities
-- Marcus Acaba         : Frontend, Backend, Database, Project Manager, Lead Backend Developer
-- Rica Sofia Arroyo    : Lead Frontend Developer, Frontend Designer
-- Dawn Ferrer          : Backend, Database
-- Patrick Del Prado    : Backend, Database
+- Marcus Acaba         : Project Manager, Frontend, Lead Backend Developer
+- Rica Sofia Arroyo    : Lead Frontend Developer, UI Designer
+- Dawn Ferrer          : Backend
+- Patrick Del Prado    : Backend
 - Myles Reyes          : Frontend
 - Glenn Batac          : Frontend
 - - -
