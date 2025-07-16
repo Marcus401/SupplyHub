@@ -36,7 +36,7 @@ Created with **ReactJS** using **Typescript** with **Tailwind CSS** and **Vite**
 - User Creation and Authentication with Identity Framework and JWT Tokens
 - User roles and permissions for users and sellers
 - Restful API for CRUD operations
-- Identity Framework for database management and interactions with the underlying relational database
+- Entity Framework Core for database management and interactions with the underlying relational database
 - - -
 # Members and Responsibilities
 - Marcus Acaba         : Project Manager, Frontend, Lead Backend Developer
