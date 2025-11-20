@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using SupplyHub.Server.Models;
 using Dtos.Seller;
 using Microsoft.AspNetCore.Identity;
@@ -56,7 +57,7 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
 
     [Authorize(Roles = "Seller")]
     [HttpPost("add-product")]
-    public async Task<IActionResult> AddProduct([FromBody] ProductRequestDto productRequestDto)
+    public async Task<IActionResult> AddProduct([FromForm] ProductRequestDto productRequestDto)
     {
         if (!ModelState.IsValid)
         {
@@ -71,25 +72,40 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
 
         try
         {
-            
+            var thumbnailId = "default-thumbnail.png";
+            if (productRequestDto.Thumbnail != null)
+            {
+                thumbnailId = await ImageHandler.SaveImage(productRequestDto.Thumbnail, "products/thumbnails");
+            }
+            var imageIds = new List<string>();
+            if (productRequestDto.Images != null)
+            {
+                foreach (var image in productRequestDto.Images)
+                {
+                    var imageId = await ImageHandler.SaveImage(image, "products/product-images");
+                    imageIds.Add(imageId);
+                }
+            }
+
             var newProduct = new Product
             {
                 UserId = user.Id,
                 User = user,
-                ProductName = productRequestDto.ProductName, 
-                ProductType = productRequestDto.ProductType, 
+                ProductName = productRequestDto.ProductName,
+                ProductType = productRequestDto.ProductType,
                 StockAvailable = productRequestDto.StockAvailable,
                 Price = productRequestDto.Price,
                 Unit = productRequestDto.Unit,
                 Timeframe = productRequestDto.Timeframe,
                 Description = productRequestDto.Description,
-                Thumbnail = Convert.FromBase64String(productRequestDto.Thumbnail),
-                Images = Base64StringArrayToBytes.ConvertBase64StringArrayToByteArrayArray(productRequestDto.Images),
+                Thumbnail = thumbnailId,
+                Images = imageIds,
                 FaqQuestions = productRequestDto.FaqQuestions,
                 FaqAnswers = productRequestDto.FaqAnswers,
                 IsActive = true
             };
             await _context.Products.AddAsync(newProduct);
+
             await _context.SaveChangesAsync();
         }
         catch (Exception ex)
@@ -121,7 +137,25 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
         {
             return NotFound(new { Message = "Product not found or you don't have permission to edit it" });
         }
+        
+        if(productRequestDto.Thumbnail != null)
+        {
+            var thumbnailId = await ImageHandler.SaveImage(productRequestDto.Thumbnail, "products/thumbnails");
+            product.Thumbnail = thumbnailId;
+        }
 
+        Debug.Assert(product.Images != null, "product.Images != null");
+        var imageIds = product.Images.Count != 0 ? product.Images .ToList() : [];
+
+        if (productRequestDto.Images != null)
+        {
+            foreach (var image in productRequestDto.Images)
+            {
+                var imageId = await ImageHandler.SaveImage(image, "products/product-images");
+                imageIds.Add(imageId);
+            }
+        }
+        
         try
         {
             product.ProductName = productRequestDto.ProductName;
@@ -131,8 +165,7 @@ public class SellerController(UserManager<User> userManager, SupplyhubDbContext 
             product.Unit = productRequestDto.Unit;
             product.Timeframe = productRequestDto.Timeframe;
             product.Description = productRequestDto.Description;
-            product.Thumbnail = Convert.FromBase64String(productRequestDto.Thumbnail);
-            product.Images = Base64StringArrayToBytes.ConvertBase64StringArrayToByteArrayArray(productRequestDto.Images);
+            product.Images = imageIds;
             product.FaqQuestions = productRequestDto.FaqQuestions;
             product.FaqAnswers = productRequestDto.FaqAnswers;
 

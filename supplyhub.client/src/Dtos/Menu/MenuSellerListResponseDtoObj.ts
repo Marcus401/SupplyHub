@@ -1,5 +1,5 @@
 ﻿export interface MenuSellerListResponseDtoObj{
-    profilePicture?: Uint8Array;
+    profilePicture?: string;
     userName: string;
     bio?: string;
     userId: number;

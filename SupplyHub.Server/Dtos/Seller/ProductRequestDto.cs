@@ -2,8 +2,8 @@
 
 public class ProductRequestDto
 {
-	public string? Thumbnail { get; set; }
-	public string[]? Images { get; set; }
+	public IFormFile? Thumbnail { get; set; }
+	public List<IFormFile>? Images { get; set; }
 	public required string ProductName { get; set; }
 	public required string ProductType { get; set; }
 	public int StockAvailable { get; set; }

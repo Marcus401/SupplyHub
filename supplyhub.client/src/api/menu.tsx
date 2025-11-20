@@ -4,7 +4,7 @@ import {MenuSellerListResponseDtoObj} from "../Dtos/Menu/MenuSellerListResponseD
 
 export const navbarInfo = async (): Promise<string | null> => {
     try {
-        const response = await api.get('/menu/navbar-info', { responseType: 'blob' });
+        const response = await api.get('/menu/navbar-info');
         
         const blobData = response.data as Blob;
 

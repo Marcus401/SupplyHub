@@ -27,7 +27,8 @@ public class Program
 			{
 				policy.WithOrigins("https://localhost:5173")  // Frontend URL
 					.AllowAnyHeader()
-					.AllowAnyMethod();
+					.AllowAnyMethod()
+					.AllowCredentials();
 			});
 		});
 
@@ -104,6 +105,7 @@ public class Program
 		
 		var app = builder.Build();
 
+		app.UseCors("AllowFrontend");
 		app.UseDefaultFiles();			// Serve default files (like index.html)
 		app.UseStaticFiles();			// Enables serving static files from wwwroot
 		
@@ -112,7 +114,6 @@ public class Program
 			app.UseSwagger();
 			app.UseSwaggerUI();
 		}		
-		app.UseCors("AllowFrontend");
 		app.UseHttpsRedirection();      // Redirects HTTP requests to HTTPS
 		app.UseAuthentication();		// Enables authentication
 		app.UseAuthorization();			// Enables authorization

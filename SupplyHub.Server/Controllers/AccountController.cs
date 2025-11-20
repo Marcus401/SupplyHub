@@ -34,15 +34,13 @@ public class AccountController
 			return BadRequest("User with this email already exists.");
 		}
 		
-		byte[] defaultAvatarBytes = System.IO.File.ReadAllBytes("Resources/default-avatar.png");
-		byte[] defaultCoverBytes = System.IO.File.ReadAllBytes("Resources/default-cover-image.png");
 		
 		var user = new User
 		{
 			UserName = userSignUpRequestDto.FirstName + " " + userSignUpRequestDto.LastName,
 			Email = userSignUpRequestDto.Email,
-			ProfilePicture = defaultAvatarBytes,
-			CoverPicture = defaultCoverBytes
+			ProfilePicture = "default-avatar.png",
+			CoverPicture = "default-cover-image.png"
 		};
 		
 		var result = await _userManager.CreateAsync(user, userSignUpRequestDto.Password);
@@ -84,15 +82,12 @@ public class AccountController
 			return BadRequest("User with this email already exists.");
 		}
 		
-		byte[] defaultAvatarBytes = System.IO.File.ReadAllBytes("Resources/default-avatar.png");
-		byte[] defaultCoverBytes = System.IO.File.ReadAllBytes("Resources/default-cover-image.png");
-		
 		var user = new User
 		{
 			UserName = sellerSignUpRequestDto.FirstName + " " + sellerSignUpRequestDto.LastName,
 			Email = sellerSignUpRequestDto.Email,
-			ProfilePicture = defaultAvatarBytes,
-			CoverPicture = defaultCoverBytes
+			ProfilePicture = "default-avatar.png",
+			CoverPicture = "default-cover-image.png"
 		};
 		
 		var result = await _userManager.CreateAsync(user, sellerSignUpRequestDto.Password);

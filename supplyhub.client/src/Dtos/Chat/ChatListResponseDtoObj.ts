@@ -1,4 +1,4 @@
 export interface ChatListResponseDtoObj{
-    profilePicture: Uint8Array,
+    profilePicture: string,
     userName: string
 }

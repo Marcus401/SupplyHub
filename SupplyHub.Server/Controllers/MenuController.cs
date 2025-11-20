@@ -35,7 +35,7 @@ public class MenuController(SupplyhubDbContext context, UserManager<User> userMa
 			return NotFound(new { Message = "User not found" });
 		}
 
-		return File(myProfile.ProfilePicture, "image/png");
+		return Ok( new { profilePicture = myProfile.ProfilePicture} );
 	}
 	
 	[Authorize]

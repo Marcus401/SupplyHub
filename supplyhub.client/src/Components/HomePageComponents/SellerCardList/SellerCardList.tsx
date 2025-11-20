@@ -16,30 +16,17 @@ const SellerCardList: React.FC = () => {
       });
   }, []);
 
-  const handleInquire = async (sellerId: number) => {
-    try {
-      const chatId = await inquireUser(sellerId);
-      if (chatId) {
-        window.location.href = `/chat/${chatId}`;
-      }
-    } catch (error) {
-      console.error("Error inquiring user:", error);
-    }
-  };
-
-  if (!sellers || sellers.length === 0) {
-    return <p>No sellers available</p>;
-  }
-
   return (
     <div className="space-y-4">
-      {sellers.map((seller) => (
-        <SellerCard
-          key={seller.userId}
-          seller={seller}
-          onInquire={handleInquire}
-        />
-      ))}
+        <SellerCard/>
+        <SellerCard/>
+        <SellerCard/>
+        <SellerCard/>
+        <SellerCard/>
+        <SellerCard/>
+        <SellerCard/>
+        <SellerCard/>
+
     </div>
   );
 };

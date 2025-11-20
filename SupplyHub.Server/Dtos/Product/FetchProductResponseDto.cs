@@ -4,8 +4,8 @@ public class FetchProductResponseDto
 {
 	public required string ProductName { get; set; }
 	public string? ProductType { get; set; }
-	public byte[]? Thumbnail { get; set; }
-	public byte[][]? Images { get; set; }
+	public string? Thumbnail { get; set; }
+	public List<string>? Images { get; set; }
 	public int? StockAvailable { get; set; }
 	public required decimal Price { get; set; }
 	public string? Unit { get; set; }

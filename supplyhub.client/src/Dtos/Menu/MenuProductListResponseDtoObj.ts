@@ -1,5 +1,5 @@
 ﻿export interface MenuProductListResponseDtoObj{
-    thumbnail?: Uint8Array;
+    thumbnail?: string;
     productId: number;
     price: number;
     productName: string;

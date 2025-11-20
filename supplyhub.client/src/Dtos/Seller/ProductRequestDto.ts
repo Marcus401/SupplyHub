@@ -1,6 +1,6 @@
 export interface ProductRequestDto{
-    thumbnail?: string;
-    images?: string[];
+    thumbnail?: File;
+    images?: File[];
     productName: string;
     productType: string;
     stockAvailable: number;

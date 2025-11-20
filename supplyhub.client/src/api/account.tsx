@@ -23,7 +23,7 @@ export const registerUser = async (dto : UserSignUpRequestDto) : Promise<boolean
 
 export const registerSeller = async (dto : SellerSignUpRequestDto) : Promise<boolean> => {
     try{
-        const response =  (await api.post('/account/register-seller', dto));
+        const response =  (await api.post('/account/register-seller', dto, ));
         const token = (response.data as { token: { result: string } }).token.result;
 
         if (token) {

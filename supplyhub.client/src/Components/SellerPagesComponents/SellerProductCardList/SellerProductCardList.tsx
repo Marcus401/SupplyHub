@@ -51,15 +51,18 @@ const SellerProductCardList: React.FC = () => {
                 </Link>
             </div>
             <div className="absolute h-[calc(100vh-170px)] overflow-y-auto min-h-[190px] w-full pr-8">
-                {loading && <p className="text-center text-white">Loading...</p>}
-                {error && <p className="text-center text-red-500">{error}</p>}
-                {!loading && !error && products.length === 0 && (
-                    <p className="text-center text-white">No products found.</p>
-                )}
-                {!loading &&
-                    products.map((product, index) => (
-                        <SellerProductCard key={index} product={product} />
-                    ))}
+                {
+                    products.map((product) => (
+                        <SellerProductCard
+                            key={product.productId}
+                            productName={product.productName}
+                            thumbnail={product.thumbnail}
+                            description={product.description}
+                            productId={product.productId}
+                        />
+                    ))
+                }
+
             </div>
         </div>
     );

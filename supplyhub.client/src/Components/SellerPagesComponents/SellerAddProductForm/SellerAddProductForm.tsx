@@ -142,14 +142,8 @@ const SellerAddProductForm = () => {
         : []);
     
     const newProduct: ProductRequestDto = {
-      thumbnail: imageFile ? await toBase64(imageFile) : undefined,
-      images: imageList.length > 0
-          ? await Promise.all(
-              imageList.map((image) =>
-                  toBase64(image) 
-              )
-          )
-          : [],
+      thumbnail: imageFile ? imageFile : undefined,
+      images: imageList,
       productName,
       productType: category,
       stockAvailable: stock,

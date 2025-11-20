@@ -12,7 +12,7 @@ using SupplyHub.Server.Data;
 namespace SupplyHub.Server.Migrations
 {
     [DbContext(typeof(SupplyhubDbContext))]
-    [Migration("20241127002421_InitialCreate")]
+    [Migration("20251119042449_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -267,7 +267,8 @@ namespace SupplyHub.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("FaqAnswers")
                         .HasColumnType("nvarchar(max)");
@@ -287,23 +288,28 @@ namespace SupplyHub.Server.Migrations
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("ProductType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int>("StockAvailable")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("Thumbnail")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("Thumbnail")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Timeframe")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Unit")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -428,14 +434,16 @@ namespace SupplyHub.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Bio")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("CoverPicture")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("CoverPicture")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -455,8 +463,9 @@ namespace SupplyHub.Server.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("ProfilePicture")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("ProfilePicture")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

@@ -144,7 +144,7 @@ const SellerInventoryTable = () => {
                   <td className="p-4 text-center">{product.productName}</td>
                   <td className="p-4 flex justify-center">
                     <img
-                        src={product.thumbnail ? base64ToImageUrl(product.thumbnail, "image/png") : product_image}
+                        src={product.thumbnail ? `https://localhost:7155/images/products/thumbnails/${product.thumbnail}` : product_image}
                         alt="product"
                         className="w-16 h-16 object-cover rounded"
                     />

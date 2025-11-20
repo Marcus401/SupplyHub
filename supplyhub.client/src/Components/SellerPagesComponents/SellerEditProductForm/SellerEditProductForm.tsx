@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import product_image from "../../../assets/upload_image_placeholder.png";
 import {useParams} from "react-router-dom";
 import {fetchProduct} from "../../../api/product.tsx";
+import {fetchImageAsFile} from "../../../Utils/fetchImageAsFile.tsx";
 
 interface FAQ {
   question: string;
@@ -11,25 +12,13 @@ interface FAQ {
 const SellerEditProductForm = () => {
   const { product_id } = useParams();
   
-  function base64ToFile(base64: string, fileName: string, mimeType: string): File {
-    const binaryString = atob(base64);
-
-    const byteArray = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-      byteArray[i] = binaryString.charCodeAt(i);
-    }
-    
-    return new File([byteArray], fileName, { type: mimeType });
-  }
-  
-
   useEffect(() => {
     document.title = "Edit Product";
     if (!product_id) {
       return;
     }
     const id = parseInt(product_id);
-    fetchProduct(id).then((product) => {
+    fetchProduct(id).then(async (product) => {
       if (!product) {
         return;
       }
@@ -39,15 +28,8 @@ const SellerEditProductForm = () => {
       if(product.timeFrame) setStockUnit(product.timeFrame);
       if(product.unit) setPriceUnit(product.unit);
       if(product.description)setDescription(product.description);
-      setImageFile(product.thumbnail ? base64ToFile(product.thumbnail.toString(), "thumbnail", "image/png") : null);
-        if (product.images) {
-            setImageList(
-                product.images.map((image, index) =>
-                    base64ToFile(image, `image-${index}`, "image/png")
-                )
-            );
-        }
-      setPrice(product.price);
+      if(product.thumbnail) {setThumbnailPath(product.thumbnail);}
+      
       if (!product.faqQuestions || !product.faqAnswers) return;
       setFaqs(
           product.faqQuestions.map((question, index) => ({
@@ -56,9 +38,24 @@ const SellerEditProductForm = () => {
           }))
       );
 
+      if (product.images) {
+        const imageFiles = await Promise.all(
+            product.images.map(async (imageFilename) => {
+              const imageFile = await fetchImageAsFile(`https://localhost:7155/images/products/product-images/${imageFilename}`);
+              return imageFile ? imageFile : product_image;
+            })
+        );
+
+        // Filter out null values
+        const validImages = imageFiles.filter((file): file is File => file !== null);
+
+        // Set all at once
+        setImageList(validImages);
+      }
     });
   }, []);
 
+  const [thumbnailPath, setThumbnailPath] = useState<string>("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [productName, setProductName] = useState<string>("");
   const [category, setCategory] = useState<string>("");
@@ -171,7 +168,7 @@ const SellerEditProductForm = () => {
         />
         <label htmlFor="imageUpload">
           <img
-            src={imageFile ? URL.createObjectURL(imageFile) : product_image}
+            src={imageFile ? URL.createObjectURL(imageFile) : `https://localhost:7155/images/products/thumbnails/${thumbnailPath}`}
             alt="product image"
             className="w-[200px] h-[200px] rounded-2xl row-span-3 row-start-1 col-start-1 mx-4 mt-2 cursor-pointer"
           />

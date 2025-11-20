@@ -47,11 +47,11 @@ const Tab: React.FC = () => {
   const tabs: TabProps[] = [
     {
       label: "PRODUCTS",
-      content: <ProductCardList /*products={null} products={productsList}*/ />,
+      content: <ProductCardList />,
     },
     {
       label: "SELLER",
-      content: <SellerCardList sellers={null} /*sellers={sellersList}*/ />,
+      content: <SellerCardList />,
     },
   ];
 
