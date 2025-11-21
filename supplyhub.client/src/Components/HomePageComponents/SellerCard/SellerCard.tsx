@@ -5,14 +5,9 @@ import { MenuSellerListResponseDtoObj } from "../../../Dtos/Menu/MenuSellerListR
 
 interface SellerCardProps {
   seller: MenuSellerListResponseDtoObj;
-  onInquire: (sellerId: number) => void;
 }
 
-const SellerCard = (): JSX.Element =>  {
-
-  function base64ToImageUrl(base64: string, mimeType: string): string {
-    return `data:${mimeType};base64,${base64}`;
-  }
+const SellerCard = ({seller} : SellerCardProps): JSX.Element =>  {
   
   const handleInquireButtonClick = (
     event: React.MouseEvent<HTMLAnchorElement>
@@ -22,20 +17,25 @@ const SellerCard = (): JSX.Element =>  {
 
   return (
     <Link
-      to={`/profile/}`}
+      to={`/profile/`}
       className="w-full max-w-[1200px] mx-auto p-4 no-underline flex items-center bg-white shadow-lg rounded-lg hover:bg-gray-50 border border-gray-100"
     >
       <div className="w-[100px] h-[100px] bg-black  rounded-lg overflow-hidden">
+        <img
+          src={`https://localhost:7155/images/users/profile-pictures/${seller.profilePicture}` || company_logo}
+          alt={`${seller.userName} Profile`}
+          className="w-full h-full object-cover"
+        />
       </div>
       <div className="ml-6 flex flex-col justify-between">
         <h1 className="text-lg font-semibold mb-0">
-          {"Seller Name"}
+          {seller.userName}
         </h1>
         <p className="text-sm text-gray-600 m-1">
-          {"Lorem ipsum dolor sit amet, consectetur adipisicing elit."}
+          {seller.bio}
         </p>
         <Link
-          to="/chat/45" /*{`/chat/${seller.userId}`}*/
+          to= {`/chat/${seller.userId}`}
           className="mt-2 bg-black text-white text-sm px-4 py-1 flex items-center no-underline rounded hover:bg-gray-800 w-max h-9"
           //onClick={handleInquireButtonClick}
         >

@@ -18,24 +18,16 @@ const ProductCardList: React.FC = (): JSX.Element => {
 
   return (
     <div className="grid grid-cols-6 gap-2.5">
-      <ProductCard  />
-      <ProductCard  />
-      <ProductCard  />
-        <ProductCard  />
-      <ProductCard  />
-      <ProductCard  />     
-        <ProductCard  />
-      <ProductCard  />
-      <ProductCard  />        
-        <ProductCard  />
-      <ProductCard  />
-      <ProductCard  />      <ProductCard  />        
-        <ProductCard  />
-      <ProductCard  />
-      <ProductCard  />      <ProductCard  />        
-        <ProductCard  />
-      <ProductCard  />
-      <ProductCard  />
+        {products.map((product) => (
+        <ProductCard
+            productId={product.productId}
+            thumbnail={product.thumbnail}
+            productName={product.productName}
+            price={product.price}
+            unit={product.unit}
+            />
+      ))}
+
     </div>
   );
 };

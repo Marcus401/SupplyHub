@@ -10,28 +10,26 @@ import {FetchProductResponseDto} from "../../Dtos/Product/FetchProductResponseDt
 
 const Product = () => {
     const [product, setProduct] = useState<FetchProductResponseDto>();
-  useEffect(() => {
-    document.title = "Product #";
-  }, []);
+    const { item_id } = useParams(); // Move useParams to top level
+    useEffect(() => {
+        document.title = "Product #";
+      }, []);
+    
+    useEffect(() => {
+        if (!item_id) return;
 
-    const initiate = () => {
-        useEffect(() => {
-            const {id} = useParams();
-            if(!id) return;
-            fetchProduct(parseInt(id, 10))
-                .then((data) => {
-                    if (!product) {
-                        return;
-                    }
-                    if (data) setProduct(data);
-                    console.log(product)
-                })
-                .catch((error) => {
-                    console.error("Error fetching product:", error);
-                });
-        }, []);
-        initiate();
-    }
+        fetchProduct(parseInt(item_id, 10))
+            .then((data) => {
+                if (data) {
+                    setProduct(data);
+                    console.log(data); // Log data here, not product
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching product:", error);
+            });
+    }, [item_id]);
+
 
   return (
     <div className="w-full max-w-[1100px] mx-auto p-4 items-center">
@@ -50,10 +48,20 @@ const Product = () => {
       </div>
 
       <div>
-        <BasicProductInfo />
+        <BasicProductInfo
+            productName={product?.productName || ""}
+            thumbnail={product?.thumbnail }
+            stockAvailable={product?.stockAvailable || 0}
+            price={product?.price || 0}
+            unit={product?.unit || ""}
+            timeFrame={product?.timeFrame || ""}
+        />
       </div>
       <div>
-        <ProductDescriptionImageDashBoard />
+        <ProductDescriptionImageDashBoard 
+            description={product?.description || "No Description Available"}
+            imagesList={product?.images || []}
+        />
       </div>
       <div className="mt-0">
         <ProductFaqList />

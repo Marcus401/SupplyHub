@@ -18,14 +18,11 @@ const SellerCardList: React.FC = () => {
 
   return (
     <div className="space-y-4">
-        <SellerCard/>
-        <SellerCard/>
-        <SellerCard/>
-        <SellerCard/>
-        <SellerCard/>
-        <SellerCard/>
-        <SellerCard/>
-        <SellerCard/>
+      {sellers.map((sellerUser) => (
+          <SellerCard
+            seller={sellerUser}
+          />
+      ))}
 
     </div>
   );

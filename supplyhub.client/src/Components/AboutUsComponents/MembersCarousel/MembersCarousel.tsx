@@ -2,8 +2,7 @@ import React from "react";
 import MemberCard from "../MembersCard/MemberCard";
 import acaba from "../../../assets/MembersImages/acaba.png";
 import arroyo from "../../../assets/MembersImages/arroyo.png";
-import batac from "../../../assets/MembersImages/batac.png";
-import delprado from "../../../assets/MembersImages/delprado.png";
+import coronado from "../../../assets/MembersImages/coronado.png";
 import ferrer from "../../../assets/MembersImages/ferrer.png";
 import reyes from "../../../assets/MembersImages/reyes.png";
 import Slider from "react-slick";
@@ -14,32 +13,27 @@ const MembersCarousel: React.FC = () => {
   const membersList = [
     {
       name: "Acaba, Marcus J",
-      description: "CEO",
+      description: "",
       image: acaba,
     },
     {
       name: "Arroyo, Rica Sofia B.",
-      description: "Product Manager",
+      description: "",
       image: arroyo,
     },
     {
-      name: "Batac, Glenn",
-      description: "Accounting Manager",
-      image: batac,
-    },
-    {
-      name: "Del Prado, John Patrick",
-      description: "Accounting Executive",
-      image: delprado,
+      name: "Coronado, Carlos Gabriel",
+      description: "",
+      image: coronado,
     },
     {
       name: "Ferrer, Dawn Geniel",
-      description: "Product Executive",
+      description: "",
       image: ferrer,
     },
     {
       name: "Reyes, Myles Kenneth",
-      description: "Marketing Executive",
+      description: "",
       image: reyes,
     },
   ];

@@ -1,58 +1,35 @@
 //import React, { useEffect, useState } from "react";
 import {VscStarEmpty, VscStarFull} from "react-icons/vsc";
 import product_image from "../../../assets/default-placeholder.png";
-import {Link, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {FetchProductResponseDto} from "../../../Dtos/Product/FetchProductResponseDto.ts";
-import {fetchProduct} from "../../../api/product.tsx";
+import {Link} from "react-router-dom";
 
-const BasicProductInfo = () => {
-  const [product, setProduct] = useState<FetchProductResponseDto>();
-  const initiate = () => {
-      useEffect(() => {
-          const {id} = useParams();
-          if(!id) return;
-        fetchProduct(parseInt(id, 10))
-            .then((data) => {
-                if (!product) {
-                    return;
-                }
-              if (data) setProduct(data);
-            })
-            .catch((error) => {
-              console.error("Error fetching product:", error);
-            });
-      }, []);
-  initiate();
-  }
 
-    function base64ToImageUrl(base64: string, mimeType: string): string {
-        const binaryString = atob(base64);
 
-        const byteArray = new Uint8Array(binaryString.length);
-        for (let i = 0; i < binaryString.length; i++) {
-            byteArray[i] = binaryString.charCodeAt(i);
-        }
+type props = {
+    productName: string;
+    thumbnail?: string;
+    stockAvailable: number;
+    price: number;
+    unit: string;
+    timeFrame: string;
+}
 
-        const blob = new Blob([byteArray], { type: mimeType });
+const BasicProductInfo = ({productName, thumbnail, stockAvailable, price, unit, timeFrame} : props) => {
 
-        return URL.createObjectURL(blob);
-    }
 
   return (
     <div className="items-center mx-auto border p-4 flex max-w-[1100px] w-full rounded-md">
       <div className="flex-shrink-0">
         <img
-            src={product?.thumbnail ? base64ToImageUrl(product.thumbnail.toString(), "image/png") : product_image}
+            src={thumbnail ? `https://localhost:7155/images/products/thumbnails/${thumbnail}` : product_image}
             alt="Main Product Image"
           className="h-full max-h-[200px] w-full max-w-[200px] object-cover rounded-lg"
         />
       </div>
       <div className="ml-4 mb-0">
-        <p className="text-4xl font-bold mb-0">PRODUCT NAME</p>
-        <p className="text-lg mb-0">Company Name</p>
-        <p className="mb-0">Stock number</p>
-        <p className="text-sm text-gray-600 mb-1">Php __ per unit</p>
+        <p className="text-4xl font-bold mb-0">{productName}</p>
+        <p className="mb-0">{stockAvailable} {timeFrame}</p>
+        <p className="text-sm text-gray-600 mb-1">₱ {price} per {unit}</p>
         <div className="flex flex-row space-x-1 mb-2 text-yellow-500">
           <VscStarFull />
           <VscStarFull />
@@ -65,7 +42,7 @@ const BasicProductInfo = () => {
           //onClick={handleInquireButtonClick}
           to="/chat/31"
         >
-          Inquire
+          Purchase
         </Link>
       </div>
     </div>

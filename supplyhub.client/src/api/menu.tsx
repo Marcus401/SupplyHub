@@ -4,12 +4,11 @@ import {MenuSellerListResponseDtoObj} from "../Dtos/Menu/MenuSellerListResponseD
 
 export const navbarInfo = async (): Promise<string | null> => {
     try {
-        const response = await api.get('/menu/navbar-info');
-        
-        const blobData = response.data as Blob;
-
+        const response = await api.get<string>('/menu/navbar-info');
+            
+        if(response.data)
         if (response.status === 200) {
-            return URL.createObjectURL(blobData); 
+            return response.data; 
         }
 
         console.error('Failed to fetch navbar info. Response status:', response.status);

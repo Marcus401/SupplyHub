@@ -49,7 +49,6 @@
     <Folder Include="wwwroot\images\products\product-images\" />
     <Folder Include="wwwroot\images\products\thumbnails\" />
     <Folder Include="wwwroot\images\users\cover-photos\" />
-    <Folder Include="wwwroot\images\users\profile-pictures\" />
   </ItemGroup>
 
 </Project>

@@ -29,7 +29,7 @@ const NavBar = () => {
     navbarInfo()
         .then((url) => {
           if (url) {
-            setUserImage(url);
+            setUserImage(`https://localhost:7155/images/users/profile-pictures/${url}`);
           } else {
             console.error("No image URL received.");
           }
