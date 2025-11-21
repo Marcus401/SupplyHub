@@ -12,7 +12,7 @@ const Product = () => {
     const [product, setProduct] = useState<FetchProductResponseDto>();
     const { item_id } = useParams(); // Move useParams to top level
     useEffect(() => {
-        document.title = "Product #";
+        document.title = `${product?.productName || "Product"} - SupplyHub`;
       }, []);
     
     useEffect(() => {
@@ -64,7 +64,10 @@ const Product = () => {
         />
       </div>
       <div className="mt-0">
-        <ProductFaqList />
+        <ProductFaqList 
+            faqQuestions={product?.faqQuestions || []}
+            faqAnswers={product?.faqAnswers || []}
+        />
       </div>
       <div>
         <ProductReviewCardList />
